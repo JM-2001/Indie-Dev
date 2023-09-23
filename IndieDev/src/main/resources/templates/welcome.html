@@ -1,20 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+<<<<<<< Updated upstream
     <title>IndieDev | welcome</title>
     <link rel="stylesheet" href="../static/welcome.css"></link>
+=======
+    <title>IndieDev | Home</title>
+    <link rel="stylesheet" href="/welcome.css" type="text/css" ></link>
+>>>>>>> Stashed changes
 </head>
 <body>
     <div class="wrapper">
         <header>
-            <img src="https://seeklogo.com/images/W/web-icon-logo-A6B586D114-seeklogo.com.png" alt="IndieDev Logo" height="100px" width="100px" class="images"/>
+            <img src="https://seeklogo.com/images/W/web-icon-logo-A6B586D114-seeklogo.com.png" alt="IndieDev Logo" height="50px" width="50px" class="images"/>
 			<nav>
 				<ul class="navigation">
 					<li><a href="#" class="current">Home</a></li>
 					<li><a href="#">Posts</a></li>
 					<li><a href="#">Chats</a></li>
-					<li><a href="#" id="specialButton">Login/Register</a></li>
+					<li><a href="/login" id="specialButton">Login/Register</a></li>
 					<li><a href="#">
 						<img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height = "50px" width = "50px" id="profileImg"/></a>
 					</li>
@@ -40,11 +47,11 @@
 		<div class="divContainer2">
 			<div class="leftSide2">
 				<h1>Join the community!</h1>
-				<a href="#" id="pageButton">Sign Up</a>
+				<a href="#" class="pageButton">Sign Up</a>
 			</div>
 			<div class="rightSide2">
 				<h1>Already part of the community?</h1>
-				<a href="#" id="pageButton">Login</a>
+				<a href="#" class="pageButton">Login</a>
 			</div>
 		</div>
     </div>
