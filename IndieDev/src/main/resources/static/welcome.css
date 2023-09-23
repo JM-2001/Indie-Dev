@@ -12,49 +12,52 @@ body {
 	background-color: #262626;
 	border-radius: 30px;
 	}
+/* Header and Nav */
 header {
 	display: flex;
-    justify-content: space-between;
+	justify-content: space-between;
 	align-items: flex-end;
-	height: 100px;
-	border-radius: 30px 30px 0px 0px;
+	height: 50px;
+	border-radius: 0px;
 	background-color: #2E2E2E;
-	padding: 10px 10px 30px 10px;
-	}
+	padding: 15px 10px
+}
 .images {
 	border-radius: 30px;
-	}
+}
 .navigation {
 	list-style: none;
-	}
+}
 .navigation li {
 	display: inline-block;
 	margin: 0px 5px;
-	}
+}
 .navigation li a {
 	color: #ffffff;
 	padding: 20px 30px;
 	text-transform: capitalize;
 	text-decoration: none;
-	}
+	text-align: center;
+}
 .navigation li a:hover, nav li a.current {
 	color: #0084FF;
-	}
+}
 #specialButton {
 	border-radius: 30px;
 	background-color: #1D71AF;
-	}
+}
 #specialButton:hover {
 	color: #000000;
-	}
+}
 #profileImg {
 	border-radius: 30px;
 	position: relative;
-	top: 20px; 
-	}
-#divSep {
+	top: 20px;
+}
+/* Actual Content */
+.divSep {
 	height: 20px;
-	}
+}
 .divContainer {
 	height: 500px;
 	font-size: 1.25em;
@@ -103,7 +106,7 @@ header {
 	float: right; 
     text-align: center;
 	}
-#pageButton {
+.pageButton {
 	width: 50%;
 	height: auto;
 	text-align: center;
