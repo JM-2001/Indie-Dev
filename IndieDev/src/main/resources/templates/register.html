@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>IndieDev | Register</title>
+    <link rel="stylesheet" href="/login.css" type="text/css" >
+    <link rel="stylesheet" href="/register.css" type="text/css" >
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <img src="https://seeklogo.com/images/W/web-icon-logo-A6B586D114-seeklogo.com.png" alt="IndieDev Logo" height="50px" width="50px" class="images"/>
+            <nav>
+                <ul class="navigation">
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="#">Posts</a></li>
+                    <li><a href="#">Chats</a></li>
+                    <li><a href="/login" id="specialButton">Login</a></li>
+                    <li><a href="#">
+                        <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height = "50px" width = "50px" id="profileImg"/></a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <!-- Content -->
+        <div class="divSep">
+        </div>
+        <div class="divContainerReg">
+            <h1 class="headingStyle">Register</h1>
+            <form id="registerForm" name="registerForm">
+                <div class="divPart">
+                    <label for="userName"><strong>Username:</strong></label><input type="text" id="userName" name="userName">
+                </div>
+                <div class="divPart">
+                    <label for="name"><strong>Name:</strong></label><input type="text" id="name" name="name">
+                </div>
+                <div class="divPart">
+                    <label for="email"><strong>Email:</strong></label><input type="text" id="email" name="email">
+                </div>
+                <div class="divPart">
+                    <label for="passWord"><strong>Password:</strong></label><input type="password" id="passWord" name="passWord">
+                </div>
+                <div class="divPart">
+                    <label for="confirmPassword"><strong>Confirm Password:</strong></label><input type="password" id="confirmPassword" name="confirmPassword">
+                </div>
+                <div class="divPart">
+                    <label><strong>Select your role:</strong></label>
+                    <fieldset id="roleSection">
+                        <label for="roleGameDev">
+                            <input type="checkbox" id="roleGameDev" name="roleGameDev" value="yes">Game Developer
+                        </label>
+                        <label for="roleGameDesign">
+                            <input type="checkbox" id="roleGameDesign" name="roleGameDesign" value="yes">Game Designer
+                        </label>
+                        <label for="roleArtist">
+                            <input type="checkbox" id="roleArtist" name="roleArtist" value="yes">Artist
+                        </label>
+                        <label for="roleMusician">
+                            <input type="checkbox" id="roleMusician" name="roleMusician" value="yes">Musician
+                        </label>
+                        <label for="roleCreatist">
+                            <input type="checkbox" id="roleCreatist" name="roleCreatist" value="yes">Creatist
+                        </label>
+                    </fieldset>
+                </div>
+                <div class="divPart">
+                    <button type="button" id="registerButton" name="registerButton">Register</button>
+                    <a href="/login" class="redirectButton">Already have an account? Login!</a>
+                </div>
+            </form>
+        </div>
+        <div class="divSep">
+        </div>
+        <!-- Footer -->
+        <footer>
+            <h2>Site Map</h2>
+            <div id="siteMapLeft">
+                <ul class="footerNav">
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="#">Posts</a></li>
+                    <li><a href="#">Chats</a></li>
+                </ul>
+            </div>
+            <div id="siteMapRight">
+                <ul class="footerNav">
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">About Us</a></li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

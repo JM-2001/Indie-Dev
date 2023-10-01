@@ -6,6 +6,20 @@
     <meta charset="UTF-8">
     <title>IndieDev | Home</title>
     <link rel="stylesheet" href="/welcome.css" type="text/css" ></link>
+<!--	<script>
+		function toggleDropdown() {
+			var dropdown = document.getElementById('profileDropdown');
+			dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+		}
+
+		// Close the dropdown when clicking outside of it
+		window.addEventListener('click', function(event) {
+			var dropdown = document.getElementById('profileDropdown');
+			if (!event.target.closest('.dropdown')) {
+				dropdown.style.display = 'none';
+			}
+		});
+	</script>-->
 </head>
 <body>
     <div class="wrapper">
@@ -17,14 +31,13 @@
 					<li><a href="#">Posts</a></li>
 					<li><a href="#">Chats</a></li>
 					<li><a href="/login" id="specialButton">Login/Register</a></li>
-					<li><a href="#">
-						<img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height = "50px" width = "50px" id="profileImg"/></a>
+					<li id="profile">
+						<img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height = "50px" width = "50px" id="profileImg"/>
 					</li>
 				</ul>
 			</nav>
         </header>
-		<div id="divSep">
-		</div>
+		<!-- Content -->
 		<div class="divContainer">
 			<div class="leftSide">
 				<h1>Welcome to <em>IndieDev</em></h1>
@@ -42,13 +55,32 @@
 		<div class="divContainer2">
 			<div class="leftSide2">
 				<h1>Join the community!</h1>
-				<a href="#" class="pageButton">Sign Up</a>
+				<a href="/register" class="pageButton">Sign Up</a>
 			</div>
 			<div class="rightSide2">
 				<h1>Already part of the community?</h1>
 				<a href="/login" class="pageButton">Login</a>
 			</div>
 		</div>
+		<!-- Footer -->
+		<footer>
+			<h2>Site Map</h2>
+			<div id="siteMapLeft">
+				<ul class="footerNav">
+					<li><a href="/home">Home</a></li>
+					<li><a href="#">Posts</a></li>
+					<li><a href="#">Chats</a></li>
+					<li><a href="#">Profile</a></li>
+				</ul>
+			</div>
+			<div id="siteMapRight">
+				<ul class="footerNav">
+					<li><a href="#">Admin login</a></li>
+					<li><a href="#">Mod login</a></li>
+					<li><a href="#">About Us</a></li>
+				</ul>
+			</div>
+		</footer>
     </div>
 </body>
 </html>
