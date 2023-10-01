@@ -1,17 +1,13 @@
 /* Main CSS */
-body {
+body, html{
 	font-size: 1em;
 	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-	letter-spacing: 0em;	
+	letter-spacing: 0em;
 	color: #FFFFFF;
 	background-color: #262626;
+	height: 100%;
 	margin: 0px;
-	}
-.wrapper {
-	margin: 0px auto;
-	background-color: #262626;
-	border-radius: 30px;
-	}
+}
 /* Header and Nav */
 header {
 	display: flex;
@@ -20,7 +16,10 @@ header {
 	height: 50px;
 	border-radius: 0px;
 	background-color: #2E2E2E;
-	padding: 15px 10px
+	padding: 15px 10px;
+
+	position: sticky;
+	top: 0;
 }
 .images {
 	border-radius: 30px;
@@ -51,17 +50,64 @@ header {
 }
 #profileImg {
 	border-radius: 30px;
+}
+
+/* Dropdown */
+#profile {
 	position: relative;
 	top: 20px;
 }
-/* Actual Content */
-.divSep {
-	height: 20px;
+
+/* Footer */
+footer {
+	padding-top: 10px;
+	margin-top: 10px;
+	height: 200px;
+	background-color: #2E2E2E;
 }
+footer h2 {
+	margin: 0px 0px 0px 10px;
+}
+#siteMapLeft {
+	width: 10%;
+	margin-left: 10px;
+	margin-right: auto;
+	float: left;
+}
+#siteMapRight {
+	margin-left: auto;
+	margin-right: 10px;
+	float: left;
+}
+.footerNav {
+	list-style: none;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-left: 0px;
+}
+.footerNav li {
+	font-size: 1em;
+	padding: 10px 0px;
+}
+.footerNav li a {
+	color: #ffffff;
+	text-decoration: none;
+}
+.footerNav li a:hover, .footerNav a.current {
+	color: #0084FF;
+}
+/* Page Wrapper */
+.wrapper {
+	height: auto;
+	min-height: 100%;
+	margin: 0px auto;
+	background-color: #262626;
+}
+/* Actual Content */
 .divContainer {
 	height: 500px;
 	font-size: 1.25em;
-	margin: 10px 20px 10px 20px;
+	margin: 40px 20px 10px 20px;
 	background-color: #2B2B2B;
 	border-radius: 30px;
 	}	
@@ -86,7 +132,8 @@ header {
 	}
 .divContainer2 {
 	font-size: 1em;
-	margin: 10px 20px 10px 20px;
+	height: 220px;
+	margin: 10px 20px 40px 20px;
 	}	
 .leftSide2 {
 	width: 47%;

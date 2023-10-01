@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>IndieDev | Login</title>
-    <link rel="stylesheet" href="/loginregister.css" type="text/css" ></link>
+    <link rel="stylesheet" href="/login.css" type="text/css" >
 </head>
 <body>
     <div class="wrapper">
@@ -16,13 +16,14 @@
                     <li><a href="/home">Home</a></li>
                     <li><a href="#">Posts</a></li>
                     <li><a href="#">Chats</a></li>
-                    <li><a href="#" id="specialButton">Register</a></li>
+                    <li><a href="/register" id="specialButton">Register</a></li>
                     <li><a href="#">
                         <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height = "50px" width = "50px" id="profileImg"/></a>
                     </li>
                 </ul>
             </nav>
         </header>
+        <!-- Content -->
         <div class="divSep">
         </div>
         <div class="divContainer">
@@ -37,12 +38,29 @@
                 <div class="divPart">
                     <button type="button" id="loginButton" name="login">Login</button>
                     <a href="#" class="redirectButton">Forgot your password?</a>
-                    <a href="#" class="redirectButton">Don't have an account? Open one today!</a>
+                    <a href="/register" class="redirectButton">Don't have an account? Open one today!</a>
                 </div>
             </form>
         </div>
         <div class="divSep">
         </div>
+        <!-- Footer -->
+        <footer>
+            <h2>Site Map</h2>
+            <div id="siteMapLeft">
+                <ul class="footerNav">
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="#">Posts</a></li>
+                    <li><a href="#">Chats</a></li>
+                </ul>
+            </div>
+            <div id="siteMapRight">
+                <ul class="footerNav">
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">About Us</a></li>
+                </ul>
+            </div>
+        </footer>
     </div>
 </body>
 </html>

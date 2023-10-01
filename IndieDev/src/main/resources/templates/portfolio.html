@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>IndieDev | Portfolio</title>
+    <link rel="stylesheet" href="/portfolio.css" type="text/css" ></link>
+    <script>
+            function toggleDropdown() {
+                var dropdown = document.getElementById('profileDropdown');
+                dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+            }
+
+            // Close the dropdown when clicking outside of it
+            window.addEventListener('click', function(event) {
+                var dropdown = document.getElementById('profileDropdown');
+                if (!event.target.closest('.dropdown')) {
+                    dropdown.style.display = 'none';
+                }
+            });
+        </script>
+</head>
+<body>
+<div class="wrapper">
+    <header>
+        <img src="https://seeklogo.com/images/W/web-icon-logo-A6B586D114-seeklogo.com.png" alt="IndieDev Logo" height="50px" width="50px" class="images"/>
+        <nav>
+            <ul class="navigation">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Chats</a></li>
+                <li><a href="#" class="current">Portfolio</a></li>
+                <li class="dropdown" onclick="toggleDropdown()">
+                    <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+                    <div class="dropdown-content" id="profileDropdown">
+                        <div id="profileInfo">
+                            <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+                            <p>Hi,<br>peepeepoopoo</p>
+                        </div>
+                        <a href="#">Profile</a>
+                        <a href="#">Settings</a>
+                        <a href="#">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Content -->
+    <div id="mainContent">
+        <div id="contentLeft">
+            <div id="profilePic">
+                <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" class="profileImg"/>
+            </div>
+            <h1>Purple Guy</h1>
+            <h2>@peepeepoopoo</h2>
+            <h3>Links:</h3>
+            <ul>
+                <li>
+                    <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="github">
+                    <a href="#">Github: Example</a>
+                </li>
+                <li>
+                    <img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/circle-linkedin-512.png" alt="Linkedin">
+                    <a href="#">Linkedin: Example</a>
+                </li>
+                <li>
+                    <img src="https://static.vecteezy.com/system/resources/previews/018/930/718/original/discord-logo-discord-icon-transparent-free-png.png" alt="Discord">
+                    <a href="#">Discord: Example#0000</a>
+                </li>
+            </ul>
+        </div>
+        <div id="contentRight">
+            <div id="portfolioTitleDiv">
+                <h1>Projects</h1>
+                <a href="/createProject">Create</a>
+            </div>
+            <!-- Project Div -->
+            <div class="projectDiv">
+                <div class="projectTitle">
+                    <h1>Project 1</h1>
+                    <button>
+                        <img src="https://cdn.icon-icons.com/icons2/2483/PNG/512/edit_circle_icon_149940.png" alt="edit Button"/>
+                    </button>
+                </div>
+                <div class="projectContentDiv">
+                    <img src="https://gamedevacademy.org/wp-content/uploads/2020/07/img_5f179b38687a8.png.webp" alt="Code segment">
+                    <iframe src="https://www.youtube.com/embed/QfLlBG7Wqvg?si=ZuGW5-Fy0OeZZfnP&amp;controls=0"
+                            title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;
+                            picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <h2>Description:</h2>
+                <p>This project is about creating a game which only uses 10 lines of code. The vide is attached shows blah blah
+                    blah blah. It's very cool, and you can make a game with just 10 lines of code! WOW! This was a fun game, blah
+                    blah blah...
+                </p>
+            </div>
+            <div class="projectDiv">
+                <div class="projectTitle">
+                    <h1>Project 2</h1>
+                    <button>
+                        <img src="https://cdn.icon-icons.com/icons2/2483/PNG/512/edit_circle_icon_149940.png" alt="edit Button"/>
+                    </button>
+                </div>
+                <div class="projectContentDiv">
+                    <img src="https://gamedevacademy.org/wp-content/uploads/2020/07/img_5f179b38687a8.png.webp" alt="Code segment">
+                    <iframe src="https://www.youtube.com/embed/QfLlBG7Wqvg?si=ZuGW5-Fy0OeZZfnP&amp;controls=0"
+                            title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;
+                            picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <h2>Description:</h2>
+                <p>This project is about creating a game which only uses 10 lines of code. The vide is attached shows blah blah
+                    blah blah. It's very cool, and you can make a game with just 10 lines of code! WOW! This was a fun game, blah
+                    blah blah...
+                </p>
+            </div>
+
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <h2>Site Map</h2>
+        <div id="siteMapLeft">
+            <ul class="footerNav">
+                <li><a href="/home">Home</a></li>
+                <li><a href="#">Posts</a></li>
+                <li><a href="#">Chats</a></li>
+                <li><a href="#">Profile</a></li>
+            </ul>
+        </div>
+        <div id="siteMapRight">
+            <ul class="footerNav">
+                <li><a href="#">Admin login</a></li>
+                <li><a href="#">Mod login</a></li>
+                <li><a href="#">About Us</a></li>
+            </ul>
+        </div>
+    </footer>
+</div>
+</body>
+</html>
