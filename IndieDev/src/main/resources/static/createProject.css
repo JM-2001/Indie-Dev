@@ -136,3 +136,114 @@ footer h2 {
     background-color: #262626;
 }
 /* Actual Content */
+#projectMainContent {
+    height: 1150px;
+    width: 80%;
+    margin: 20px auto;
+    background-color: #2B2B2B;
+    border-radius: 30px;
+    font-size: 1.25em;
+}
+#projectMainContent h1{
+    font-size: 2em;
+    padding: 35px 35px 0px 35px;
+}
+.divPart {
+    margin: 25px 3% 25px 3%;
+}
+.divPart label {
+    font-size: 1.05em;
+}
+#projectName, #projectClass, #projectTime{
+    margin-top: 10px;
+    background-color: transparent;
+    border: solid #575757 5px;
+    border-radius: 20px;
+    width: 97.5%;
+    height: 50px;
+    padding: 0px 10px 0px 10px;
+    font-size: 1.05em;
+    color: #FFFFFF;
+}
+#projectName:focus, #projectClass:focus, #projectTime:focus{
+    outline: none;
+    color: #FFFFFF;
+    border: solid #757575 5px;
+}
+#projectImg, #projectVid {
+    margin-top: 10px;
+    background-color: transparent;
+    width: 97.5%;
+    height: 50px;
+    padding: 20px 10px 0px 10px;
+    font-size: 1.05em;
+    color: #FFFFFF;
+}
+#projectImg::file-selector-button, #projectVid::file-selector-button {
+    background-color: #575757; /* 0084FF */
+    border: none;
+    border-radius: 30px;
+    color: #ffffff;
+    padding: 10px;
+}
+#projectImg::file-selector-button:hover, #projectVid::file-selector-button:hover {
+    background-color: #757575; /* 1D71AF */
+}
+#projectDesc {
+    margin-top: 10px;
+    background-color: transparent;
+    border: solid #575757 5px;
+    border-radius: 20px;
+    width: 97.5%;
+    height: 150px;
+    padding: 0px 10px 0px 10px;
+    font-size: 1.05em;
+    color: #FFFFFF;
+    overflow:auto;
+    resize:none;
+}
+#projectDesc:focus {
+    outline: none;
+    color: #FFFFFF;
+}
+#projectStatus {
+    border: none;
+    outline: none;
+    padding: 10px 10px 0px 10px;
+}
+#divPartButtons {
+    margin: 25px 3% 25px 3%;
+    display: flex;
+    justify-content: flex-end;
+}
+#buttonExit {
+    border: none;
+    outline: none;
+    background-color: #ff1e00;
+    border-radius: 20px;
+    width: 20%;
+    height: 80px;
+    padding: 0px 10px 0px 10px;
+    margin-right: 30px;
+    font-size: 1.25em;
+    color: #FFFFFF;
+    float: left;
+}
+#buttonCreate {
+    border: none;
+    outline: none;
+    background-color: #0084FF;
+    border-radius: 20px;
+    width: 20%;
+    height: 80px;
+    padding: 0px 10px 0px 10px;
+    font-size: 1.25em;
+    color: #FFFFFF;
+    float: right;
+}
+#buttonExit:hover {
+    background-color: #ff391f;
+ }
+#buttonCreate:hover {
+    background-color: #1D71AF;
+}

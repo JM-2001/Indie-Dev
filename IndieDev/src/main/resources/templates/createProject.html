@@ -46,7 +46,43 @@
         </nav>
     </header>
     <!-- Content -->
-
+    <div id="projectMainContent">
+        <h1>Create a new project</h1>
+        <form id="createProjectForm" name="createProjectForm">
+            <div class="divPart">
+                <label for="projectName"><strong>Project Name:</strong></label><input type="text" id="projectName" name="projectName">
+            </div>
+            <div class="divPart">
+                <label for="projectClass"><strong>Project Classification:</strong></label><input type="text" id="projectClass" name="projectClass">
+            </div>
+            <div class="divPart">
+                <label for="projectDesc"><strong>Project Description:</strong></label>
+                <textarea id="projectDesc" name="projectDesc" placeholder="This project is about...."></textarea>
+            </div>
+            <div class="divPart">
+                <label for="projectTime"><strong>Project Time Spent:</strong></label><input type="text" placeholder="hh:mm" id="projectTime" name="projectTime">
+            </div>
+            <div class="divPart">
+                <label for="projectStatus"><strong>Project Status:</strong></label>
+                <fieldset id="projectStatus" name="projectStatus">
+                    <input type="radio" id="projectStatusCompleted" name="projectStatus" value="complete">
+                    <label for="projectStatusCompleted">Completed</label>
+                    <input type="radio" id="projectStatusIncomplete" name="projectStatus" value="incomplete">
+                    <label for="projectStatusIncomplete">Incomplete</label>
+                </fieldset>
+            </div>
+            <div class="divPart">
+                <label for="projectImg"><strong>Project Images:</strong></label><input type="file" accept="image/" id="projectImg" name="projectImg">
+            </div>
+            <div class="divPart">
+                <label for="projectVid"><strong>Project Videos:</strong></label><input type="file" accept="video/" id="projectVid" name="projectVid">
+            </div>
+            <div id="divPartButtons">
+                <button type="button" id="buttonExit" name="buttonExit">Cancel</button>
+                <button type="button" id="buttonCreate" name="buttonCreate">Create</button>
+            </div>
+        </form>
+    </div>
 
     <!-- Footer -->
     <footer>
