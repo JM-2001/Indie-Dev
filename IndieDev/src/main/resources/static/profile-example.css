@@ -142,8 +142,11 @@ button {
 .see-my-projects {
     background-color: #0084FF;
 }
-.edit-profile {
+.friend-request {
     background-color: #0084FF;
+}
+.block-report {
+    background-color: red;
 }
 
 ul {
@@ -183,7 +186,6 @@ ul {
     margin-left: 6%;
     font-size: 20px;
 }
-
 
 /* The popup form - hidden by default */
 .form-popup {
@@ -240,5 +242,3 @@ ul {
 .form-container .btn:hover, .open-button:hover {
     opacity: 1;
 }
-
-

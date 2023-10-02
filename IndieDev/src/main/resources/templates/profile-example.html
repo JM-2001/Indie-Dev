@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>IndieDev | Profile</title>
-    <link rel="stylesheet" href="/profile.css" type="text/css" ></link>
+    <link rel="stylesheet" href="/profile-example.css" type="text/css" ></link>
 </head>
 <body>
 <div class="wrapper">
@@ -29,7 +29,7 @@
             <p>
                 @username<br>
                 Name<br>
-                <em>Developer</em><br><br>
+                <em>Developer, Musician</em><br><br>
                 About Me: Hey, this is my bio..............................<br>
                 ............................................................................<br>
                 ............................................................................<br>
@@ -44,16 +44,21 @@
     <div class="interactions">
         <ul>
             <li><button class="see-my-projects">See My Projects</button> </li>
-            <li><button class="edit-profile" onclick="openForm()">Edit Profile</button></li>
+            <li><button class="friend-request">Send Friend Request</button></li>
+            <!-- Report Form -->
+            <li><button class="block-report" onclick="openForm()">Report</button></li>
             <div class="form-popup" id="myForm">
                 <form class="form-container">
-                    <input type="text" placeholder="Username: " name="username" required>
-                    <input type="password" placeholder="Name: " name="name" required>
-                    <input type="text" placeholder="About me: " name="bio" required>
-                    <input type="text" placeholder="Skills: " name="bio" required>
+                    <h1>Report</h1>
 
-                    <button type="submit" class="btn">Submit Changes</button>
-                    <button type="button" class="btn cancel" onclick="closeForm()">Cancel</button>
+                    <label for="email"><b>Your Username</b></label>
+                    <input type="text" placeholder="Username: " name="username" required>
+
+                    <label for="psw"><b>Reason</b></label>
+                    <input type="password" placeholder="Reason: " name="reason" required>
+
+                    <button type="submit" class="btn">Submit</button>
+                    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
                 </form>
             </div>
             <script>
