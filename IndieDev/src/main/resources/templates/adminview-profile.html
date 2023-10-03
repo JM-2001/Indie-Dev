@@ -6,6 +6,20 @@
   <meta charset="UTF-8">
   <title>IndieDev | Profile</title>
   <link rel="stylesheet" href="/adminview-profile.css" type="text/css" ></link>
+  <script>
+    function toggleDropdown() {
+      var dropdown = document.getElementById('profileDropdown');
+      dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+    }
+
+    // Close the dropdown when clicking outside of it
+    window.addEventListener('click', function(event) {
+      var dropdown = document.getElementById('profileDropdown');
+      if (!event.target.closest('.dropdown')) {
+        dropdown.style.display = 'none';
+      }
+    });
+  </script>
 </head>
 <body>
 <div class="wrapper">
@@ -14,10 +28,20 @@
     <nav>
       <ul class="navigation">
         <li><a href="/home">Home</a></li>
-        <li><a href="#">Portfolio</a></li>
-        <li><a href="#">Chats</a></li>
+        <li><a href="/portfolio">Portfolio</a></li>
+        <li><a href="/chats">Chats</a></li>
         <li><a href="/notifications">Notifs</a></li>
-        <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height = "50px" width = "50px" id="profileImg"/></a>
+        <li class="dropdown" onclick="toggleDropdown()">
+          <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+          <div class="dropdown-content" id="profileDropdown">
+            <div id="profileInfo">
+              <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+              <p>Hi,<br>peepeepoopoo</p>
+            </div>
+            <a href="/profile" class="current">Profile</a>
+            <a href="#">Settings</a>
+            <a href="#">Logout</a>
+          </div>
         </li>
       </ul>
     </nav>
@@ -46,6 +70,7 @@
     <ul>
       <li><button class="see-my-projects">See My Projects</button> </li>
       <li><button class="friend-request">Send Friend Request</button></li>
+      <li><button class="view-reports"><a href="/reportsheet">View Reports</a></button> </li>
       <li><button class="block-report" onclick="openForm()">Report</button></li>
       <div class="form-popup" id="myForm">
         <form class="form-container">
@@ -70,7 +95,6 @@
           document.getElementById("myForm").style.display = "none";
         }
       </script>
-      <li><button class="view-reports">View Reports</button> </li>
       <li><button class="remove-user">Remove User</button></li>
     </ul>
   </div>

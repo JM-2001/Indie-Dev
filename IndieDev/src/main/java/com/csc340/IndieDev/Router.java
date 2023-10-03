@@ -30,8 +30,8 @@ public class Router {
         return "register";
     }
 
-    @GetMapping("/portfilo")
-    public String portfilo() {
+    @GetMapping("/portfolio")
+    public String portfolio() {
         return "portfolio";
     }
 
@@ -68,5 +68,10 @@ public class Router {
     @GetMapping("/notifications")
     public String notification(){
         return "notifications";
+    }
+
+    @GetMapping("/chats")
+    public String chats(){
+        return "chat";
     }
 }

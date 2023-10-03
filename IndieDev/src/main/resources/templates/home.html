@@ -6,6 +6,20 @@
 	<meta charset="UTF-8">
 	<title>IndieDev | Home</title>
 	<link rel="stylesheet" href="/home.css" type="text/css" ></link>
+	<script>
+		function toggleDropdown() {
+			var dropdown = document.getElementById('profileDropdown');
+			dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+		}
+
+		// Close the dropdown when clicking outside of it
+		window.addEventListener('click', function(event) {
+			var dropdown = document.getElementById('profileDropdown');
+			if (!event.target.closest('.dropdown')) {
+				dropdown.style.display = 'none';
+			}
+		});
+	</script>
 </head>
 <body>
 <div class="wrapper">
@@ -15,61 +29,71 @@
 			<ul class="navigation">
 				<li><a href="/home" class="current">Home</a></li>
 				<li><a href="/portfolio">Portfolio</a></li>
-				<li><a href="#">Chats</a></li>
+				<li><a href="/chats">Chats</a></li>
 				<li><a href="/notifications">Notifs</a></li>
-				<li><a href="#">
-					<img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height = "50px" width = "50px" id="profileImg"/></a>
+				<li class="dropdown" onclick="toggleDropdown()">
+					<img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+					<div class="dropdown-content" id="profileDropdown">
+						<div id="profileInfo">
+							<img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+							<p>Hi,<br>peepeepoopoo</p>
+						</div>
+						<a href="#">Profile</a>
+						<a href="#">Settings</a>
+						<a href="#">Logout</a>
+					</div>
 				</li>
 			</ul>
 		</nav>
 	</header>
-</div>
-<div class="behind-post">
-	<ul>
-		<li class="post">
-			<div class="user-info">
-				<img src="https://art.pixilart.com/783eb080961fcd6.png" alt="User Profile Picture">
-				<p class="username">@username</p>
-			</div>
-			<p class="post-content"> Share your ideas here ... </p>
-			<div class="create-post">
-				<button class="create-post-button">Add File</button>
-				<button class="create-post-button">Post</button>
-			</div>
-		</li>
-		<li class="post">
-			<div class="user-info">
-				<img src="https://art.pixilart.com/783eb080961fcd6.png" alt="User Profile Picture">
-				<p class="username"><a href="/profile-example">@username</a></p>
-			</div>
-			<p class="post-content"> HELLO THIS IS MY POST</p>
-			<ul>
-				<li class="post-image-item"><img src="https://assetstorev1-prd-cdn.unity3d.com/key-image/3c6edd41-15ce-4fdf-836c-278bd2078679.jpg?v=1" alt="Post Image" class="post-image"></li>
-			</ul>
-			<p class="post-stats">10 likes</p>
-			<div class="post-actions">
-				<button class="like-button">Like</button>
-				<button class="comment-button">Comment</button>
-				<button class="share-button">Report</button>
-			</div>
-		</li>
-	</ul>
+	<div class="behind-post">
+		<ul>
+			<li class="post">
+				<div class="user-info">
+					<img src="https://art.pixilart.com/783eb080961fcd6.png" alt="User Profile Picture">
+					<p class="username">@username</p>
+				</div>
+				<p class="post-content"> Share your ideas here ... </p>
+				<div class="create-post">
+					<button class="create-post-button">Add File</button>
+					<button class="create-post-button">Post</button>
+				</div>
+			</li>
+			<li class="post">
+				<div class="user-info">
+					<img src="https://art.pixilart.com/783eb080961fcd6.png" alt="User Profile Picture">
+					<p class="username"><a href="/profile-example">@username</a></p>
+				</div>
+				<p class="post-content"> HELLO THIS IS MY POST</p>
+				<ul>
+					<li class="post-image-item"><img src="https://assetstorev1-prd-cdn.unity3d.com/key-image/3c6edd41-15ce-4fdf-836c-278bd2078679.jpg?v=1" alt="Post Image" class="post-image"></li>
+				</ul>
+				<p class="post-stats">10 likes</p>
+				<div class="post-actions">
+					<button class="like-button">Like</button>
+					<button class="comment-button">Comment</button>
+					<button class="share-button">Report</button>
+				</div>
+			</li>
+		</ul>
+	</div>
 	<footer>
 		<h2>Site Map</h2>
 		<div id="siteMapLeft">
 			<ul class="footerNav">
 				<li><a href="/home">Home</a></li>
-				<li><a href="#">Posts</a></li>
-				<li><a href="#">Chats</a></li>
+				<li><a href="/portfolio">Portfolio</a></li>
+				<li><a href="/chats">Chats</a></li>
 			</ul>
 		</div>
 		<div id="siteMapRight">
 			<ul class="footerNav">
-				<li><a href="#">Profile</a></li>
+				<li><a href="/profile">Profile</a></li>
 				<li><a href="#">About Us</a></li>
 			</ul>
 		</div>
 	</footer>
 </div>
+
 </body>
 </html>

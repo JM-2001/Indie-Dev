@@ -6,20 +6,6 @@
     <meta charset="UTF-8">
     <title>IndieDev | Home</title>
     <link rel="stylesheet" href="/welcome.css" type="text/css" ></link>
-<!--	<script>
-		function toggleDropdown() {
-			var dropdown = document.getElementById('profileDropdown');
-			dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
-		}
-
-		// Close the dropdown when clicking outside of it
-		window.addEventListener('click', function(event) {
-			var dropdown = document.getElementById('profileDropdown');
-			if (!event.target.closest('.dropdown')) {
-				dropdown.style.display = 'none';
-			}
-		});
-	</script>-->
 </head>
 <body>
     <div class="wrapper">
@@ -27,9 +13,9 @@
             <img src="https://seeklogo.com/images/W/web-icon-logo-A6B586D114-seeklogo.com.png" alt="IndieDev Logo" height="50px" width="50px" class="images"/>
 			<nav>
 				<ul class="navigation">
-					<li><a href="#" class="current">Home</a></li>
-					<li><a href="#">Posts</a></li>
-					<li><a href="#">Chats</a></li>
+					<li><a href="/home">Home</a></li>
+					<li><a href="/portfolio">Portfolio</a></li>
+					<li><a href="/chats">Chats</a></li>
 					<li><a href="/login" id="specialButton">Login/Register</a></li>
 					<li id="profile">
 						<img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height = "50px" width = "50px" id="profileImg"/>
@@ -67,16 +53,14 @@
 			<h2>Site Map</h2>
 			<div id="siteMapLeft">
 				<ul class="footerNav">
-					<li><a href="/home">Home</a></li>
-					<li><a href="#">Posts</a></li>
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Portfolio</a></li>
 					<li><a href="#">Chats</a></li>
 					<li><a href="#">Profile</a></li>
 				</ul>
 			</div>
 			<div id="siteMapRight">
 				<ul class="footerNav">
-					<li><a href="#">Admin login</a></li>
-					<li><a href="#">Mod login</a></li>
 					<li><a href="#">About Us</a></li>
 				</ul>
 			</div>

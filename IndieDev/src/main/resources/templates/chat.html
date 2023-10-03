@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>IndieDev | Chat</title>
+    <link rel="stylesheet" href="/chat.css" type="text/css"></link>
+    <script>
+        function toggleDropdown() {
+            var dropdown = document.getElementById('profileDropdown');
+            dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+        }
+
+        // Close the dropdown when clicking outside of it
+        window.addEventListener('click', function (event) {
+            var dropdown = document.getElementById('profileDropdown');
+            if (!event.target.closest('.dropdown')) {
+                dropdown.style.display = 'none';
+            }
+        });
+    </script>
+</head>
+
+<body>
+
+<div class="wrapper">
+    <header>
+        <img src="https://seeklogo.com/images/W/web-icon-logo-A6B586D114-seeklogo.com.png" alt="IndieDev Logo"
+             height="50px" width="50px" class="images"/>
+        <nav>
+            <ul class="navigation">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/portfolio">Portfolio</a></li>
+                <li><a href="/chats" class="current">Chats</a></li>
+                <li><a href="/notifications">Notifs</a></li>
+                <li class="dropdown" onclick="toggleDropdown()">
+                    <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height="50px" width="50px"
+                         class="profileImg"/>
+                    <div class="dropdown-content" id="profileDropdown">
+                        <div id="profileInfo">
+                            <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height="50px"
+                                 width="50px" class="profileImg"/>
+                            <p>Hi,<br>peepeepoopoo</p>
+                        </div>
+                        <a href="/profile">Profile</a>
+                        <a href="#">Settings</a>
+                        <a href="#">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="divContainer">
+        <div class="leftSide2">
+            <h1>Inbox</h1>
+            <ul class="inbox">
+                <li class="inboxcontainer">
+                    <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="inbox"
+                         height="30px" width="30px" id="delorisnotif"/>
+                    <a href="#">Deloris:</a><a href="#"> Hi there!</a>
+                </li>
+                <li class="inboxcontainer"><img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic"
+                                                height="30px" width="30px" id="dennisnotif"/>
+                    <a href="#">Dennis:</a><a href="#"> I was wondering if...</a>
+                </li>
+                <li class="inboxcontainer"><img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic"
+                                                height="30px" width="30px" id="paulaprof"/>
+                    <a href="#">Paula:</a><a href="#"> Would it be alright if...</a>
+                </li>
+                <li class="inboxcontainer"><img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic"
+                                                height="30px" width="30px" id="chrisprof"/>
+                    <a href="#">Chris:</a><a href="#"> I've completed the...</a>
+                </li>
+            </ul>
+        </div>
+        <div class=rightSide2>
+            <ul class="inbox">
+                <li><img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic"
+                         height="30px" width="30px" id="dennismsg"/>
+                    <a href="#">Dennis:</a><a href="#"> I was wondering if you knew anyone who could help me
+                        design a medieval knight character for my 16 bit fighting game. I know you've worked with
+                        pixel artists before so I thought you would be the best person to ask.</a></li>
+                <li><img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic"
+                         height="30px" width="30px" id="mymsg"/>
+                    <a href="#">You:</a><a href="#"> Yeah, Paula is great at pixel design and animation.</a></li>
+            </ul>
+            <div id="messaging">
+                <label for="sendmsg">
+                    <input type="text" id="sendmsg" placeholder="Type your message...">
+                </label>
+                <button id="sendbutton">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <h2>Site Map</h2>
+        <div id="siteMapLeft">
+            <ul class="footerNav">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/chats">Chats</a></li>
+                <li><a href="/profile">Profile</a></li>
+            </ul>
+        </div>
+        <div id="siteMapRight">
+            <ul class="footerNav">
+                <li><a href="#">About Us</a></li>
+            </ul>
+        </div>
+    </footer>
+
+</div>
+
+
+</body>
+</html>
