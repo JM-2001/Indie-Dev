@@ -6,6 +6,20 @@
     <meta charset="UTF-8">
     <title>IndieDev | ReportSheet</title>
     <link rel="stylesheet" href="/reportsheet.css" type="text/css" ></link>
+    <script>
+        function toggleDropdown() {
+            var dropdown = document.getElementById('profileDropdown');
+            dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+        }
+
+        // Close the dropdown when clicking outside of it
+        window.addEventListener('click', function(event) {
+            var dropdown = document.getElementById('profileDropdown');
+            if (!event.target.closest('.dropdown')) {
+                dropdown.style.display = 'none';
+            }
+        });
+    </script>
 </head>
 <body>
 <div class="wrapper">
@@ -14,12 +28,20 @@
         <nav>
             <ul class="navigation">
                 <li><a href="/home">Home</a></li>
-                <li><a href="#">Portfolio</a></li>
-                <li><a href="#">Chats</a></li>
-                <li><a href="notifications.html">Notifs</a></li>
-
-                <li><a href="#">
-                    <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height = "50px" width = "50px" id="profileImg"/></a>
+                <li><a href="/portfolio">Portfolio</a></li>
+                <li><a href="/chats">Chats</a></li>
+                <li><a href="/notifications">Notifs</a></li>
+                <li class="dropdown" onclick="toggleDropdown()">
+                    <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+                    <div class="dropdown-content" id="profileDropdown">
+                        <div id="profileInfo">
+                            <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+                            <p>Hi,<br>peepeepoopoo</p>
+                        </div>
+                        <a href="/profile" class="current">Profile</a>
+                        <a href="#">Settings</a>
+                        <a href="#">Logout</a>
+                    </div>
                 </li>
             </ul>
         </nav>

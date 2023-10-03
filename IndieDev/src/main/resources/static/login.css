@@ -48,16 +48,53 @@ header {
 #specialButton:hover {
     color: #000000;
 }
-#profileImg {
+.profileImg {
     border-radius: 30px;
+}
+
+/* Dropdown */
+.dropdown {
     position: relative;
     top: 20px;
 }
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #2E2E2E;
+
+    min-width: 200px;
+    right: -15px;
+    top: 65px;
+}
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+#profileInfo {
+    height: 60px;
+    display: flex;
+    padding: 5px;
+    border-bottom: #3b3b3b solid 3px;
+}
+#profileInfo .profileImg{
+    margin: auto;
+    float: left;
+}
+#profileInfo p {
+    margin: auto;
+    float: right;
+}
+
 /* Footer */
 footer {
     padding-top: 10px;
     margin-top: 10px;
-    height: 210px;
+    height: 200px;
     background-color: #2E2E2E;
 }
 footer h2 {
@@ -91,7 +128,6 @@ footer h2 {
 .footerNav li a:hover, .footerNav a.current {
     color: #0084FF;
 }
-
 /* Page Wrapper */
 .wrapper {
     height: auto;
