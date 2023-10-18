@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>IndieDev | Profile</title>
+  <link rel="stylesheet" href="/modview-profile.css" type="text/css" ></link>
+  <script>
+    function toggleDropdown() {
+      var dropdown = document.getElementById('profileDropdown');
+      dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+    }
+
+    // Close the dropdown when clicking outside of it
+    window.addEventListener('click', function(event) {
+      var dropdown = document.getElementById('profileDropdown');
+      if (!event.target.closest('.dropdown')) {
+        dropdown.style.display = 'none';
+      }
+    });
+  </script>
+</head>
+<body>
+<div class="wrapper">
+  <header>
+    <img src="https://seeklogo.com/images/W/web-icon-logo-A6B586D114-seeklogo.com.png" alt="IndieDev Logo" height="50px" width="50px" class="images"/>
+    <nav>
+      <ul class="navigation">
+        <li><a href="/home">Home</a></li>
+        <li><a href="/portfolio">Portfolio</a></li>
+        <li><a href="/chat">Chats</a></li>
+        <li><a href="/notifications">Notifs</a></li>
+        <li class="dropdown" onclick="toggleDropdown()">
+          <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+          <div class="dropdown-content" id="profileDropdown">
+            <div id="profileInfo">
+              <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+              <p>Hi,<br>peepeepoopoo</p>
+            </div>
+            <a href="/profile" class="current">Profile</a>
+            <a href="#">Settings</a>
+            <a href="#">Logout</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <div class="profile-image">
+    <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic">
+    <section class="profile-info">
+      <p>
+        Status: Active<br>
+        Reported: 0 times in past month<br><br>
+        @username<br>
+        Name<br>
+        <em>Developer, Musician</em><br><br>
+        About Me: Hey, this is my bio..............................<br>
+        ............................................................................<br>
+        ............................................................................<br>
+        ............................................................................<br><br>
+        Skills: These are my skills...................................<br>
+        ............................................................................<br>
+        ............................................................................<br>
+        ............................................................................<br>
+      </p>
+    </section>
+  </div>
+  <div class="interactions">
+    <ul>
+      <li><button class="see-my-projects">See My Projects</button> </li>
+      <li><button class="friend-request">Send Friend Request</button></li>
+      <li><button class="block-report" onclick="openForm()">Report</button></li>
+      <div class="form-popup" id="myForm">
+        <form class="form-container">
+          <h1>Report</h1>
+
+          <label for="email"><b>Your Username</b></label>
+          <input type="text" placeholder="Username: " name="username" required>
+
+          <label for="psw"><b>Reason</b></label>
+          <input type="password" placeholder="Reason: " name="reason" required>
+
+          <button type="submit" class="btn">Submit</button>
+          <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        </form>
+      </div>
+      <script>
+        function openForm() {
+          document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+          document.getElementById("myForm").style.display = "none";
+        }
+      </script>
+      <li><button class="pause-account">Pause Account</button></li>
+    </ul>
+  </div>
+</div>

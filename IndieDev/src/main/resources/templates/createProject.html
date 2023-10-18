@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>IndieDev | Create Project</title>
+    <link rel="stylesheet" href="/createProject.css" type="text/css" ></link>
+    <script>
+        function toggleDropdown() {
+            var dropdown = document.getElementById('profileDropdown');
+            dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+        }
+
+        // Close the dropdown when clicking outside of it
+        window.addEventListener('click', function(event) {
+            var dropdown = document.getElementById('profileDropdown');
+            if (!event.target.closest('.dropdown')) {
+                dropdown.style.display = 'none';
+            }
+        });
+    </script>
+</head>
+<body>
+<div class="wrapper">
+    <header>
+        <img src="https://seeklogo.com/images/W/web-icon-logo-A6B586D114-seeklogo.com.png" alt="IndieDev Logo" height="50px" width="50px" class="images"/>
+        <nav>
+            <ul class="navigation">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/portfolio">Portfolio</a></li>
+                <li><a href="/chats">Chats</a></li>
+                <li><a href="/notifications">Notifs</a></li>
+                <li class="dropdown" onclick="toggleDropdown()">
+                    <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+                    <div class="dropdown-content" id="profileDropdown">
+                        <div id="profileInfo">
+                            <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+                            <p>Hi,<br>peepeepoopoo</p>
+                        </div>
+                        <a href="#">Profile</a>
+                        <a href="#">Settings</a>
+                        <a href="#">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Content -->
+    <div id="projectMainContent">
+        <h1>Create a new project</h1>
+        <form id="createProjectForm" name="createProjectForm">
+            <div class="divPart">
+                <label for="projectName"><strong>Project Name:</strong></label><input type="text" id="projectName" name="projectName">
+            </div>
+            <div class="divPart">
+                <label for="projectClass"><strong>Project Classification:</strong></label><input type="text" id="projectClass" name="projectClass">
+            </div>
+            <div class="divPart">
+                <label for="projectDesc"><strong>Project Description:</strong></label>
+                <textarea id="projectDesc" name="projectDesc" placeholder="This project is about...."></textarea>
+            </div>
+            <div class="divPart">
+                <label for="projectTime"><strong>Project Time Spent:</strong></label><input type="text" placeholder="hh:mm" id="projectTime" name="projectTime">
+            </div>
+            <div class="divPart">
+                <label for="projectStatus"><strong>Project Status:</strong></label>
+                <fieldset id="projectStatus" name="projectStatus">
+                    <input type="radio" id="projectStatusCompleted" name="projectStatus" value="complete">
+                    <label for="projectStatusCompleted">Completed</label>
+                    <input type="radio" id="projectStatusIncomplete" name="projectStatus" value="incomplete">
+                    <label for="projectStatusIncomplete">Incomplete</label>
+                </fieldset>
+            </div>
+            <div class="divPart">
+                <label for="projectImg"><strong>Project Images:</strong></label><input type="file" accept="image/" id="projectImg" name="projectImg">
+            </div>
+            <div class="divPart">
+                <label for="projectVid"><strong>Project Videos:</strong></label><input type="file" accept="video/" id="projectVid" name="projectVid">
+            </div>
+            <div id="divPartButtons">
+                <button type="button" id="buttonExit" name="buttonExit">Cancel</button>
+                <button type="button" id="buttonCreate" name="buttonCreate">Create</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <h2>Site Map</h2>
+        <div id="siteMapLeft">
+            <ul class="footerNav">
+                <li><a href="/home">Home</a></li>
+                <li><a href="#">Posts</a></li>
+                <li><a href="#">Chats</a></li>
+                <li><a href="#">Profile</a></li>
+            </ul>
+        </div>
+        <div id="siteMapRight">
+            <ul class="footerNav">
+                <li><a href="#">Admin login</a></li>
+                <li><a href="#">Mod login</a></li>
+                <li><a href="#">About Us</a></li>
+            </ul>
+        </div>
+    </footer>
+</div>
+</body>
+</html>

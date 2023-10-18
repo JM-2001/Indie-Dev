@@ -2,7 +2,6 @@ package com.csc340.IndieDev;
 
 
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -21,7 +20,58 @@ public class Router {
         return "home";
     }
 
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
 
+    @GetMapping("/register")
+    public String register(){
+        return "register";
+    }
 
+    @GetMapping("/portfolio")
+    public String portfolio() {
+        return "portfolio";
+    }
 
+    @GetMapping("/createProject")
+    public String createProject(){
+        return "createProject";
+    }
+
+    @GetMapping("/profile")
+    public String profile(){
+        return "profile";
+    }
+
+    @GetMapping("/profile-example")
+    public String profileExample(){
+        return "profile-example";
+    }
+
+    @GetMapping("/modview-profile")
+    public String modviewProfile(){
+        return "modview-profile";
+    }
+
+    @GetMapping("/adminview-profile")
+    public String adminProfile(){
+        return "adminview-profile";
+    }
+
+    @GetMapping("/reportsheet")
+    public String reportSheet(){
+        return "reportsheet";
+    }
+
+    @GetMapping("/notifications")
+    public String notification(){
+        return "notifications";
+    }
+
+    @GetMapping("/chats")
+    public String chats(){
+        return "chat";
+    }
 }

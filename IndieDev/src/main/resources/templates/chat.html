@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>IndieDev | Chat</title>
+    <link href="/chat.css" rel="stylesheet" type="text/css"></link>
+    <script>
+        function toggleDropdown() {
+            var dropdown = document.getElementById('profileDropdown');
+            dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+        }
+
+        // Close the dropdown when clicking outside of it
+        window.addEventListener('click', function (event) {
+            var dropdown = document.getElementById('profileDropdown');
+            if (!event.target.closest('.dropdown')) {
+                dropdown.style.display = 'none';
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Header -->
+        <header>
+            <img alt="IndieDev Logo" class="images"
+                 height="50px" src="https://seeklogo.com/images/W/web-icon-logo-A6B586D114-seeklogo.com.png" width="50px"/>
+            <nav>
+                <ul class="navigation">
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/portfolio">Portfolio</a></li>
+                    <li><a class="current" href="/chats">Chats</a></li>
+                    <li><a href="/notifications">Notifs</a></li>
+                    <li class="dropdown" onclick="toggleDropdown()">
+                        <img alt="Profile Pic" class="profileImg" height="50px" src="https://art.pixilart.com/783eb080961fcd6.png"
+                             width="50px"/>
+                        <div class="dropdown-content" id="profileDropdown">
+                            <div id="profileInfo">
+                                <img alt="Profile Pic" class="profileImg" height="50px"
+                                     src="https://art.pixilart.com/783eb080961fcd6.png" width="50px"/>
+                                <p>Hi,<br>peepeepoopoo</p>
+                            </div>
+                            <a href="/profile">Profile</a>
+                            <a href="#">Settings</a>
+                            <a href="#">Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <!-- Content -->
+        <div class="divContainer">
+            <div class="leftSide">
+                <h1>Inbox</h1>
+                <ul class="inbox">
+                    <li class="inboxContainer">
+                        <img alt="inbox"
+                             class="msgProfilePic" src="https://art.pixilart.com/783eb080961fcd6.png"/>
+                        <a href="#">Deloris:</a><a href="#"> Hi there!</a>
+                    </li>
+                    <li class="inboxContainer">
+                        <img alt="Profile Pic"
+                             class="msgProfilePic" src="https://art.pixilart.com/783eb080961fcd6.png"/>
+                        <a href="#">Dennis:</a><a href="#"> I was wondering if...</a>
+                    </li>
+                    <li class="inboxContainer">
+                        <img alt="Profile Pic"
+                             class="msgProfilePic" src="https://art.pixilart.com/783eb080961fcd6.png"/>
+                        <a href="#">Paula:</a><a href="#"> Would it be alright if...</a>
+                    </li>
+                    <li class="inboxContainer">
+                        <img alt="Profile Pic"
+                             class="msgProfilePic" src="https://art.pixilart.com/783eb080961fcd6.png"/>
+                        <a href="#">Chris:</a><a href="#"> I've completed the...</a>
+                    </li>
+                </ul>
+            </div>
+            <div class=rightSide>
+                <h1>Current Chat</h1>
+<!--                <div class="chatBox">
+                    <div class="chatContainerLeft">
+                        <img alt="Profile Pic"
+                             class="msgProfilePic" src="https://art.pixilart.com/783eb080961fcd6.png"/>
+                        Dennis: I was wondering if you knew anyone who could help me
+                        design a medieval knight character for my 16 bit fighting game. I know you've worked with
+                        pixel artists before, so I thought you would be the best person to ask.
+                    </div>
+                    <div class="chatContainerRight">
+                        Yeah, Paula is great at pixel design and animation.
+                        <img alt="Profile Pic"
+                             class="msgProfilePicR" src="https://art.pixilart.com/783eb080961fcd6.png"/>
+                    </div>
+                </div>-->
+
+
+                <ul class="chatBox">
+                    <li class="chatContainerLeft">
+                        <img alt="Profile Pic"
+                             class="msgProfilePic" src="https://art.pixilart.com/783eb080961fcd6.png"/>
+                        Dennis: I was wondering if you knew anyone who could help me
+                        design a medieval knight character for my 16 bit fighting game. I know you've worked with
+                        pixel artists before, so I thought you would be the best person to ask.
+                    </li>
+                    <li class="chatContainerRight">
+                        Yeah, Paula is great at pixel design and animation.
+                        <img alt="Profile Pic"
+                             class="msgProfilePicR" src="https://art.pixilart.com/783eb080961fcd6.png"/>
+                    </li>
+                    <li class="chatContainerLeft">
+                        <img alt="Profile Pic"
+                             class="msgProfilePic" src="https://art.pixilart.com/783eb080961fcd6.png"/>
+                        Dennis: Okay, cool!
+                    </li>
+                </ul>
+                <div id="messaging">
+                    <label for="sendMsg">
+                        <input id="sendMsg" placeholder="Type your message..." type="text">
+                    </label>
+                    <button id="sendButton">Send</button>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <footer>
+            <h2>Site Map</h2>
+            <div id="siteMapLeft">
+                <ul class="footerNav">
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/chats">Chats</a></li>
+                    <li><a href="/profile">Profile</a></li>
+                </ul>
+            </div>
+            <div id="siteMapRight">
+                <ul class="footerNav">
+                    <li><a href="#">About Us</a></li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
