@@ -133,9 +133,6 @@ footer h2 {
     background-color: #262626;
     border-radius: 30px;
 }
-.divSep {
-    height: 20px;
-}
 .divContainer {
     height: 500px;
     font-size: 1.25em;
@@ -143,113 +140,114 @@ footer h2 {
     display: flex;
 }
 .leftSide {
-    width: 50%;
-    padding: 20px;
-    margin: 10px auto 10px 10px;
-    float: left;
-}
-h1{
-    text-align: center;
-    border-bottom: solid #181818 2px;
-    padding-bottom: 5px;
-}
-
-.leftSide2 {
     width: 30%;
     padding: 20px;
     background-color: #2B2B2B;
     border-radius: 30px;
-    margin: 10px 15px 10px 0;
+    margin: 10px 15px;
     text-align: left;
     float: left;
 }
+.leftSide h1, .rightSide h1 {
+    text-align: center;
+    border-bottom: solid #181818 2px;
+    padding-bottom: 5px;
+    margin: 0;
+}
 .inbox{
     list-style-type: none;
-    padding-left: 20px;
-    padding-right: 40px;
-    padding-bottom: 40px;
+    padding-left: 0px;
+    width: 100%;
 }
-
-.inboxcontainer {
+.inboxContainer {
     border: solid #575757 3px;
     border-radius: 20px;
-    margin-bottom: 10px;
+    margin: 10px 0px;
     padding: 10px;
-    width: 100%;
     display: flex;
     align-items: center;
 }
-a{
+.inboxContainer a{
     text-decoration: none;
     color: white;
 }
-
-.leftSide2 img {
+.msgProfilePic {
     border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
 }
-
-.msgcontainer a {
-    margin-top: 10%;
-}
-.rightSide2 {
+.rightSide {
     width: 75%;
     padding: 20px;
     background-color: #2B2B2B;
     border-radius: 30px;
-    margin: 10px 10px 10px 10px;
+    margin: 10px 15px;
     text-align: left;
     float: right;
 }
-
-.rightSide2 img {
-    border-radius: 50%;
-    margin-top: 5%;
+.chatBox {
+    list-style-type: none;
+    padding-left: 0px;
+    width: 100%;
 }
-
-.pageButton {
-    width: 50%;
-    height: auto;
-    text-align: center;
-    color: #000000;
-    font-size: 2em;
-    text-decoration: none;
-    display: inline-block;
-    padding: 25px;
-    border-radius: 30px;
-    background-color: #1D71AF;
+.chatContainerLeft {
+    background: #a7b9c2;
+    border-radius: 20px;
+    margin: 10px auto 10px 0px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+}
+.chatContainerRight {
+    background: #4269AE;
+    border-radius: 20px;
+    margin: 10px 0px 10px auto;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+}
+.msgProfilePicR {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
 }
 
 #messaging {
     display: flex;
-    height: 40px;
+    height: 70px;
     width: 100%;
     border-top: solid #181818 2px;
     padding-top: 10px;
     margin-top: 100px;
-
 }
 
-#sendmsg {
+#sendMsg {
     margin-top: 10px;
     background-color: transparent;
     border: solid #575757 5px;
     border-radius: 20px;
-    width: 250%;
-    height: 100%;
-    padding: 0px 10px 0px 10px;
+    width: 900px;
+    height: 40px;
+    padding: 0px 10px;
     font-size: 1.05em;
     color: #FFFFFF;
     float: left;
 }
-
-#sendbutton {
-    margin-top: 13px;
-    margin-left: auto;
+#sendMsg:focus {
+    border: solid #afafaf 5px;
+    outline: none;
+}
+#sendButton {
+    margin: auto 0px auto auto;
     background-color: #0084FF;
     border-radius: 20px;
-    height: 100%;
+    height: 50px;
     width: 10%;
-    padding: 0px 10px 0px 10px;
+    padding: 0px 10px;
     font-size: 1.05em;
     color: #FFFFFF;
     float: right;
