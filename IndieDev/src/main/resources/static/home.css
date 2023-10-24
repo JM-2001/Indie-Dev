@@ -210,7 +210,7 @@ ul{
 .post {
     background-color: #2E2E2E;
     border: #3b3b3b solid 2.5px;
-    border-radius: 5px;
+    border-radius: 30px;
     padding: 16px;
     margin: 5% 15%;
     box-shadow: 0 2px 4px black;
@@ -268,9 +268,9 @@ ul{
 
 button {
     padding: 8px 16px;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
-    border: 2px solid #DCDCDC;
+    border: 2px solid #1D71AF;
     margin-right: 2%;
     background-color: #3b3b3b;
 }
