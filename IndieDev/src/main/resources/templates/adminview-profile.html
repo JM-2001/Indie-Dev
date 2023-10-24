@@ -46,56 +46,164 @@
       </ul>
     </nav>
   </header>
-  <div class="profile-image">
-    <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic">
-    <section class="profile-info">
-      <p>
-        Status: Active<br>
-        Reported: 0 times in past month<br><br>
-        @username<br>
-        Name<br>
-        <em>Developer, Musician</em><br><br>
-        About Me: Hey, this is my bio..............................<br>
-        ............................................................................<br>
-        ............................................................................<br>
-        ............................................................................<br><br>
-        Skills: These are my skills...................................<br>
-        ............................................................................<br>
-        ............................................................................<br>
-        ............................................................................<br>
-      </p>
-    </section>
-  </div>
-  <div class="interactions">
-    <ul>
-      <li><button class="see-my-projects">See My Projects</button> </li>
-      <li><button class="friend-request">Send Friend Request</button></li>
-      <li><button class="view-reports"><a href="/reportsheet">View Reports</a></button> </li>
-      <li><button class="block-report" onclick="openForm()">Report</button></li>
-      <div class="form-popup" id="myForm">
-        <form class="form-container">
-          <h1>Report</h1>
-
-          <label for="email"><b>Your Username</b></label>
-          <input type="text" placeholder="Username: " name="username" required>
-
-          <label for="psw"><b>Reason</b></label>
-          <input type="password" placeholder="Reason: " name="reason" required>
-
-          <button type="submit" class="btn">Submit</button>
-          <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-        </form>
+  <!-- Content -->
+  <div id="mainContent">
+    <div id="contentLeft">
+      <div id="profilePic">
+        <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" class="profileImg"/>
       </div>
-      <script>
-        function openForm() {
-          document.getElementById("myForm").style.display = "block";
-        }
-
-        function closeForm() {
-          document.getElementById("myForm").style.display = "none";
-        }
-      </script>
-      <li><button class="remove-user">Remove User</button></li>
-    </ul>
+      <h1>Purple Guy</h1>
+      <h2>@peepeepoopoo</h2>
+      <h3>Roles:</h3>
+      <ul id="roleContainer">
+        <li id="roleDisplayDeveloper">Developer</li>
+        <li id="roleDisplayDesigner">Designer</li>
+        <li id="roleDisplayArtist">Artist</li>
+        <li id="roleDisplayMusician">Musician</li>
+        <li id="roleDisplayCreatist">Creatist</li>
+        <li id="roleDisplayWriter">Writer</li>
+      </ul>
+      <h3>Links:</h3>
+      <ul id="linkContainer">
+        <li>
+          <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="github">
+          <a href="#">Github: Example</a>
+        </li>
+        <li>
+          <img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/circle-linkedin-512.png" alt="Linkedin">
+          <a href="#">Linkedin: Example</a>
+        </li>
+        <li>
+          <img src="https://static.vecteezy.com/system/resources/previews/018/930/718/original/discord-logo-discord-icon-transparent-free-png.png" alt="Discord">
+          <a href="#">Discord: Example#0000</a>
+        </li>
+      </ul>
+      <div id="actionContainer">
+        <button id="seeProjectBtn">Send My Projects</button>
+        <button id="sendFriendBtn">Send Friend Request</button>
+        <button id="reportBtn" onclick="toggleReportMenu()">Report</button>
+        <div id="reportForm">
+          <h1>Report</h1>
+          <div class="fieldIODiv">
+            <label for="reporterUserName">
+              <strong>Your Username:</strong>
+            </label>
+            <input id="reporterUserName" name="reporterUserName" type="text">
+          </div>
+          <div class="fieldIODiv">
+            <label for="reasoningInput">
+              <strong>Reasoning:</strong>
+            </label>
+            <textarea id="reasoningInput" name="reasoningInput"></textarea>
+          </div>
+          <button id="submitReportBtn">Submit</button>
+        </div>
+        <button id="viewReportsBtn" onclick="viewReportsRedirect()">! Review Reports !</button>
+        <button id="pauseAccBtn">! PAUSE ACCOUNT !</button>
+        <button id="removeAccBtn" onclick="toggleRemoveAccMenu()">! REMOVE ACCOUNT !</button>
+        <div id="reassuranceRemoveAccDiv">
+          <h1>Are you sure?</h1>
+          <h2>This action cannot be undone!</h2>
+          <div id="reassuranceRemoveAccBtnDiv">
+            <button id="cancelRemoveAccBtn" onclick="closeRemoveAccMenu()">Cancel</button>
+            <button id="confirmRemoveAccBtn">Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="contentRight">
+      <div id="postsTitleDiv">
+        <h1>Posts</h1>
+      </div>
+      <!-- Posts Div -->
+      <div class="postDiv">
+        <div class="postUserInfoDiv">
+          <div class="postsUserInfoDiv">
+            <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+            <a><strong>@Username</strong></a>
+          </div>
+          <button>
+            <img src="https://cdn.icon-icons.com/icons2/2483/PNG/512/edit_circle_icon_149940.png" alt="edit Button"/>
+          </button>
+        </div>
+        <div class="postInfo">
+          <p>Joe Mama can't code</p>
+        </div>
+        <div class="postContentDiv">
+          <img src="https://gamedevacademy.org/wp-content/uploads/2020/07/img_5f179b38687a8.png.webp" alt="Code segment">
+        </div>
+        <div class="postStatsDiv">
+          <p>10 likes</p>
+        </div>
+        <div class="postButtonDiv">
+          <button class="postLikeBtn">Like</button>
+          <button class="postCommentBtn">Comment</button>
+          <button class="postReportBtn">Report</button>
+        </div>
+      </div>
+      <div class="postDiv">
+        <div class="postUserInfoDiv">
+          <div class="postsUserInfoDiv">
+            <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+            <a><strong>@Username</strong></a>
+          </div>
+          <button>
+            <img src="https://cdn.icon-icons.com/icons2/2483/PNG/512/edit_circle_icon_149940.png" alt="edit Button"/>
+          </button>
+        </div>
+        <div class="postInfo">
+          <p>Minecraft modding is great</p>
+        </div>
+        <div class="postContentDiv">
+          <img src="https://www.alanzucconi.com/wp-content/uploads/2021/03/minecraft_01.png" alt="Code segment">
+        </div>
+        <div class="postStatsDiv">
+          <p>20 likes</p>
+        </div>
+        <div class="postButtonDiv">
+          <button class="postLikeBtn">Like</button>
+          <button class="postCommentBtn">Comment</button>
+          <button class="postReportBtn">Report</button>
+        </div>
+      </div>
+      <!-- End Posts Div -->
+    </div>
   </div>
+  <script>
+    function toggleReportMenu(){
+      let reportButton = document.getElementById("reportBtn");
+      let reportMenuDiv = document.getElementById("reportForm");
+
+      if (reportMenuDiv.style.display === "none") {
+        reportMenuDiv.style.display = "flex";
+        reportButton.innerHTML = "Close Report"
+        console.log("Open")
+      } else {
+        reportMenuDiv.style.display = "none";
+        reportButton.innerHTML = "Report";
+        console.log("Closed")
+      }
+    }
+
+    function viewReportsRedirect() {
+      window.location.href = "/reportsheet";
+    }
+
+    function toggleRemoveAccMenu(){
+      let removeAccDiv = document.getElementById("reassuranceRemoveAccDiv");
+
+      if (removeAccDiv.style.display === "none") {
+        removeAccDiv.style.display = "block";
+        console.log("Open")
+      } else {
+        removeAccDiv.style.display = "none";
+        console.log("Closed")
+      }
+    }
+
+    function closeRemoveAccMenu() {
+      let removeAccDiv = document.getElementById("reassuranceRemoveAccDiv");
+      removeAccDiv.style.display = "none";
+    }
+  </script>
 </div>

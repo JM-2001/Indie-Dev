@@ -1,16 +1,12 @@
 /* Main CSS */
-body {
+body, html{
     font-size: 1em;
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
     letter-spacing: 0em;
     color: #FFFFFF;
     background-color: #262626;
+    height: 100%;
     margin: 0px;
-}
-.wrapper {
-    margin: 0px auto;
-    background-color: #262626;
-    border-radius: 30px;
 }
 /* Header and Nav */
 header {
@@ -132,199 +128,307 @@ footer h2 {
 .footerNav li a:hover, .footerNav a.current {
     color: #0084FF;
 }
-/* Actual Content */
-.divSep {
-    height: 20px;
-}
-.divContainer {
-    height: 500px;
-    font-size: 1.25em;
-    margin: 10px 20px 10px 20px;
-    background-color: #2B2B2B;
-    border-radius: 30px;
-}
-.leftSide {
-    width: 50%;
-    padding: 20px;
-    /*
-    margin-left: 10px;
-    margin-right: auto;
-    */
-    margin: 10px auto 10px 10px;
-    float: left;
-}
-.rightSide {
-    padding: 20px;
-    /*
-    margin-left: auto;
-    margin-right: 10px;
-    */
-    margin: 10px 10px 10px auto;
-    float: right;
-}
-.divContainer2 {
-    font-size: 1em;
-    margin: 10px 20px 10px 20px;
-}
-.leftSide2 {
-    width: 47%;
-    padding: 20px;
-    background-color: #2B2B2B;
-    border-radius: 30px;
-    margin: 10px auto 10px 0px;
-    float: left;
-    text-align: center;
-}
-.rightSide2 {
-    width: 47%;
-    padding: 20px;
-    background-color: #2B2B2B;
-    border-radius: 30px;
-    margin: 10px 0px 10px auto;
-    float: right;
-    text-align: center;
-}
-
-.pageButton {
-    width: 50%;
+/* Page Wrapper */
+.wrapper {
     height: auto;
-    text-align: center;
-    color: #000000;
-    font-size: 2em;
-    text-decoration: none;
-    display: inline-block;
-    padding: 25px;
-    border-radius: 30px;
-    background-color: #1D71AF;
+    min-height: 100%;
+    margin: 0px auto;
+    background-color: #262626;
 }
-
-.interactions {
-    position: absolute;
+/* Actual Content */
+#mainContent {
     display: flex;
-    justify-content: right;
-    text-align: center;
-    height: 100%;
-    top: 30%;
-    right: 10%;
-    z-index: 999;
+    min-height: 600px;
+    width: 90%;
+    margin: 30px auto;
 }
-button {
-    padding: 8px 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    border: 2px solid black;
-    margin-top: 5%;
-    color: white;
-}
-
-.see-my-projects {
-    background-color: #0084FF;
-}
-.friend-request {
-    background-color: #0084FF;
-}
-.block-report {
-    background-color: red;
-}
-
-.view-reports {
-    background-color: #0084FF;
-}
-
-.pause-account {
-    background-color: red;
-}
-
-ul {
-    list-style-type: none;
-}
-.profile-image {
-    margin-top: 5%;
-    margin-left: 32.5%;
-    margin-bottom: 20%;
-    height: 500px;
-    width: 500px;
-
-}
-.profile-image img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 2px solid #0084FF;
-}
-
-.profile-info {
-    display: flex;
-    position: relative;
-    padding: 5%;
-    transform: translate(-36%);
-    width: 100%;
-    height: 80%;
-    margin-top: 5%;
-    margin-left: 38%;
-    border: 2px solid #0084FF;
-    border-radius: 5%;
-    text-align: center;
-    background-color: #2E2E2E;
-}
-
-.profile-info p {
-    margin-left: 6%;
-    font-size: 20px;
-}
-
-/* The popup form - hidden by default */
-.form-popup {
-    display: none;
-    position: fixed;
-    right: 20px;
-    bottom: 10px;
-    z-index: 9;
-    border-radius: 10%;
-}
-
-/* Add styles to the form container */
-.form-container {
-    max-width: 300px;
-    padding: 10px;
-    background-color: #2E2E2E;
-    border-radius: 10%;
-}
-
-/* Full-width input fields */
-.form-container input[type=text], .form-container input[type=password] {
-    width: 80%;
+#contentLeft {
+    float: left;
+    height: fit-content;
+    width: 20%;
     padding: 15px;
-    margin: 5px 0 22px 0;
-    border: none;
-    background: rgba(0,0,0,.5);
-    border-radius: 10%;
 }
-
-/* When the inputs get focus, do something */
-.form-container input[type=text]:focus, .form-container input[type=password]:focus {
-    background-color: #ddd;
+#profilePic {
+    width: 250px;
+    height: 250px;
+    margin: 0px auto;
+}
+#profilePic .profileImg {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+}
+#contentLeft h1, h2 {
+    margin: 10px 0;
+}
+#roleContainer {
+    width: 100%;
+    height: 110px;
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-evenly;
+}
+#roleDisplayDeveloper, #roleDisplayDesigner, #roleDisplayArtist, #roleDisplayMusician, #roleDisplayCreatist, #roleDisplayWriter {
+    border-radius: 30px;
+    text-align: center;
+    background-color: transparent;
+    height: fit-content;
+    width: fit-content;
+    padding: 10px;
+    margin: 0px;
+}
+#roleDisplayDeveloper {
+    border: #9D76C1 solid 5px;
+}
+#roleDisplayDesigner {
+    border: #FF6969 solid 5px;
+}
+#roleDisplayArtist {
+    border: #526D82 solid 5px;
+}
+#roleDisplayMusician {
+    border: #FFCD4B solid 5px;
+}
+#roleDisplayCreatist {
+    border: #D0BFFF solid 5px;
+}
+#roleDisplayWriter {
+    border: #F3BCC8 solid 5px;
+}
+#contentLeft h3 {
+    margin: 10px 0 0 0;
+    padding-top: 5px;
+    border-top: #3b3b3b solid 2.5px;
+}
+#linkContainer {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+#linkContainer li {
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+#linkContainer li a {
+    color: #ffffff;
+    text-decoration: none;
+}
+#contentLeft ul li img {
+    height: 30px;
+    width: 30px;
+    margin: 5px 0px;
+}
+#actionContainer {
+    margin: 10px 0 0 0;
+    padding-top: 5px;
+    border-top: #3b3b3b solid 2.5px;
+    width: 100%;
+    height: fit-content;
+}
+#seeProjectBtn {
+    margin: 5px 0px;
+    padding: 0px;
     outline: none;
-}
-
-/* Set a style for the submit/login button */
-.form-container .btn {
-    background-color: red;
-    color: white;
-    padding: 16px 20px;
+    border-radius: 30px;
     border: none;
-    cursor: pointer;
-    width: 50%;
-    margin-bottom:10px;
-    opacity: 0.8;
+    background-color: #1D71AF;
+    color: #ffffff;
+    height: 30px;
+    width: 70%;
 }
-
-/* Add a red background color to the cancel button */
-.form-container .cancel {
+#sendFriendBtn {
+    margin: 5px 0px;
+    padding: 0px;
+    outline: none;
+    border-radius: 30px;
+    border: none;
+    background-color: #1D71AF;
+    color: #ffffff;
+    height: 30px;
+    width: 70%;
+}
+#reportBtn {
+    margin: 5px 0px;
+    padding: 0px;
+    outline: none;
+    border-radius: 30px;
+    border: none;
+    background-color: #ff391f;
+    color: #ffffff;
+    height: 30px;
+    width: 70%;
+}
+#reportForm {
+    height: fit-content;
+    padding: 10px;
+    margin: 5px 0px 0px 0px;
+    background-color: #3b3b3b;
+    border-radius: 30px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+#reportForm h1 {
+    margin: 0px 0px 5px 0px;
+    text-align: center;
+}
+.fieldIODiv {
+    margin: 5px 0px;
+}
+.fieldIODiv label {
+    font-size: 1.05em;
+}
+#reporterUserName {
+    margin-top: 5px;
+    background-color: transparent;
+    border: solid #575757 5px;
+    border-radius: 20px;
+    width: -webkit-fill-available;
+    height: 30px;
+    padding: 0px 10px 0px 10px;
+    font-size: 1.05em;
+    color: #FFFFFF;
+}
+#reasoningInput {
+    margin-top: 5px;
+    background-color: transparent;
+    border: solid #575757 5px;
+    border-radius: 20px;
+    width: -webkit-fill-available;
+    min-height: 70px;
+    height: auto;
+    padding: 5px 10px;
+    font-size: 1.05em;
+    color: #FFFFFF;
+    resize: vertical;
+}
+#submitReportBtn {
+    margin: 5px 0px;
+    padding: 0px;
+    outline: none;
+    border-radius: 30px;
+    border: none;
+    background-color: #ff391f;
+    color: #ffffff;
+    height: 30px;
+    width: 70%;
+}
+#pauseAccBtn {
+    margin: 5px 0px;
+    padding: 0px;
+    outline: none;
+    border-radius: 30px;
+    border: none;
+    background-color: #ff391f;
+    color: #ffffff;
+    height: 30px;
+    width: 70%;
+}
+#reporterUserName:hover, #reporterUserName:focus, #reasoningInput:hover, #reasoningInput:focus {
+    outline: none;
+    border: solid #6e6e6e 5px;
+}
+#seeProjectBtn:hover, #sendFriendBtn:hover{
     background-color: #0084FF;
 }
-
-/* Add some hover effects to buttons */
-.form-container .btn:hover, .open-button:hover {
-    opacity: 1;
+#reportBtn:hover, #submitReportBtn:hover, #pauseAccBtn:hover  {
+    background-color: #f35858;
+}
+#contentRight {
+     float: right;
+     min-height: 570px;
+     width: 80%;
+     padding: 15px;
+ }
+#postsTitleDiv {
+    display: flex;
+    justify-content: space-between;
+    height: auto;
+    width: auto;
+    border: #3b3b3b solid 2.5px;
+    border-radius: 30px;
+    padding: 15px;
+}
+#postsTitleDiv h1 {
+    font-size: 3em;
+    margin: 0;
+    float: left;
+}
+.postDiv {
+    height: fit-content;
+    width: 99%;
+    margin: 20px auto;
+    border: #3b3b3b solid 2.5px;
+    border-radius: 30px;
+}
+.postUserInfoDiv {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 15px 0px 15px;
+}
+.postsUserInfoDiv {
+    float: left;
+    display: flex;
+    flex-direction: column;
+}
+.postsUserInfoDiv a {
+    text-decoration: none;
+    color: #ffffff;
+    margin: 10px 0px;
+}
+.postUserInfoDiv button {
+    float: right;
+    background-color: inherit;
+    border: none;
+    margin: 0;
+}
+.postUserInfoDiv button img {
+    height: 50px;
+    width: 50px;
+    margin: 0;
+    padding: 0;
+}
+.postInfo, .postStatsDiv {
+    margin: 0px;
+    padding: 0px 15px;
+}
+.postInfo p, .postStatsDiv p {
+    margin: 0px;
+    font-size: 1.25em;
+}
+.postContentDiv {
+    height: max-content;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0px;
+}
+.postContentDiv img{
+    border-radius: 10px;
+    border: solid black 2px;
+    height: 100%;
+    width: 50%;
+}
+.postButtonDiv {
+    padding: 15px;
+    width: 28%;
+    display: flex;
+    justify-content: space-between;
+}
+.postLikeBtn, .postCommentBtn, .postReportBtn {
+    text-align: center;
+    border-radius: 10px;
+    border: solid #1D71AF 2px;
+    outline: none;
+    cursor: pointer;
+    background-color: #3b3b3b;
+    color: #ffffff;
+    height: 40px;
+    width: 100px;
 }
