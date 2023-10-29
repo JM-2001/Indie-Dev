@@ -139,8 +139,9 @@ footer h2 {
 #mainContent {
     display: flex;
     min-height: 600px;
-    width: 90%;
-    margin: 30px auto;
+    width: 100%;
+    margin: 30px 0;
+    justify-content: space-evenly;
 }
 #contentLeft {
     float: left;
@@ -279,6 +280,7 @@ footer h2 {
 }
 .fieldIODiv {
     margin: 5px 0px;
+    width: -webkit-fill-available;
 }
 .fieldIODiv label {
     font-size: 1.05em;
@@ -342,7 +344,7 @@ footer h2 {
 #contentRight {
      float: right;
      min-height: 570px;
-     width: 80%;
+     width: 50%;
      padding: 15px;
  }
 #postsTitleDiv {
@@ -417,7 +419,7 @@ footer h2 {
 }
 .postButtonDiv {
     padding: 15px;
-    width: 28%;
+    width: 40%;
     display: flex;
     justify-content: space-between;
 }
