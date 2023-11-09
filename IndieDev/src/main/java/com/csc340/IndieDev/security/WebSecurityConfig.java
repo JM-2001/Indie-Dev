@@ -59,9 +59,8 @@ public class WebSecurityConfig {
 
                         //AUTHORITY, not ROLE
                         //MAPPINGS ALONG WITH THEIR RESPECTIVE AUTHORITY LEVELS
-                        .requestMatchers("/","/*.css").permitAll()
-                        .requestMatchers("/register").permitAll()
-                        .requestMatchers("/home").hasAuthority("USER")
+                        .requestMatchers("/","/*.css", "/register").permitAll()
+                        .requestMatchers("/home","/createProject", "/chat").hasAnyAuthority("USER", "MOD", "ADMIN")
                         .requestMatchers("/modview-profile").hasAuthority("MOD")
                         .requestMatchers("/adminview-profile").hasAuthority("ADMIN")
                         .anyRequest().authenticated()
@@ -86,7 +85,7 @@ public class WebSecurityConfig {
     }
 
 
-    //Changed from BCrypt to NoOp
+    //Changed from BCrypt to NoOp, Bcrypt would not allow hardcoded passwords to be entered
     @Bean
     public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance();
