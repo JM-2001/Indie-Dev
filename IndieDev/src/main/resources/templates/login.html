@@ -26,19 +26,27 @@
         </div>
         <div class="divContainer">
             <h1 class="headingStyle">Login</h1>
-            <form id="loginForm" name="loginForm">
+            <!-- changed the action to login for the form, along with the method being changed to post -->
+            <form id="loginForm" name="loginForm" action="/login" method="post">
+                <!--input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/-->
                 <div class="divPart">
-                    <label for="userName"><strong>Username:</strong></label><input type="text" id="userName" name="userName">
+                    <label for="userName"><strong>Username:</strong></label><input type="text" id="userName" name="username">
                 </div>
                 <div class="divPart">
-                    <label for="passWord"><strong>Password:</strong></label><input type="password" id="passWord" name="passWord">
+                    <label for="passWord"><strong>Password:</strong></label><input type="password" id="passWord" name="password">
                 </div>
                 <div class="divPart">
-                    <button type="button" id="loginButton" name="login">Login</button>
+                    <button type="submit" id="loginButton" name="login">Login</button>
                     <a href="#" class="redirectButton">Forgot your password?</a>
                     <a href="/register" class="redirectButton">Don't have an account? Open one today!</a>
                 </div>
             </form>
+            <!-- use this to check if username / pass is invalid
+            <div th:if="${param.error}">
+                Invalid username and password.
+            </div>
+            -->
+
         </div>
         <div class="divSep">
         </div>
