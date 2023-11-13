@@ -81,6 +81,19 @@
             </ul>
             <div id="actionContainer">
                 <button id="seeProjectBtn">See My Projects</button>
+                <button th:if="${currentUser.id == user.id}" id="editProfile" onclick="openForm()">Edit Profile</button>
+                <div class="form-popup" id="myForm">
+                    <form class="form-container" action="/update" method="POST">
+                        <input type="hidden" th:value="${currentUser.getId()}" name="id" required>
+                        <input type="text" th:value="${currentUser.getName()}" name="name" required>
+                        <input type="text" th:value="${currentUser.getUsername()}" name="username" required>
+                        <input type="password" th:value="${currentUser.getPassword()}" name="id" required>
+                        <input type="text" th:value="${currentUser.getProfession()} " name="profession" required>
+
+                        <input type="submit" value="Submit text goes here" class="btn">
+                        <button type="button" class="btn cancel" onclick="closeForm()">Cancel</button>
+                    </form>
+                </div>
                 <!-- only show if on another users page, current user is the signed in user, user is the viewed user -->
                 <button th:if="${currentUser.id != user.id}" id="reportBtn" onclick="toggleReportMenu()">Report</button>
                 <div th:if="${currentUser.id != user.id}" id="reportForm">
@@ -195,6 +208,13 @@
                 reportButton.innerHTML = "Report";
                 console.log("Closed")
             }
+        }
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
         }
 
     </script>

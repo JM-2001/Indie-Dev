@@ -60,7 +60,7 @@ public class WebSecurityConfig {
                         //AUTHORITY, not ROLE
                         //MAPPINGS ALONG WITH THEIR RESPECTIVE AUTHORITY LEVELS
                         .requestMatchers("/","/*.css", "/register").permitAll()
-                        .requestMatchers("/home","/createProject", "/chat", "/profile","/id=*" ).hasAnyAuthority("USER", "MOD", "ADMIN")
+                        .requestMatchers("/home","/createProject", "/chat", "/profile","/id=*" , "/update").hasAnyAuthority("USER", "MOD", "ADMIN")
                         .requestMatchers("/modview-profile").hasAuthority("MOD")
                         .requestMatchers("/delete/**").hasAuthority("ADMIN")
                         .anyRequest().authenticated()
