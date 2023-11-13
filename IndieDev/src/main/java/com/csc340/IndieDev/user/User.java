@@ -30,7 +30,8 @@ public class User {
     private String language;
 
 
-    public User(String userName, String name, String password, String role, String profession, String language) {
+    public User(Long id, String userName, String name, String password, String role, String profession, String language) {
+        this.id = id;
         this.username = userName;
         this.name = name;
         this.role = role;

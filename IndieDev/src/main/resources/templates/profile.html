@@ -52,16 +52,17 @@
             <div id="profilePic">
                 <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" class="profileImg"/>
             </div>
-            <h1>Purple Guy</h1>
-            <h2>@peepeepoopoo</h2>
+            <h1 th:text="${user.name}"></h1>
+            <h2 th:text="'@' + ${user.username}"></h2>
             <h3>Roles:</h3>
             <ul id="roleContainer">
-                <li id="roleDisplayDeveloper">Developer</li>
-                <li id="roleDisplayDesigner">Designer</li>
-                <li id="roleDisplayArtist">Artist</li>
-                <li id="roleDisplayMusician">Musician</li>
-                <li id="roleDisplayCreatist">Creatist</li>
-                <li id="roleDisplayWriter">Writer</li>
+                <!-- These will only display if profession of the user is equal to the string -->
+                <li th:if="${user.profession == 'Developer'}" id="roleDisplayDeveloper">Developer</li>
+                <li th:if="${user.profession == 'Designer'}" id="roleDisplayDesigner">Designer</li>
+                <li th:if="${user.profession == 'Artist'}"id="roleDisplayArtist">Artist</li>
+                <li th:if="${user.profession == 'Musician'}"id="roleDisplayMusician">Musician</li>
+                <li th:if="${user.profession == 'Creatist'}"id="roleDisplayCreatist">Creatist</li>
+                <li th:if="${user.profession == 'Writer'}"id="roleDisplayWriter">Writer</li>
             </ul>
             <h3>Links:</h3>
             <ul id="linkContainer">
@@ -79,10 +80,10 @@
                 </li>
             </ul>
             <div id="actionContainer">
-                <button id="seeProjectBtn">Send My Projects</button>
-                <button id="sendFriendBtn">Send Friend Request</button>
-                <button id="reportBtn" onclick="toggleReportMenu()">Report</button>
-                <div id="reportForm">
+                <button id="seeProjectBtn">See My Projects</button>
+                <!-- only show if on another users page, current user is the signed in user, user is the viewed user -->
+                <button th:if="${currentUser.id != user.id}" id="reportBtn" onclick="toggleReportMenu()">Report</button>
+                <div th:if="${currentUser.id != user.id}" id="reportForm">
                     <h1>Report</h1>
                     <div class="fieldIODiv">
                         <label for="reporterUserName">
@@ -97,6 +98,23 @@
                         <textarea id="reasoningInput" name="reasoningInput"></textarea>
                     </div>
                     <button id="submitReportBtn">Submit</button>
+                </div>
+                <!-- Only display these if the currentuser role is above user, and the current user is viewing another profile
+                    This gets rid of the options to report etc ones own profile -->
+                <button th:if="${currentUser.role == 'ADMIN' && currentUser.id != user.id}" id="viewReportsBtn" onclick="viewReportsRedirect()">! Review Reports !</button>
+                <button th:if="${currentUser.role == 'MOD' && currentUser.id != user.id}" id="pauseAccBtn">! PAUSE ACCOUNT !</button>
+                <!-- <button th:if="${currentUser.role == 'ADMIN' && currentUser.id != user.id}" id="removeAccBtn" onclick="toggleRemoveAccMenu()">! REMOVE ACCOUNT !</button>
+               -->
+                <form th:if="${currentUser.role == 'ADMIN' && currentUser.id != user.id}" method="post" action="/delete/id={id}">
+                    <button type="submit" id="removeAccBtn">! REMOVE ACCOUNT !</button>
+                </form>
+                <div id="reassuranceRemoveAccDiv">
+                    <h1>Are you sure?</h1>
+                    <h2>This action cannot be undone!</h2>
+                    <div id="reassuranceRemoveAccBtnDiv">
+                        <button id="cancelRemoveAccBtn" onclick="closeRemoveAccMenu()">Cancel</button>
+                        <button id="confirmRemoveAccBtn">Confirm</button>
+                    </div>
                 </div>
             </div>
         </div>
