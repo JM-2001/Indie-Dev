@@ -28,6 +28,7 @@ public class User {
     private String role;
     private String profession;
     private String language;
+    private String profile_picture;
 
 
     public User(Long id, String userName, String name, String password, String role, String profession, String language) {
@@ -38,6 +39,7 @@ public class User {
         this.password = password;
         this.profession = profession;
         this.language = language;
+        this.profile_picture = profile_picture;
     }
 
 }

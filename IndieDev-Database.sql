@@ -9,7 +9,8 @@ CREATE TABLE user (
     password VARCHAR(100) NOT NULL,
     role VARCHAR(50) NOT NULL,
     profession VARCHAR(355) NOT NULL,
-    language VARCHAR(355) NOT NULL
+    language VARCHAR(355) NOT NULL,
+    profile_picture VARCHAR(355) NOT NULL
 );
 
 
@@ -55,14 +56,14 @@ CREATE TABLE report (
 );
 
 -- This will insert 4 users into the user table manually, later we will implement thymeleaf functionality to create users from the register page
-INSERT INTO user (name, username, password, role, profession, language)
-VALUES ('yoma', 'test', 'test', 'USER', 'Developer', 'English');
+INSERT INTO user (name, username, password, role, profession, language, profile_picture)
+VALUES ('Yomomma', 'testuser', 'test', 'USER', 'Developer', 'English', 'images/profile1.jpg');
 
-INSERT INTO user (name, username, password, role, profession, language)
-VALUES ('yoma', 'testmod', 'test', 'MOD', 'Developer', 'English');
+INSERT INTO user (name, username, password, role, profession, language, profile_picture)
+VALUES ('Yomommasmod', 'testmod', 'test', 'MOD', 'Artist', 'English', 'images/profile2.jpg');
 
-INSERT INTO user (name, username, password, role, profession, language)
-VALUES ('yoma', 'testadmin', 'test', 'ADMIN', 'Developer', 'English');
+INSERT INTO user (name, username, password, role, profession, language, profile_picture)
+VALUES ('Yomommasadmin', 'testadmin', 'test', 'ADMIN', 'Musician', 'English', 'images/profile1.jpg');
 
-INSERT INTO user (name, username, password, role, profession, language)
-VALUES ('yoma', 'testlocked', 'test', 'LOCKEDUSER', 'Developer', 'English');
+INSERT INTO user (name, username, password, role, profession, language, profile_picture)
+VALUES ('Yomommaslocked', 'testlocked', 'test', 'LOCKEDUSER', 'Musician', 'English', 'images/profile2.jpg');
