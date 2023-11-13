@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/")
@@ -50,6 +47,7 @@ public class Router {
      */
     @GetMapping("/id={id}")
     public String getUserProfile(@PathVariable String id, Model model) {
+
         String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
         User currentUser = service.getUserByUserName(currentUsername);
         User viewedUser = service.getUserByUserName(id);
@@ -60,23 +58,24 @@ public class Router {
         return "profile";
     }
 
-    @GetMapping("/delete/id={id}")
-    public String deleteUser(@PathVariable String id, Model model) {
-        // Fetch the user based on the username
-        User viewedUser = service.getUserByUserName(id);
+    @PostMapping("/delete/{id}")
+    public String deleteUser(@PathVariable long id, Model model) {
 
-        // Check if the user exists before attempting to delete
+        //get the user by id
+        User viewedUser = service.getUser(id);
+
+        //if user is valid,
         if (viewedUser != null) {
-            // Add the user to the model (if needed)
+            //add an attribute called "user" to viewedUser --> allows user functions to be called in thymeleaf
             model.addAttribute("user", viewedUser);
 
-            // Perform the deletion logic
-            service.deleteUser(Long.parseLong(id));
+            //uses the userservice class to call delete user on the id passed in the url
+            service.deleteUser(id);
         }
+
         // Redirect to a suitable page after deletion or handle accordingly
         return "redirect:/home";
     }
-
 
     @GetMapping("/portfolio")
     public String portfolio() {

@@ -104,10 +104,15 @@
                 <button th:if="${currentUser.role == 'ADMIN' && currentUser.id != user.id}" id="viewReportsBtn" onclick="viewReportsRedirect()">! Review Reports !</button>
                 <button th:if="${currentUser.role == 'MOD' && currentUser.id != user.id}" id="pauseAccBtn">! PAUSE ACCOUNT !</button>
                 <!-- <button th:if="${currentUser.role == 'ADMIN' && currentUser.id != user.id}" id="removeAccBtn" onclick="toggleRemoveAccMenu()">! REMOVE ACCOUNT !</button>
-               -->
-                <form th:if="${currentUser.role == 'ADMIN' && currentUser.id != user.id}" method="post" action="/delete/id={id}">
+                -->
+
+                <!-- This checks if the user signed in is an admin, and that they are not viewing their own profile.
+                      It also calls our /delete user method, and passes the user.id into the url in order for the /delete
+                      fuction to use the id to delete it. -->
+                <form th:if="${currentUser.role == 'ADMIN' && currentUser.id != user.id}" method="post" th:action="@{/delete/{id}(id=${user.id})}">
                     <button type="submit" id="removeAccBtn">! REMOVE ACCOUNT !</button>
                 </form>
+
                 <div id="reassuranceRemoveAccDiv">
                     <h1>Are you sure?</h1>
                     <h2>This action cannot be undone!</h2>

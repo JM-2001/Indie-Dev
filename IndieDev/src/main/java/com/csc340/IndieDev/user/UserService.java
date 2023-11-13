@@ -49,6 +49,11 @@ public class UserService {
         repo.deleteById(id);
     }
 
+
+    public void deleteUser(User user) {
+        repo.delete(user);
+    }
+
     /**
      * Save user entry.
      *
