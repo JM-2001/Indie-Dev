@@ -231,7 +231,7 @@ footer h2 {
     width: 100%;
     height: fit-content;
 }
-#seeProjectBtn {
+#seeProjectBtn, #sendFriendBtn {
     margin: 5px 0px;
     padding: 0px;
     outline: none;
@@ -242,18 +242,18 @@ footer h2 {
     height: 30px;
     width: 70%;
 }
-#sendFriendBtn {
+#viewReportsBtn {
     margin: 5px 0px;
     padding: 0px;
     outline: none;
     border-radius: 30px;
     border: none;
-    background-color: #1D71AF;
+    background-color: #af811d;
     color: #ffffff;
     height: 30px;
     width: 70%;
 }
-#reportBtn {
+#reportBtn, #submitReportBtn, #pauseAccBtn, #removeAccBtn{
     margin: 5px 0px;
     padding: 0px;
     outline: none;
@@ -267,7 +267,7 @@ footer h2 {
 #reportForm {
     height: fit-content;
     padding: 10px;
-    margin: 5px 0px 0px 0px;
+    margin: 5px 0px;
     background-color: #3b3b3b;
     border-radius: 30px;
     display: none;
@@ -309,7 +309,50 @@ footer h2 {
     color: #FFFFFF;
     resize: vertical;
 }
-#submitReportBtn {
+#reporterUserName:hover, #reporterUserName:focus, #reasoningInput:hover, #reasoningInput:focus {
+    outline: none;
+    border: solid #6e6e6e 5px;
+}
+#seeProjectBtn:hover, #sendFriendBtn:hover, #cancelRemoveAccBtn:hover{
+    background-color: #0084FF;
+}
+#viewReportsBtn:hover {
+    background-color: #f3b058;
+}
+#reportBtn:hover, #submitReportBtn:hover, #pauseAccBtn:hover, #removeAccBtn:hover, #confirmRemoveAccBtn:hover  {
+    background-color: #f35858;
+}
+#reassuranceRemoveAccDiv {
+    height: fit-content;
+    padding: 10px;
+    margin: 5px 0px;
+    background-color: #3b3b3b;
+    border-radius: 30px;
+    width: 400px;
+    position: relative;
+    z-index: 1;
+    display: none;
+}
+#reassuranceRemoveAccDiv h1, #reassuranceRemoveAccDiv h2 {
+    margin: 0px 0px 5px 0px;
+    text-align: center;
+}
+#reassuranceRemoveAccBtnDiv {
+    display: flex;
+    justify-content: space-around;
+}
+#cancelRemoveAccBtn {
+    margin: 5px 0px;
+    padding: 0px;
+    outline: none;
+    border-radius: 30px;
+    border: none;
+    background-color: #1D71AF;
+    color: #ffffff;
+    height: 30px;
+    width: 150px;
+}
+#confirmRemoveAccBtn {
     margin: 5px 0px;
     padding: 0px;
     outline: none;
@@ -318,24 +361,15 @@ footer h2 {
     background-color: #ff391f;
     color: #ffffff;
     height: 30px;
-    width: 70%;
+    width: 150px;
 }
-#reporterUserName:hover, #reporterUserName:focus, #reasoningInput:hover, #reasoningInput:focus {
-    outline: none;
-    border: solid #6e6e6e 5px;
-}
-#seeProjectBtn:hover, #sendFriendBtn:hover {
-    background-color: #0084FF;
-}
-#reportBtn:hover, #submitReportBtn:hover {
-    background-color: #f35858;
-}
+
 #contentRight {
-     float: right;
-     min-height: 570px;
-     width: 50%;
-     padding: 15px;
- }
+    float: right;
+    min-height: 570px;
+    width: 50%;
+    padding: 15px;
+}
 #postsTitleDiv {
     display: flex;
     justify-content: space-between;

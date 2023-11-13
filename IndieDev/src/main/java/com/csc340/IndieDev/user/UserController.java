@@ -1,6 +1,7 @@
 package com.csc340.IndieDev.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +28,13 @@ public class UserController {
         return "user/menu";
     }
 
+    @GetMapping(value = {"/home"})
+    public String home(Model model) {
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
+        model.addAttribute("currentUser", name);
+        return "user/home";
+    }
+
     @GetMapping("/all")
     public String getAllUsers(Model model,
                               @RequestParam(name = "continue",required = false) String cont) {
@@ -36,12 +44,15 @@ public class UserController {
 
     @GetMapping("/id={id}")
     public String getUser(@PathVariable long id, Model model) {
+        User user = service.getUser(id); // Replace with your actual method
+        model.addAttribute("user", user);
         model.addAttribute("user", service.getUser(id));
-        return "user/user-detail";
+        return "user/profile";
     }
 
     @GetMapping("/delete/id={id}")
     public String deleteUser(@PathVariable long id, Model model) {
+
         service.deleteUser(id);
         return "redirect:/user/all";
     }

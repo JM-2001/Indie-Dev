@@ -27,7 +27,6 @@ public class CustomUserDetailsService implements UserDetailsService {
         User user = repo.findByUsername(username).orElseThrow(()
                 -> new UsernameNotFoundException(username + "not found"));
 
-
         ArrayList<SimpleGrantedAuthority> authList = new ArrayList<>();
         authList.add(new SimpleGrantedAuthority(user.getRole()));
 

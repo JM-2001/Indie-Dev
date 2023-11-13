@@ -36,9 +36,9 @@
 					<div class="dropdown-content" id="profileDropdown">
 						<div id="profileInfo">
 							<img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
-							<p>Hi,<br>peepeepoopoo</p>
+							<p>Hi,<br th:text="${currentUser}"></p>
 						</div>
-						<a href="/profile">Profile</a>
+						<a th:href="@{/id={id}(id=${currentUser})}" >Profile</a>
 						<a href="#">Settings</a>
 						<a href="#">Logout</a>
 					</div>
