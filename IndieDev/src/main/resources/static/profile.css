@@ -231,7 +231,7 @@ footer h2 {
     width: 100%;
     height: fit-content;
 }
-#seeProjectBtn, #sendFriendBtn {
+#seeProjectBtn, #sendFriendBtn, #editProfile {
     margin: 5px 0px;
     padding: 0px;
     outline: none;
@@ -313,7 +313,7 @@ footer h2 {
     outline: none;
     border: solid #6e6e6e 5px;
 }
-#seeProjectBtn:hover, #sendFriendBtn:hover, #cancelRemoveAccBtn:hover{
+#seeProjectBtn:hover, #sendFriendBtn:hover, #cancelRemoveAccBtn:hover, #editProfile:hover{
     background-color: #0084FF;
 }
 #viewReportsBtn:hover {

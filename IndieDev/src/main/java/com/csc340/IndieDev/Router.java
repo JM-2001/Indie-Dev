@@ -77,6 +77,12 @@ public class Router {
         return "redirect:/home";
     }
 
+    @PostMapping("/update")
+    public String updateUser(User user) {
+        service.updateUser(user);
+        return "redirect:/home";
+    }
+
     @GetMapping("/portfolio")
     public String portfolio() {
         return "portfolio";
