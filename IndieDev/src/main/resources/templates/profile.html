@@ -50,7 +50,7 @@
     <div id="mainContent">
         <div id="contentLeft">
             <div id="profilePic">
-                <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" class="profileImg"/>
+                <img th:src="${user.profile_picture}" alt="Profile Pic" class="profileImg"/>
             </div>
             <h1 th:text="${user.name}"></h1>
             <h2 th:text="'@' + ${user.username}"></h2>
@@ -196,5 +196,6 @@
                 console.log("Closed")
             }
         }
+
     </script>
 </div>
