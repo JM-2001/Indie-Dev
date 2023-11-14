@@ -122,4 +122,12 @@ public class Router {
     public String chats(){
         return "chat";
     }
+
+    @PostMapping("/changeAuthorization/{id}")
+    public String changeAuthorizationLevel(@PathVariable Long id, Model model) {
+        User viewedUser = service.getUser(id);
+        viewedUser.setRole("LOCKEDUSER");
+        service.updateUser(viewedUser);
+        return "redirect:/home";  // Redirect to the user profile page or any other page
+    }
 }
