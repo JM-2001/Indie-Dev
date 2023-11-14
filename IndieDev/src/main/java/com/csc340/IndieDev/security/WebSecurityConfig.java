@@ -61,7 +61,7 @@ public class WebSecurityConfig {
                         //MAPPINGS ALONG WITH THEIR RESPECTIVE AUTHORITY LEVELS
                         .requestMatchers("/","/*.css", "/register").permitAll()
                         .requestMatchers("/home","/createProject", "/chat", "/profile","/id=*" , "/update").hasAnyAuthority("USER", "MOD", "ADMIN")
-                        .requestMatchers("/modview-profile").hasAuthority("MOD")
+                        .requestMatchers("/changeAuthorization/**").hasAuthority("MOD")
                         .requestMatchers("/delete/**").hasAuthority("ADMIN")
                         .anyRequest().authenticated()
                 )
@@ -70,7 +70,11 @@ public class WebSecurityConfig {
                         .permitAll()
                         .defaultSuccessUrl("/home", true)
                 ).exceptionHandling((x) -> x.accessDeniedPage("/403"))
-                .logout((logout) -> logout.permitAll())
+                .logout(logout -> logout
+                        .logoutUrl("/logout")  // Specify the logout URL
+                        .logoutSuccessUrl("/login")  // Redirect to the login page after logout
+                        .permitAll()
+                )
                 .requestCache((cache) -> cache
                         .requestCache(requestCache)
                 );

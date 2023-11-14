@@ -39,8 +39,7 @@
                             <p>Hi,<br>peepeepoopoo</p>
                         </div>
                         <a href="/profile" class="current">Profile</a>
-                        <a href="#">Settings</a>
-                        <a href="#">Logout</a>
+                        <a href="/logout">Logout</a>
                     </div>
                 </li>
             </ul>
@@ -82,16 +81,41 @@
             <div id="actionContainer">
                 <button id="seeProjectBtn">See My Projects</button>
                 <button th:if="${currentUser.id == user.id}" id="editProfile" onclick="openForm()">Edit Profile</button>
-                <div class="form-popup" id="myForm">
-                    <form class="form-container" action="/update" method="POST">
-                        <input type="hidden" th:value="${currentUser.getId()}" name="id" required>
-                        <input type="text" th:value="${currentUser.getName()}" name="name" required>
-                        <input type="text" th:value="${currentUser.getUsername()}" name="username" required>
-                        <input type="password" th:value="${currentUser.getPassword()}" name="id" required>
-                        <input type="text" th:value="${currentUser.getProfession()} " name="profession" required>
-
-                        <input type="submit" value="Submit text goes here" class="btn">
-                        <button type="button" class="btn cancel" onclick="closeForm()">Cancel</button>
+                <div id="editProfileDiv">
+                    <form id="editProfileForm" action="/update" method="POST">
+                        <h1>Edit Profile</h1>
+                        <div class="fieldEditProfileDiv">
+                            <label>
+                                <strong>Your ID:</strong>
+                                <input type="text" th:value="${currentUser.getId()}" name="id" required disabled>
+                            </label>
+                        </div>
+                        <div class="fieldEditProfileDiv">
+                            <label>
+                                <strong>Your Name:</strong>
+                                <input type="text" th:value="${currentUser.getName()}" name="name" required>
+                            </label>
+                        </div>
+                        <div class="fieldEditProfileDiv">
+                            <label>
+                                <strong>Your Username:</strong>
+                                <input type="text" th:value="${currentUser.getUsername()}" name="username" required>
+                            </label>
+                        </div>
+                        <div class="fieldEditProfileDiv">
+                            <label>
+                                <strong>Your Password:</strong>
+                                <input type="password" th:value="${currentUser.getPassword()}" name="id" required>
+                            </label>
+                        </div>
+                        <div class="fieldEditProfileDiv">
+                            <label>
+                                <strong>Your Profession:</strong>
+                                <input type="text" th:value="${currentUser.getProfession()} " name="profession" required>
+                            </label>
+                        </div>
+                        <input type="submit" id="submitEditProfileBtn">
+                        <button type="button" id="cancelEditProfileBtn" onclick="closeForm()">Cancel</button>
                     </form>
                 </div>
                 <!-- only show if on another users page, current user is the signed in user, user is the viewed user -->
@@ -115,7 +139,9 @@
                 <!-- Only display these if the currentuser role is above user, and the current user is viewing another profile
                     This gets rid of the options to report etc ones own profile -->
                 <button th:if="${currentUser.role == 'ADMIN' && currentUser.id != user.id}" id="viewReportsBtn" onclick="viewReportsRedirect()">! Review Reports !</button>
-                <button th:if="${currentUser.role == 'MOD' && currentUser.id != user.id}" id="pauseAccBtn">! PAUSE ACCOUNT !</button>
+                <form th:if="${currentUser.role == 'MOD' && currentUser.id != user.id}" method="post" th:action="@{/changeAuthorization/{id}(id=${user.id})}">
+                    <button th:if="${currentUser.role == 'MOD' && currentUser.id != user.id}" id="pauseAccBtn">! PAUSE ACCOUNT !</button>
+                </form>
                 <!-- <button th:if="${currentUser.role == 'ADMIN' && currentUser.id != user.id}" id="removeAccBtn" onclick="toggleRemoveAccMenu()">! REMOVE ACCOUNT !</button>
                 -->
 
@@ -210,11 +236,11 @@
             }
         }
         function openForm() {
-            document.getElementById("myForm").style.display = "block";
+            document.getElementById("editProfileDiv").style.display = "block";
         }
 
         function closeForm() {
-            document.getElementById("myForm").style.display = "none";
+            document.getElementById("editProfileDiv").style.display = "none";
         }
 
     </script>

@@ -39,8 +39,7 @@
 							<p>Hi,<br th:text="${currentUser}"></p>
 						</div>
 						<a th:href="@{/id={id}(id=${currentUser})}" >Profile</a>
-						<a href="#">Settings</a>
-						<a href="#">Logout</a>
+						<a href="/logout">Logout</a>
 					</div>
 				</li>
 			</ul>
