@@ -64,6 +64,7 @@ public class UserController {
         return "redirect:/user/all";
     }
 
+
     @PostMapping("/update")
     public String updateUser(User user) {
         service.updateUser(user);

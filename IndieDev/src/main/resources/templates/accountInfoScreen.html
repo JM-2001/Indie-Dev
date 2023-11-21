@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>IndieDev | Profile</title>
+    <link rel="stylesheet" href="/accountInfoScreen.css" type="text/css" ></link>
+</head>
+<body>
+<div class="wrapper">
+    <header>
+        <img th:src="@{/images/Logo.png}" alt="IndieDev Logo" height="50px" width="50px" class="images"/>
+        <nav>
+            <ul class="navigation">
+                <li><a href="/logout" id="specialButton">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Content -->
+    <div id="mainContent">
+        <p>Hello <strong th:text="${accountName}"></strong>
+            <strong>(</strong>
+            <strong th:text="${accountUsername}"></strong>
+            <strong>)</strong>, your account has been locked or deleted. Please, contact
+            IndieDev Support for further information. <em>Thanks!</em>
+        </p>
+    </div>
+</div>
+</body>
