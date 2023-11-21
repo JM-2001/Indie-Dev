@@ -5,7 +5,7 @@
 CREATE TABLE user (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100),
-    username VARCHAR(50) NOT NULL,
+    username VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(100) NOT NULL,
     role VARCHAR(50) NOT NULL,
     profession VARCHAR(355) NOT NULL,
