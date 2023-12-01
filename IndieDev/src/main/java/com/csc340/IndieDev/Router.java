@@ -1,6 +1,8 @@
 package com.csc340.IndieDev;
 
 
+import com.csc340.IndieDev.project.Project;
+import com.csc340.IndieDev.project.ProjectService;
 import com.csc340.IndieDev.user.User;
 import com.csc340.IndieDev.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +11,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+import java.util.List;
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/")
 public class Router {
 
     @Autowired
     private UserService service;
+
+    @Autowired
+    private ProjectService projectService;
 
     @GetMapping("")
     public String welcome(){
@@ -84,13 +93,18 @@ public class Router {
     }
 
     @GetMapping("/portfolio")
-    public String portfolio() {
-        return "portfolio";
-    }
+    public String portfolio(Model model, Principal principal) {
 
-    @GetMapping("/createProject")
-    public String createProject(){
-        return "createProject";
+        String username = principal.getName();
+        User user = service.getUserByUserName(username);
+
+        // Assuming you have a method to get the user's projects in your UserService
+        List<Project> projects = service.getProjectsByUserId(user.getId());
+
+        model.addAttribute("user", user);
+        model.addAttribute("projects", projects);
+
+        return "portfolio";
     }
 
     @GetMapping("/profile-example")

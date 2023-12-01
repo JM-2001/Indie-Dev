@@ -221,7 +221,7 @@ footer h2 {
     color: #000000;
 }
 .projectDiv {
-    height: 500px;
+    height: max-content;
     width: 99%;
     margin: 20px auto;
     border: #3b3b3b solid 2.5px;
@@ -273,4 +273,12 @@ footer h2 {
 }
 .projectDiv p {
     padding: 0px 15px 15px 15px;
+}
+
+.status{
+    display: inline-flex;
+    padding: 0px 15px 0px 15px;
+    margin: 0;
+
+
 }

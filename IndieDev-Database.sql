@@ -36,8 +36,12 @@ CREATE TABLE project (
     project_id INT AUTO_INCREMENT,
     user_id INT REFERENCES user(id),
     name VARCHAR(50),
-    visual blob,
+    classification VARCHAR(355),
     body VARCHAR(355),
+    timespent VARCHAR(355),
+    status VARCHAR(355),
+    visual VARCHAR(355),
+    visual2 VARCHAR(355),
 	PRIMARY KEY (project_id, user_id)
 );   
 

@@ -49,10 +49,10 @@
     <div id="mainContent">
         <div id="contentLeft">
             <div id="profilePic">
-                <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" class="profileImg"/>
+                <img th:src="${user.profile_picture}" alt="Profile Pic" class="profileImg"/>
             </div>
-            <h1>Purple Guy</h1>
-            <h2>@peepeepoopoo</h2>
+            <h1 th:text="${user.name}"></h1>
+            <h2 th:text=" '@' +${user.username}"></h2>
             <h3>Links:</h3>
             <ul>
                 <li>
@@ -75,6 +75,27 @@
                 <a href="/createProject">Create</a>
             </div>
             <!-- Project Div -->
+            <div id="userProjects">
+                <!-- Display each project for that user -->
+                <div th:each="project : ${projects}" class="projectDiv">
+                    <div class="projectTitle">
+                        <h1 th:text="${project.name}"></h1>
+                        <button>
+                            <img src="https://cdn.icon-icons.com/icons2/2483/PNG/512/edit_circle_icon_149940.png" alt="edit Button"/>
+                        </button>
+                    </div>
+                    <h3 class="status">Status: <p th:text="${project.status}"></p> </h3>
+                    <div class="projectContentDiv">
+                        <img th:src="@{'images/' + ${project.visual}}" alt="Project Image" />
+                        <img th:src="@{'images/' + ${project.visual2}}" alt="Project Image" />
+                    </div>
+                    <h2>Classification:</h2>
+                    <p th:text="${project.classification}"></p>
+                    <h2>Description:</h2>
+                    <p th:text="${project.body}"></p>
+                    <h3 class="status">Time Spent: <p th:text="${project.timespent}"></p> </h3>
+                </div>
+            </div>
             <div class="projectDiv">
                 <div class="projectTitle">
                     <h1>Project 1</h1>
