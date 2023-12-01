@@ -1,0 +1,70 @@
+/* Main CSS */
+body, html{
+    font-size: 1em;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    letter-spacing: 0em;
+    color: #FFFFFF;
+    background-color: #262626;
+    height: 100%;
+    margin: 0px;
+}
+/* Page Wrapper */
+.wrapper {
+    height: auto;
+    min-height: 100%;
+    margin: 0px auto;
+    background: rgb(46,46,46);
+    background: linear-gradient(150deg, rgba(46,46,46,1) 0%, rgba(158,71,132,1) 50%, rgba(55,48,107,1) 100%);
+}
+/* Header and Nav */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 50px;
+    border-radius: 0px;
+    background-color: #2E2E2E;
+    padding: 15px 10px;
+    position: sticky;
+    top: 0;
+}
+.images {
+    border-radius: 30px;
+}
+.navigation {
+    list-style: none;
+}
+.navigation li {
+    display: inline-block;
+    margin: 0px 5px;
+}
+.navigation li a {
+    color: #ffffff;
+    padding: 20px 30px;
+    text-transform: capitalize;
+    text-decoration: none;
+    text-align: center;
+}
+.navigation li a:hover, nav li a.current {
+    color: #0084FF;
+}
+#specialButton {
+    border-radius: 30px;
+    background-color: #1D71AF;
+}
+#specialButton:hover {
+    color: #000000;
+}
+.profileImg {
+    border-radius: 30px;
+}
+/* Actual Content */
+#mainContent {
+    height: 50%;
+    width: 70%;
+    margin: 15% auto;
+}
+#mainContent p {
+    font-size: 2em;
+    margin: 0px;
+}

@@ -71,6 +71,7 @@ public class UserService {
         repo.save(user);
     }
 
+
     /**
      * Update existing user.
      *
@@ -78,6 +79,11 @@ public class UserService {
      */
     public void updateUser(User user) {
         User existing = repo.getReferenceById(user.getId());
+
+        if (user.getProfile_picture() != null && !user.getProfile_picture().isEmpty()) {
+            existing.setProfile_picture(user.getProfile_picture());
+        }
+
         if (user.getUsername() != null) {
             existing.setUsername(user.getUsername());
         }
@@ -96,6 +102,8 @@ public class UserService {
 
         repo.save(existing);
     }
+
+
 
     public User getUserByUserName(String username) {
         return repo.findByUsername(username).orElseThrow(()

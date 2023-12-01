@@ -338,9 +338,57 @@ footer h2 {
     height: 100%;
 }
 #editProfileForm h1 {
-    margin: 0px 0px 5px 0px;
+    margin: 0px 0px 10px 0px;
     text-align: center;
 }
+#profilePicOptions {
+    width: -webkit-fill-available;
+    height: max-content;
+    margin: 5px 0px;
+    background-color: transparent;
+    border: solid #575757 5px;
+    border-radius: 20px;
+    padding: 10px;
+    color: #FFFFFF;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+#profilePicOptions label {
+    width: 20%;
+    height: 20%;
+    display: inline-block;
+    margin: 5px;
+    cursor: pointer;
+}
+#profilePicOptions label img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+#profilePicOptions label input[type="radio"] {
+    display: none;
+}
+#profilePicOptions label input[type="radio"]:checked + img  {
+    border: 5px solid #007BFF;
+}
+#profileUploadPicLabel {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+}
+#profileUploadPic {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
 .fieldEditProfileDiv {
     margin: 5px 0px;
     width: -webkit-fill-available;

@@ -45,6 +45,8 @@ public class Router {
     public String home(Model model) {
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         model.addAttribute("currentUser", name);
+
+
         return "home";
     }
 
@@ -85,6 +87,8 @@ public class Router {
         // Redirect to a suitable page after deletion or handle accordingly
         return "redirect:/home";
     }
+
+
 
     @PostMapping("/update")
     public String updateUser(User user) {
@@ -143,5 +147,17 @@ public class Router {
         viewedUser.setRole("LOCKEDUSER");
         service.updateUser(viewedUser);
         return "redirect:/home";  // Redirect to the user profile page or any other page
+    }
+
+    @GetMapping("/accountwarning")
+    public String accountInfoWarning(Model model) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User currentUser = service.getUserByUserName(username);
+
+        // Add both account name and username to the model
+        model.addAttribute("accountName", currentUser.getName());
+        model.addAttribute("accountUsername", currentUser.getUsername());
+
+        return "accountInfoScreen";
     }
 }
