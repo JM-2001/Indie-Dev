@@ -48,38 +48,38 @@
     <!-- Content -->
     <div id="projectMainContent">
         <h1>Create a new project</h1>
-        <form id="createProjectForm" name="createProjectForm">
+        <form id="createProjectForm" name="createProjectForm" action="/saveProject" method="POST" enctype="multipart/form-data">
             <div class="divPart">
-                <label for="projectName"><strong>Project Name:</strong></label><input type="text" id="projectName" name="projectName">
+                <label for="projectName"><strong>Project Name:</strong></label><input type="text" id="projectName" name="name">
             </div>
             <div class="divPart">
-                <label for="projectClass"><strong>Project Classification:</strong></label><input type="text" id="projectClass" name="projectClass">
+                <label for="projectClass"><strong>Project Classification:</strong></label><input type="text" id="projectClass" name="classification">
             </div>
             <div class="divPart">
                 <label for="projectDesc"><strong>Project Description:</strong></label>
-                <textarea id="projectDesc" name="projectDesc" placeholder="This project is about...."></textarea>
+                <textarea id="projectDesc" name="body" placeholder="This project is about...."></textarea>
             </div>
             <div class="divPart">
-                <label for="projectTime"><strong>Project Time Spent:</strong></label><input type="text" placeholder="hh:mm" id="projectTime" name="projectTime">
+                <label for="projectTime"><strong>Project Time Spent:</strong></label><input type="text" placeholder="hh:mm" id="projectTime" name="timespent">
             </div>
             <div class="divPart">
                 <label for="projectStatus"><strong>Project Status:</strong></label>
                 <fieldset id="projectStatus" name="projectStatus">
-                    <input type="radio" id="projectStatusCompleted" name="projectStatus" value="complete">
+                    <input type="radio" id="projectStatusCompleted" name="status" value="complete">
                     <label for="projectStatusCompleted">Completed</label>
-                    <input type="radio" id="projectStatusIncomplete" name="projectStatus" value="incomplete">
+                    <input type="radio" id="projectStatusIncomplete" name="status" value="incomplete">
                     <label for="projectStatusIncomplete">Incomplete</label>
                 </fieldset>
             </div>
             <div class="divPart">
-                <label for="projectImg"><strong>Project Images:</strong></label><input type="file" accept=".png, .jpeg, .jpg, .webp" id="projectImg" name="projectImg">
+                <label for="projectImg"><strong>Project Images:</strong></label><input type="file" accept=".png, .jpeg, .jpg, .webp" id="projectImg" name="file1">
             </div>
             <div class="divPart">
-                <label for="projectVid"><strong>Project Videos:</strong></label><input type="file" accept=".mp4, .mov, .avi, .webm, .mpeg.2" id="projectVid" name="projectVid">
+                <label for="projectVid"><strong>Project Videos:</strong></label><input type="file" accept=".mp4, .mov, .avi, .webm, .mpeg.2, .png, .jpeg, .jpg, .webp" id="projectVid" name="file2">
             </div>
             <div id="divPartButtons">
                 <button type="button" id="buttonExit" name="buttonExit">Cancel</button>
-                <button type="button" id="buttonCreate" name="buttonCreate">Create</button>
+                <button type="submit" id="buttonCreate" name="buttonCreate">Create</button>
             </div>
         </form>
     </div>

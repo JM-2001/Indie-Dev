@@ -1,6 +1,10 @@
 package com.csc340.IndieDev.user;
 
 import java.util.List;
+import java.util.Optional;
+
+import com.csc340.IndieDev.project.Project;
+import com.csc340.IndieDev.project.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,6 +21,9 @@ public class UserService {
 
     @Autowired
     UserRepository repo;
+
+    @Autowired
+    ProjectRepository projectRepository;
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -106,5 +113,10 @@ public class UserService {
     }
 
 
+
+    //Use this method for posts later --> change to getPostByUserId
+    public List<Project> getProjectsByUserId(long userId) {
+        return projectRepository.findByUserId(userId);
+    }
 
 }
