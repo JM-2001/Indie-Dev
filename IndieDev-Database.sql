@@ -17,7 +17,7 @@ CREATE TABLE user (
 CREATE TABLE post (
     post_id INT AUTO_INCREMENT,
     user_id INT REFERENCES user(id),
-    visual blob,
+    visual VARCHAR(335),
     body VARCHAR(355),
     like_count INT,
     created_at TIMESTAMP,  

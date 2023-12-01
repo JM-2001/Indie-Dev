@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PostService {
@@ -19,6 +20,15 @@ public class PostService {
 
     public List<Post> getAllPosts() {
         return repo.findAll();
+    }
+
+
+    public void likePost(Long postId) {
+        Optional<Post> postOptional = repo.findById(postId);
+        postOptional.ifPresent(post -> {
+            post.setLike_count(post.getLike_count() + 1);
+            repo.save(post);
+        });
     }
 
 }

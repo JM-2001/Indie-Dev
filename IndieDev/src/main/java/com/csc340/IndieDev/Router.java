@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/")
@@ -91,8 +92,6 @@ public class Router {
         // Redirect to a suitable page after deletion or handle accordingly
         return "redirect:/home";
     }
-
-
 
     @PostMapping("/update")
     public String updateUser(User user) {

@@ -112,11 +112,19 @@ public class UserService {
 
     }
 
-
+    public String getUsernameById(Long userId) {
+        Optional<User> userOptional = repo.findById(userId);
+        return userOptional.map(User::getUsername).orElse(null);
+    }
 
     //Use this method for posts later --> change to getPostByUserId
     public List<Project> getProjectsByUserId(long userId) {
         return projectRepository.findByUserId(userId);
+    }
+
+    public String getProfilePictureUrl(Long userId) {
+        Optional<User> userOptional = repo.findById(userId);
+        return userOptional.map(User::getProfile_picture).orElse(null);
     }
 
 }
