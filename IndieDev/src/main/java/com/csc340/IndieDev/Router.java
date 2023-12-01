@@ -73,6 +73,17 @@ public class Router {
         return "profile";
     }
 
+    @GetMapping(value = {"/dashboard"})
+    public String dashboard(Model model) {
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
+        User currentUser = service.getUserByUserName(name);
+
+        model.addAttribute("currentUser", currentUser);
+
+
+        return "dashboard";
+    }
+
     @PostMapping("/delete/{id}")
     public String deleteUser(@PathVariable long id, Model model) {
 
