@@ -32,13 +32,14 @@
                 <li><a href="/chats">Chats</a></li>
                 <li><a href="/notifications">Notifs</a></li>
                 <li class="dropdown" onclick="toggleDropdown()">
-                    <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+                    <img th:src="${currentUser.getProfile_picture()}" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
                     <div class="dropdown-content" id="profileDropdown">
                         <div id="profileInfo">
-                            <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
-                            <p>Hi,<br>peepeepoopoo</p>
+                            <img th:src="${currentUser.getProfile_picture()}" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+                            <p>Hi,<br th:text="${currentUser.getName()}"></p>
                         </div>
                         <a href="/profile" class="current">Profile</a>
+                        <a href="/dashboard" th:if="${currentUser.getRole() == 'ADMIN' || currentUser.getRole() == 'MOD'}">Dashboard</a>
                         <a href="/logout">Logout</a>
                     </div>
                 </li>
@@ -207,7 +208,7 @@
                         <a><strong>@Username</strong></a>
                     </div>
                     <button>
-                        <img src="https://cdn.icon-icons.com/icons2/2483/PNG/512/edit_circle_icon_149940.png" alt="edit Button"/>
+                        <img src="/images/Edit_Icon.png" alt="edit Button"/>
                     </button>
                 </div>
                 <div class="postInfo">
@@ -232,7 +233,7 @@
                         <a><strong>@Username</strong></a>
                     </div>
                     <button>
-                        <img src="https://cdn.icon-icons.com/icons2/2483/PNG/512/edit_circle_icon_149940.png" alt="edit Button"/>
+                        <img src="/images/Edit_Icon.png" alt="edit Button"/>
                     </button>
                 </div>
                 <div class="postInfo">
