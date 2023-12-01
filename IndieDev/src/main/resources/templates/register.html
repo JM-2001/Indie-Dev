@@ -23,56 +23,95 @@
             </nav>
         </header>
         <!-- Content -->
-        <div class="divSep">
-        </div>
         <div class="divContainerReg">
             <h1 class="headingStyle">Register</h1>
-            <form id="registerForm" name="registerForm">
+            <form th:action="@{/register}" th:object="${user}" method="post" id="registerForm" name="registerForm">
                 <div class="divPart">
-                    <label for="userName"><strong>Username:</strong></label><input type="text" id="userName" name="username">
+                    <label for="userName"><strong>Username:</strong></label>
+                    <input type="text" id="userName" name="username" th:field="*{username}" required>
                 </div>
                 <div class="divPart">
-                    <label for="name"><strong>Name:</strong></label><input type="text" id="name" name="name">
+                    <label for="name"><strong>Name:</strong></label>
+                    <input type="text" id="name" name="name" th:field="*{name}" required>
                 </div>
                 <div class="divPart">
-                    <label for="email"><strong>Email:</strong></label><input type="text" id="email" name="email">
+                    <label for="email"><strong>Email:</strong></label>
+                    <input type="text" id="email" name="email">
                 </div>
                 <div class="divPart">
-                    <label for="passWord"><strong>Password:</strong></label><input type="password" id="passWord" name="password">
+                    <label for="passWord"><strong>Password:</strong></label>
+                    <input type="password" id="passWord" name="password" th:field="*{password}" required>
                 </div>
                 <div class="divPart">
-                    <label for="confirmPassword"><strong>Confirm Password:</strong></label><input type="password" id="confirmPassword" name="confirmPassword">
+                    <label for="confirmPassword"><strong>Confirm Password:</strong></label>
+                    <input type="password" id="confirmPassword" name="confirmPassword">
                 </div>
+
+                <div class="divPart">
+                    <label for="profileLang"><strong>Select your profile language:</strong></label>
+                    <select id="profileLang" name="language" th:field="*{language}">
+                        <option value="English" selected>English</option>
+                        <option value="Spanish">Spanish</option>
+                        <option value="French">French</option>
+                    </select>
+                </div>
+
                 <div class="divPart">
                     <label><strong>Select your role:</strong></label>
                     <fieldset id="roleSection">
                         <label for="roleGameDev">
-                            <input type="checkbox" id="roleGameDev" name="roleGameDev" value="roleGameDev">Developer
+                            <input type="checkbox" id="roleGameDev" name="roleGameDev" value="Developer" th:field="*{profession}">Developer
                         </label>
                         <label for="roleGameDesign">
-                            <input type="checkbox" id="roleGameDesign" name="roleGameDesign" value="roleGameDesign">Designer
+                            <input type="checkbox" id="roleGameDesign" name="roleGameDesign" value="Designer">Designer
                         </label>
                         <label for="roleArtist">
-                            <input type="checkbox" id="roleArtist" name="roleArtist" value="roleArtist">Artist
+                            <input type="checkbox" id="roleArtist" name="roleArtist" value="Artist">Artist
                         </label>
                         <label for="roleMusician">
-                            <input type="checkbox" id="roleMusician" name="roleMusician" value="roleMusician">Musician
+                            <input type="checkbox" id="roleMusician" name="roleMusician" value="Musician">Musician
                         </label>
                         <label for="roleCreatist">
-                            <input type="checkbox" id="roleCreatist" name="roleCreatist" value="roleCreatist">Creatist
+                            <input type="checkbox" id="roleCreatist" name="roleCreatist" value="Creatist">Creatist
                         </label>
                         <label for="roleWriter">
-                            <input type="checkbox" id="roleWriter" name="roleWriter" value="roleWriter">Writer
+                            <input type="checkbox" id="roleWriter" name="roleWriter" value="Writer">Writer
                         </label>
                     </fieldset>
                 </div>
                 <div class="divPart">
-                    <button type="button" id="registerButton" name="registerButton">Register</button>
+                    <label><strong>Pick a Profile Picture:</strong></label>
+                    <fieldset id="profilePicOptions">
+                        <label for="presetProfileImg1">
+                            <input type="radio" id="presetProfileImg1" name="profile_picture" value="/images/pp1.jpg" th:field="*{profile_picture}">
+                            <img src="/images/pp1.jpg" class="presetProfileImg" alt="Preset Profile Pic 1"></img>
+                        </label>
+                        <label for="presetProfileImg2">
+                            <input type="radio" id="presetProfileImg2" name="profile_picture" value="/images/pp2.png" th:field="*{profile_picture}">
+                            <img src="/images/pp2.png" class="presetProfileImg"  alt="Preset Profile Pic 2"></img>
+                        </label>
+                        <label for="presetProfileImg3">
+                            <input type="radio" id="presetProfileImg3" name="profile_picture" value="/images/pp3.jpg" th:field="*{profile_picture}">
+                            <img src="/images/pp3.jpg" class="presetProfileImg"  alt="Preset Profile Pic 3"></img>
+                        </label>
+                        <label for="presetProfileImg4">
+                            <input type="radio" id="presetProfileImg4" name="profile_picture" value="/images/pp4.jpg" th:field="*{profile_picture}">
+                            <img src="/images/pp4.jpg" class="presetProfileImg"  alt="Preset Profile Pic 4"></img>
+                        </label>
+                        <label for="presetProfileImg5">
+                            <input type="radio" id="presetProfileImg5" name="profile_picture" value="/images/pp5.jpg" th:field="*{profile_picture}">
+                            <img src="/images/pp5.jpg" class="presetProfileImg"  alt="Preset Profile Pic 5"></img>
+                        </label>
+                    </fieldset>
+                </div>
+                <div class="divPart">
+                    <p>By creating an account on IndieDev, you are automatically agreeing to the <a href="#"><em><strong>terms of service</strong></em></a>.</p>
+                </div>
+                <div class="divPart">
+                    <button type="submit" id="registerButton" name="registerButton">Register</button>
                     <a href="/login" class="redirectButton">Already have an account? Login!</a>
                 </div>
             </form>
-        </div>
-        <div class="divSep">
         </div>
         <!-- Footer -->
         <footer>

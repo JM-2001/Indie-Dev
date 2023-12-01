@@ -35,10 +35,6 @@ public class Router {
         return "login";
     }
 
-    @GetMapping("/register")
-    public String register(){
-        return "register";
-    }
 
     //Mapping for home, stores the signed in user as currentUser to be accessed in thymeleaf
     @GetMapping(value = {"/home"})
@@ -159,5 +155,18 @@ public class Router {
         model.addAttribute("accountUsername", currentUser.getUsername());
 
         return "accountInfoScreen";
+    }
+
+    @GetMapping("/register")
+    public String showRegistrationForm(Model model) {
+        model.addAttribute("user", new User());
+        return "register";
+    }
+
+    @PostMapping("/register")
+    public String registerUser(@ModelAttribute("user") User user) {
+        // Perform validation and registration logic
+        service.saveUser(user);
+        return "redirect:/login"; // Redirect to the login page after successful registration
     }
 }

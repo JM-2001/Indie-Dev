@@ -82,29 +82,29 @@
                 <button id="seeProjectBtn">See My Projects</button>
                 <button th:if="${currentUser.id == user.id}" id="editProfile" onclick="openForm()">Edit Profile</button>
                 <div id="editProfileDiv">
-                    <form id="editProfileForm" action="/update" method="POST" enctype="multipart/form-data" th:object="${currentUser}">
+                    <form id="editProfileForm" action="/update" method="POST">
                         <h1>Edit Profile</h1>
                         <div class="fieldEditProfileDiv">
                             <label><strong>Pick a Profile Picture:</strong></label>
                             <fieldset id="profilePicOptions">
                                 <label for="presetProfileImg1">
-                                    <input type="radio" id="presetProfileImg1" name="profile_picture" value="pp1">
+                                    <input type="radio" id="presetProfileImg1" name="profile_picture" value="/images/pp1.jpg">
                                     <img src="/images/pp1.jpg" class="presetProfileImg" alt="Preset Profile Pic 1"></img>
                                 </label>
                                 <label for="presetProfileImg2">
-                                    <input type="radio" id="presetProfileImg2" name="profile_picture" value="pp2">
+                                    <input type="radio" id="presetProfileImg2" name="profile_picture" value="/images/pp2.png">
                                     <img src="/images/pp2.png" class="presetProfileImg"  alt="Preset Profile Pic 2"></img>
                                 </label>
                                 <label for="presetProfileImg3">
-                                    <input type="radio" id="presetProfileImg3" name="profile_picture" value="pp3">
+                                    <input type="radio" id="presetProfileImg3" name="profile_picture" value="/images/pp3.jpg">
                                     <img src="/images/pp3.jpg" class="presetProfileImg"  alt="Preset Profile Pic 3"></img>
                                 </label>
                                 <label for="presetProfileImg4">
-                                    <input type="radio" id="presetProfileImg4" name="profile_picture" value="pp4">
+                                    <input type="radio" id="presetProfileImg4" name="profile_picture" value="/images/pp4.jpg">
                                     <img src="/images/pp4.jpg" class="presetProfileImg"  alt="Preset Profile Pic 4"></img>
                                 </label>
                                 <label for="presetProfileImg5">
-                                    <input type="radio" id="presetProfileImg5" name="profile_picture" value="pp5">
+                                    <input type="radio" id="presetProfileImg5" name="profile_picture" value="/images/pp5.jpg">
                                     <img src="/images/pp5.jpg" class="presetProfileImg"  alt="Preset Profile Pic 5"></img>
                                 </label>
                                 <label for="uploadedProfilePic">
@@ -120,7 +120,7 @@
                             </fieldset>
                         </div>
 
-                        <input type="text" th:value="${currentUser.getId()}" name="id" required hidden>
+                        <input type="text" th:value="${currentUser.getId()}" name="id" required hidden id="userId">
                         <div class="fieldEditProfileDiv">
                             <label>
                                 <strong>Your Name:</strong>
@@ -257,7 +257,7 @@
                         <a><strong>@Username</strong></a>
                     </div>
                     <button>
-                        <img src="https://cdn.icon-icons.com/icons2/2483/PNG/512/edit_circle_icon_149940.png" alt="edit Button"/>
+                        <img src="/images/Edit_Icon.png" alt="edit Button"/>
                     </button>
                 </div>
                 <div class="postInfo">
@@ -282,7 +282,7 @@
                         <a><strong>@Username</strong></a>
                     </div>
                     <button>
-                        <img src="https://cdn.icon-icons.com/icons2/2483/PNG/512/edit_circle_icon_149940.png" alt="edit Button"/>
+                        <img src="/images/Edit_Icon.png" alt="edit Button"/>
                     </button>
                 </div>
                 <div class="postInfo">
@@ -333,20 +333,35 @@
             // Get the image element
             let image = document.getElementById('uploadedProfilePicImg');
 
+            // Get the radio button for uploaded profile pic
+            let uploadedProfilePicRadio = document.getElementById('uploadedProfilePic');
+
+            // Get the hidden input for user ID
+            let userIdInput = document.getElementById('userId');
+
             // Check if a file is selected
             if (input.files && input.files[0]) {
-                // Create a FileReader to read the image file
-                let reader = new FileReader();
+                // Create a FormData object to send the file to the server
+                let formData = new FormData();
+                formData.append('file', input.files[0]);
+                formData.append('userId', userIdInput.value);
 
-                // Set the callback function when the file is loaded
-                reader.onload = function (e) {
-                    // Update the src attribute of the image with the loaded data
-                    image.src = e.target.result;
-                };
-
-                // Read the selected file as a data URL
-                reader.readAsDataURL(input.files[0]);
+                // Use Fetch API to send the file to the server
+                fetch('/uploadProfilePic', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Update the value of the radio button with the new profile picture name
+                        let uploadedFileName = data.fileName;
+                        uploadedProfilePicRadio.value = "/images/" + uploadedFileName;  // Update the value
+                        image.src = "/images/" + uploadedFileName; // Use relative path
+                    })
+                    .catch(error => console.error('Error uploading profile picture:', error));
             }
         }
+
+
     </script>
 </div>

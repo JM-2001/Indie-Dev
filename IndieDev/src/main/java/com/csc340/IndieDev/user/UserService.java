@@ -68,6 +68,7 @@ public class UserService {
      */
     public void saveUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRole("USER");
         repo.save(user);
     }
 
@@ -112,11 +113,10 @@ public class UserService {
     }
 
 
+
     //Use this method for posts later --> change to getPostByUserId
     public List<Project> getProjectsByUserId(long userId) {
         return projectRepository.findByUserId(userId);
     }
-
-
 
 }
