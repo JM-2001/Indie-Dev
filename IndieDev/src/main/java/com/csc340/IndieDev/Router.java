@@ -1,6 +1,8 @@
 package com.csc340.IndieDev;
 
 
+import com.csc340.IndieDev.post.Post;
+import com.csc340.IndieDev.post.PostService;
 import com.csc340.IndieDev.project.Project;
 import com.csc340.IndieDev.project.ProjectService;
 import com.csc340.IndieDev.user.User;
@@ -25,6 +27,9 @@ public class Router {
     @Autowired
     private ProjectService projectService;
 
+    @Autowired
+    private PostService postService;
+
     @GetMapping("")
     public String welcome(){
         return "welcome";
@@ -42,6 +47,9 @@ public class Router {
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         model.addAttribute("currentUser", name);
 
+        List<Post> posts = postService.getAllPosts();
+
+        model.addAttribute("posts", posts);
 
         return "home";
     }

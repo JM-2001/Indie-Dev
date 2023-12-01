@@ -61,13 +61,13 @@ CREATE TABLE report (
 
 -- This will insert 4 users into the user table manually, later we will implement thymeleaf functionality to create users from the register page
 INSERT INTO user (name, username, password, role, profession, language, profile_picture)
-VALUES ('Yomomma', 'testuser', 'test', 'USER', 'Developer', 'English', '/profile1.jpg');
+VALUES ('Yomomma', 'testuser', 'test', 'USER', 'Developer', 'English', '/images/profile1.jpg');
 
 INSERT INTO user (name, username, password, role, profession, language, profile_picture)
-VALUES ('Yomommasmod', 'testmod', 'test', 'MOD', 'Artist', 'English', '/profile2.jpg');
+VALUES ('Yomommasmod', 'testmod', 'test', 'MOD', 'Artist', 'English', '/images/profile2.jpg');
 
 INSERT INTO user (name, username, password, role, profession, language, profile_picture)
-VALUES ('Yomommasadmin', 'testadmin', 'test', 'ADMIN', 'Musician', 'English', '/profile1.jpg');
+VALUES ('Yomommasadmin', 'testadmin', 'test', 'ADMIN', 'Musician', 'English', '/images/profile1.jpg');
 
 INSERT INTO user (name, username, password, role, profession, language, profile_picture)
-VALUES ('Yomommaslocked', 'testlocked', 'test', 'LOCKEDUSER', 'Musician', 'English', '/profile2.jpg');
+VALUES ('Yomommaslocked', 'testlocked', 'test', 'LOCKEDUSER', 'Musician', 'English', '/images/profile2.jpg');
