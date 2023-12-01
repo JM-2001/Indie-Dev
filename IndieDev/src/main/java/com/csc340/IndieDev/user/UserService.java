@@ -61,6 +61,7 @@ public class UserService {
      */
     public void saveUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRole("USER");
         repo.save(user);
     }
 
@@ -103,5 +104,7 @@ public class UserService {
                 -> new UsernameNotFoundException(username + "not found"));
 
     }
+
+
 
 }
