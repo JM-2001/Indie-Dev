@@ -20,18 +20,18 @@ public class FileUploadController {
     private UserService service;
 
     @PostMapping("/uploadProfilePic")
-    public UploadResponse handleFileUpload(
-            @RequestParam("file") MultipartFile file,
-            @RequestParam("userId") String userId
-    ) {
+    public UploadResponse handleFileUpload(@RequestParam("file") MultipartFile file, @RequestParam("userId") String userId) {
         String projectPath = System.getProperty("user.dir");
         String uploadDirectory = projectPath + "/IndieDev/src/main/resources/static/images/";
+        String targetDirectory = projectPath + "/IndieDev/target/classes/static/images/";
+
 
         // Create a unique file name using userId and set the file extension to .png
         String fileName = userId + "_profilepic.png";
 
         // Create the file path
         String filePath = uploadDirectory + fileName;
+        String targetFilePath = targetDirectory + fileName;
 
         try {
             // Check if the uploaded file is an image
@@ -40,6 +40,7 @@ public class FileUploadController {
                 BufferedImage image = ImageIO.read(file.getInputStream());
                 if (image != null) {
                     ImageIO.write(image, "png", new File(filePath));
+                    ImageIO.write(image, "png", new File(targetFilePath));
 
                     // Update the user's profile picture in the database
                     User user = service.getUser(Long.parseLong(userId));

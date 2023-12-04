@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>IndieDev | Dashboard</title>
+    <link rel="stylesheet" href="/dashboard.css" type="text/css" ></link>
+    <script>
+        function toggleDropdown() {
+            let dropdown = document.getElementById('profileDropdown');
+            dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+        }
+
+        // Close the dropdown when clicking outside of it
+        window.addEventListener('click', function(event) {
+            let dropdown = document.getElementById('profileDropdown');
+            if (!event.target.closest('.dropdown')) {
+                dropdown.style.display = 'none';
+            }
+        });
+    </script>
+</head>
+<body>
+<div class="wrapper">
+    <header>
+        <img th:src="@{/images/Logo.png}" alt="IndieDev Logo" height="50px" width="50px" class="images"/>
+        <nav>
+            <ul class="navigation">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/portfolio">Portfolio</a></li>
+                <li><a href="/chats">Chats</a></li>
+                <li><a href="/notifications">Notifs</a></li>
+                <li class="dropdown" onclick="toggleDropdown()">
+                    <img th:src="${currentUser.getProfile_picture()}" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+                    <div class="dropdown-content" id="profileDropdown">
+                        <div id="profileInfo">
+                            <img th:src="${currentUser.getProfile_picture()}" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+                            <p>Hi,<br th:text="${currentUser.getName()}"></p>
+                        </div>
+                        <a href="/profile">Profile</a>
+                        <a href="/dashboard" class="current">Dashboard</a>
+                        <a href="/logout">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Content -->
+    <div id="mainContent">
+        <div id="contentHolder">
+
+        </div>
+    </div>
+</div>
