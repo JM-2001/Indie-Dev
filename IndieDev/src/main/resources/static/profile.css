@@ -571,3 +571,8 @@ footer h2 {
     height: 40px;
     width: 100px;
 }
+
+button a {
+    text-decoration: none;
+    color: #FFFFFF;
+}

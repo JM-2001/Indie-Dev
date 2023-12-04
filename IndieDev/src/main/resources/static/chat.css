@@ -30,6 +30,11 @@ header {
     display: inline-block;
     margin: 0px 5px;
 }
+a {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
 .navigation li a {
     color: #ffffff;
     padding: 20px 30px;

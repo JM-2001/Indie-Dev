@@ -2,6 +2,7 @@
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <head>
     <meta charset="UTF-8">
     <title>IndieDev | Chat</title>
@@ -20,6 +21,56 @@
                 dropdown.style.display = 'none';
             }
         });
+function pollForUpdates() {
+        // Make an AJAX request to get the latest data
+        $.ajax({
+            url: '/get-updates',
+            method: 'GET',
+            success: function (data) {
+                // Check if there is a change in data
+                if (isDataChanged(data)) {
+                    // Reload the page only if there are changes
+                    window.location.reload();
+                } else {
+                    // Update the chat history or perform any other necessary actions
+                    console.log('Received updates:', data);
+
+                    $('#chatHistory').html(data);
+                }
+            },
+        error: function (error) {
+            console.error('Error fetching updates:', error);
+        }
+    });
+}
+        function isDataChanged(newData) {
+    // Get the array of current messages on the page
+    var currentMessages = $('#chatHistory').find('.message'); // Update this selector based on your HTML structure
+
+    // Check if there are new messages by comparing content
+    for (var i = 0; i < newData.length; i++) {
+        var isNewMessage = true;
+
+        // Compare each new message with existing messages
+        for (var j = 0; j < currentMessages.length; j++) {
+            if (currentMessages.eq(j).text() === newData[i].body) {
+                isNewMessage = false;
+                break;
+            }
+        }
+
+        // If a new message is found, consider the data changed
+        if (isNewMessage) {
+            return true;
+        }
+    }
+
+    // If no new messages are found, consider the data unchanged
+    return false;
+}
+        // Poll for updates every 20
+        setInterval(pollForUpdates, 20000 );
+
     </script>
 </head>
 <body>
@@ -54,71 +105,37 @@
             <div class="leftSide">
                 <h1>Inbox</h1>
                 <ul class="inbox">
-                    <li class="inboxContainer">
-                        <img alt="inbox"
-                             class="msgProfilePic" src="https://art.pixilart.com/783eb080961fcd6.png"/>
-                        <a href="#">Deloris:</a><a href="#"> Hi there!</a>
-                    </li>
-                    <li class="inboxContainer">
-                        <img alt="Profile Pic"
-                             class="msgProfilePic" src="https://art.pixilart.com/783eb080961fcd6.png"/>
-                        <a href="#">Dennis:</a><a href="#"> I was wondering if...</a>
-                    </li>
-                    <li class="inboxContainer">
-                        <img alt="Profile Pic"
-                             class="msgProfilePic" src="https://art.pixilart.com/783eb080961fcd6.png"/>
-                        <a href="#">Paula:</a><a href="#"> Would it be alright if...</a>
-                    </li>
-                    <li class="inboxContainer">
-                        <img alt="Profile Pic"
-                             class="msgProfilePic" src="https://art.pixilart.com/783eb080961fcd6.png"/>
-                        <a href="#">Chris:</a><a href="#"> I've completed the...</a>
+                    <li th:each="user : ${users}">
+                        <a th:href="@{/chats/{userId}(userId=${user.id})}">
+                            <img th:src="@{${@userService.getProfilePictureUrl(user.id)}}" alt="Profile Pic" height="30px" width="30px" class="profileImg"/>
+                            <span th:text="${user.username}"></span>
+                        </a>
                     </li>
                 </ul>
             </div>
             <div class=rightSide>
                 <h1>Current Chat</h1>
-<!--                <div class="chatBox">
-                    <div class="chatContainerLeft">
-                        <img alt="Profile Pic"
-                             class="msgProfilePic" src="https://art.pixilart.com/783eb080961fcd6.png"/>
-                        Dennis: I was wondering if you knew anyone who could help me
-                        design a medieval knight character for my 16 bit fighting game. I know you've worked with
-                        pixel artists before, so I thought you would be the best person to ask.
-                    </div>
-                    <div class="chatContainerRight">
-                        Yeah, Paula is great at pixel design and animation.
-                        <img alt="Profile Pic"
-                             class="msgProfilePicR" src="https://art.pixilart.com/783eb080961fcd6.png"/>
-                    </div>
-                </div>-->
-
-
-                <ul class="chatBox">
-                    <li class="chatContainerLeft">
-                        <img alt="Profile Pic"
-                             class="msgProfilePic" src="https://art.pixilart.com/783eb080961fcd6.png"/>
-                        Dennis: I was wondering if you knew anyone who could help me
-                        design a medieval knight character for my 16 bit fighting game. I know you've worked with
-                        pixel artists before, so I thought you would be the best person to ask.
-                    </li>
-                    <li class="chatContainerRight">
-                        Yeah, Paula is great at pixel design and animation.
-                        <img alt="Profile Pic"
-                             class="msgProfilePicR" src="https://art.pixilart.com/783eb080961fcd6.png"/>
-                    </li>
-                    <li class="chatContainerLeft">
-                        <img alt="Profile Pic"
-                             class="msgProfilePic" src="https://art.pixilart.com/783eb080961fcd6.png"/>
-                        Dennis: Okay, cool!
+                <ul class="chatBox" th:if="${selectedUser != null and messageHistory != null}">
+                    <li th:each="message : ${messageHistory}">
+                        <!-- Display messages for the selected history -->
+                        <div th:if="${message.authorId == currentUser.id}" class="chatContainerRight">
+                            <img th:src="@{${@userService.getProfilePictureUrl(currentUser.id)}}" alt="Profile Pic" class="msgProfilePic"/>
+                            <span th:text="${currentUser.username}"></span>: <span th:text="${message.body}"></span>
+                        </div>
+                        <!-- Display messages for the current user -->
+                        <div th:if="${message.authorId == selectedUser.id}" class="chatContainerLeft">
+                            <img th:src="@{${@userService.getProfilePictureUrl(selectedUser.id)}}" alt="Profile Pic" class="msgProfilePicR"/>
+                            <span th:text="${selectedUser.username}"></span>: <span th:text="${message.body}"></span>
+                        </div>
                     </li>
                 </ul>
-                <div id="messaging">
+                <form th:if="${selectedUser != null}" th:action="@{/send-message}" method="post" id="messaging">
                     <label for="sendMsg">
-                        <input id="sendMsg" placeholder="Type your message..." type="text">
+                        <input id="sendMsg" name="messageBody" placeholder="Type your message..." type="text" required>
                     </label>
-                    <button id="sendButton">Send</button>
-                </div>
+                    <button id="sendButton" type="submit">Send</button>
+                    <input type="hidden" name="recipientId" th:value="${selectedUser.id}" />
+                </form>
             </div>
         </div>
         <!-- Footer -->

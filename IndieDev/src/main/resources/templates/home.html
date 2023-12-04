@@ -2,6 +2,7 @@
 <html lang="en"
 	  xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:th="http://www.thymeleaf.org">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <head>
 	<meta charset="UTF-8">
 	<title>IndieDev | Home</title>
@@ -29,7 +30,7 @@
 		<nav>
 			<ul class="navigation">
 				<li><a href="/home" class="current">Home</a></li>
-				<li><a href="/portfolio">Portfolio</a></li>
+				<li><a th:href="@{/portfolio/{id}(id=${currentUser})}">Portfolio</a></li>
 				<li><a href="/chats">Chats</a></li>
 				<li><a href="/notifications">Notifs</a></li>
 				<li class="dropdown" onclick="toggleDropdown()">
@@ -65,16 +66,32 @@
 				<img th:src="@{'images/' + ${post.visual}}" alt="Code segment">
 			</div>
 			<div class="postStatsDiv">
-				<p th:text="${post.like_count}"></p>
+				<!-- like count -->
+				<p th:text="${post.like_count} + ' '+ likes"></p>
+				<div th:each="user : ${users}">
+					<img th:src="@{${@userService.getProfilePictureUrl(user.id)}}" alt="Profile Pic" height="30px" width="30px" class="profileImg"/>
+					<span th:text="${user.username}"></span>
+				</div>
+				<!-- comments -->
+				<div th:each="comment : ${__${'comments_' + post.postId}__}">
+					<img th:src="@{${@userService.getProfilePictureUrl(comment.userId)}}" alt="Profile Pic" height="30px" width="30px" class="profileImg"/>
+					<span th:text="${@userService.getUsernameById(comment.userId)}"></span>
+					<p th:text="${comment.body}"></p>
+				</div>
 			</div>
 			<div class="postButtonDiv">
-				<!-- <button class="postLikeBtn">Like</button> -->
+				<!-- post actions -->
 				<form th:action="@{/like}" method="post">
 					<input type="hidden" name="postId" th:value="${post.postId}" />
 					<button type="submit" class="postLikeBtn">Like</button>
 				</form>
-				<button class="postCommentBtn">Comment</button>
 				<button class="postReportBtn">Report</button>
+				<form th:action="@{'/post/' + ${post.postId} + '/comment'}" method="post">
+					<input type="hidden" name="postId" th:value="${post.postId}" />
+					<textarea name="body" class="comment-input" placeholder="Add a comment"></textarea>
+					<button type="submit">Submit</button>
+				</form>
+
 			</div>
 		</div>
 	</div>
