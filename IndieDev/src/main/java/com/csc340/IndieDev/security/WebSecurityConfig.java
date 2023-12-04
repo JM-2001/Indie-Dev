@@ -72,7 +72,7 @@ import java.util.Set;
 
                             .requestMatchers("/","/*.css", "/register", "/images/**").permitAll()
                             .requestMatchers("/home","/createProject", "/chat", "/profile","/id=**" , "/update").hasAnyAuthority("USER", "MOD", "ADMIN")
-                            .requestMatchers("/dashboard", "/reportsheet").hasAnyAuthority("MOD", "ADMIN")
+                            .requestMatchers("/dashboard", "/reportsheet", "/dashboard/**", "/reportsheet**").hasAnyAuthority("MOD", "ADMIN")
                             .requestMatchers("/changeAuthorization/**").hasAuthority("MOD")
                             .requestMatchers("/delete/**").hasAuthority("ADMIN")
                             .requestMatchers("/accountwarning").hasAnyAuthority("LOCKEDUSER")

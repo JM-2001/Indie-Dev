@@ -81,9 +81,7 @@
 		</nav>
 	</header>
 	<div class="divContainer">
-		<button class="createPostBtn" type="button">
-			<a href="/createPost">Create</a>
-		</button>
+		<a href="/createPost" class="createPostBtn">Create</a>
 		<div th:each="post : ${posts}"  class="postDiv" >
 			<div class="postUserInfoDiv">
 				<div class="postsUserInfoDiv">
@@ -166,7 +164,6 @@
 					<button type="submit" class="postLikeBtn">Like</button>
 				</form>
 				<button class="postCommentBtn" th:onclick="'toggleComments(\'postsCommentDiv_' + ${post.postId} + '\')'" type="button">Comments</button>
-
 			</div>
 		</div>
 	</div>

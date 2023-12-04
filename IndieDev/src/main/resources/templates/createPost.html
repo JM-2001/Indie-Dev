@@ -4,7 +4,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>IndieDev | Create Project</title>
+    <title>IndieDev | Create Post</title>
     <link rel="stylesheet" href="/createPost.css" type="text/css" ></link>
     <script>
         function toggleDropdown() {
@@ -46,15 +46,16 @@
         </nav>
     </header>
     <!-- Content -->
-    <div id="projectMainContent">
+    <div id="postMainContent">
         <h1>Create a new post</h1>
-        <form id="createProjectForm" name="createProjectForm" action="/savePost" method="POST" enctype="multipart/form-data">
+        <form id="createPostForm" name="createPostForm" action="/savePost" method="POST" enctype="multipart/form-data">
             <div class="divPart">
-                <label for="projectDesc"><strong>Caption:</strong></label>
-                <textarea id="projectDesc" name="body" placeholder="yo check this post"></textarea>
+                <label for="postDesc"><strong>Caption:</strong></label>
+                <textarea id="postDesc" name="body" placeholder="yo check this post"></textarea>
             </div>
             <div class="divPart">
-                <label for="projectImg"><strong>Image:</strong></label><input type="file" accept=".png, .jpeg, .jpg, .webp" id="projectImg" name="file1">
+                <label for="postImg"><strong>Image:</strong></label>
+                <input type="file" accept=".png, .jpeg, .jpg, .webp" id="postImg" name="file1">
             </div>
             <div id="divPartButtons">
                 <button type="button" id="buttonExit" name="buttonExit">Cancel</button>

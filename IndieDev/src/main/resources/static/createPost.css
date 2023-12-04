@@ -136,25 +136,26 @@ footer h2 {
     background-color: #262626;
 }
 /* Actual Content */
-#projectMainContent {
-    height: 1150px;
+#postMainContent {
+    min-height: fit-content;
     width: 80%;
     margin: 20px auto;
     background-color: #2B2B2B;
     border-radius: 30px;
     font-size: 1.25em;
+    padding: 30px;
 }
-#projectMainContent h1{
+#postMainContent h1{
     font-size: 2em;
-    padding: 35px 35px 0px 35px;
+    margin: 0;
 }
 .divPart {
-    margin: 25px 3% 25px 3%;
+    margin: 25px 0px;
 }
 .divPart label {
     font-size: 1.05em;
 }
-#projectName, #projectClass, #projectTime{
+#postDesc {
     margin-top: 10px;
     background-color: transparent;
     border: solid #575757 5px;
@@ -165,31 +166,30 @@ footer h2 {
     font-size: 1.05em;
     color: #FFFFFF;
 }
-#projectName:focus, #projectClass:focus, #projectTime:focus{
+#postDesc:focus {
     outline: none;
     color: #FFFFFF;
     border: solid #757575 5px;
 }
-#projectImg, #projectVid {
+#postImg, #postVid {
     margin-top: 10px;
     background-color: transparent;
     width: 97.5%;
     height: 50px;
-    padding: 20px 10px 0px 10px;
     font-size: 1.05em;
     color: #FFFFFF;
 }
-#projectImg::file-selector-button, #projectVid::file-selector-button {
+#postImg::file-selector-button, #postVid::file-selector-button {
     background-color: #575757; /* 0084FF */
     border: none;
     border-radius: 30px;
     color: #ffffff;
     padding: 10px;
 }
-#projectImg::file-selector-button:hover, #projectVid::file-selector-button:hover {
+#postImg::file-selector-button:hover, #postVid::file-selector-button:hover {
     background-color: #757575; /* 1D71AF */
 }
-#projectDesc {
+#postDesc {
     margin-top: 10px;
     background-color: transparent;
     border: solid #575757 5px;
@@ -202,17 +202,12 @@ footer h2 {
     overflow:auto;
     resize:none;
 }
-#projectDesc:focus {
+#postDesc:focus {
     outline: none;
     color: #FFFFFF;
 }
-#projectStatus {
-    border: none;
-    outline: none;
-    padding: 10px 10px 0px 10px;
-}
 #divPartButtons {
-    margin: 25px 3% 25px 3%;
+    margin: 25px 0px 0px 0px;
     display: flex;
     justify-content: flex-end;
 }

@@ -103,7 +103,7 @@ public class Router {
     }
 
 
-    @PostMapping("/delete/{id}")
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     public String deleteUser(@PathVariable long id, Model model) {
 
         //get the user by id
@@ -195,13 +195,14 @@ public class Router {
         return "chat";
     }
 
-    @PostMapping("/changeAuthorization/{id}")
+    @RequestMapping(value = "/changeAuthorization/{id}", method = RequestMethod.POST)
     public String changeAuthorizationLevel(@PathVariable Long id, Model model) {
         User viewedUser = service.getUser(id);
         viewedUser.setRole("LOCKEDUSER");
         service.updateUser(viewedUser);
         return "redirect:/home";
     }
+
 
     @GetMapping("/accountwarning")
     public String accountInfoWarning(Model model) {

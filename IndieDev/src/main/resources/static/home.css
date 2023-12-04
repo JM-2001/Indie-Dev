@@ -386,16 +386,27 @@ footer h2 {
     background-color: #f35858;
 }
 
-}
 
 .createPostBtn{
     text-decoration: none;
+    border-radius: 10px;
+    border: solid #1D71AF 2px;
+    outline: none;
+    cursor: pointer;
+    background-color: #3b3b3b;
     color: #ffffff;
-    height: 20%;
-    width: 20%;
-    border-radius: 50px;
+    height: 40px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .createPostBtn a {
     text-decoration: none;
     color: #ffffff;
+}
+.createPostBtn:hover, .createPostBtn a:hover{
+    border: solid #0097ff 2px;
+    outline: none;
+    background-color: #3b3b3b;
 }
