@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="/profile.css" type="text/css" ></link>
     <script>
         function toggleDropdown() {
-            var dropdown = document.getElementById('profileDropdown');
+            let dropdown = document.getElementById('profileDropdown');
             dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
         }
 
         // Close the dropdown when clicking outside of it
         window.addEventListener('click', function(event) {
-            var dropdown = document.getElementById('profileDropdown');
+            let dropdown = document.getElementById('profileDropdown');
             if (!event.target.closest('.dropdown')) {
                 dropdown.style.display = 'none';
             }
@@ -120,7 +120,6 @@
                                     Upload Image
                                     <input type="file" accept=".png, .jpeg, .jpg, .webp" id="profileUploadPic" name="uploadedProfilePic" onchange="displayImage()">
                                 </label>
-
                             </fieldset>
                         </div>
 
@@ -155,48 +154,47 @@
                 </div>
                 <!-- only show if on another users page, current user is the signed in user, user is the viewed user -->
                 <button th:if="${currentUser.id != user.id}" id="reportBtn" onclick="toggleReportMenu()">Report</button>
-                <div th:if="${currentUser.id != user.id}" id="reportForm">
-                    <h1>Report</h1>
-                    <div class="fieldIODiv">
-                        <label for="reporterUserName">
-                            <strong>Your Username:</strong>
-                        </label>
-                        <input id="reporterUserName" name="reporterUserName" type="text">
-                    </div>
-                    <div class="fieldIODiv">
-                        <label for="reasoningInput">
-                            <strong>Reasoning:</strong>
-                        </label>
-                        <textarea id="reasoningInput" name="reasoningInput"></textarea>
-                    </div>
-                    <button id="submitReportBtn">Submit</button>
+                <div th:if="${currentUser.id != user.id}" id="reportFormDiv">
+                    <form id="reportForm" th:action="@{/submitReportProfile}" method="post">
+                        <h1>Report</h1>
+                        <div class="fieldIODiv">
+                            <label for="reporterUserName">
+                                <strong>Your Username:</strong>
+                            </label>
+                            <input id="reporterUserName" name="reporterUserName" type="text" th:value="${currentUser.getUsername()}" readonly>
+                            <input id="reportedUserName" name="reportedUserName" type="text" th:value="${user.getUsername()}" readonly hidden>
+                        </div>
+                        <div class="fieldIODiv">
+                            <label for="reasoningInput">
+                                <strong>Reasoning:</strong>
+                            </label>
+                            <textarea id="reasoningInput" name="reasoningInput"></textarea>
+                        </div>
+                        <div id="reportFormBtnDiv">
+                            <button id="submitReportBtn" type="submit">Submit</button>
+                        </div>
+                    </form>
                 </div>
                 <!-- Only display these if the currentuser role is above user, and the current user is viewing another profile
-                    This gets rid of the options to report etc ones own profile -->
-                <button th:if="${currentUser.role == 'ADMIN' && currentUser.id != user.id}" id="viewReportsBtn" onclick="viewReportsRedirect()">! Review Reports !</button>
-
-
-                <form th:if="${currentUser.role == 'MOD' && currentUser.id != user.id}" method="post" th:action="@{/changeAuthorization/{id}(id=${user.id})}">
-                    <button th:if="${currentUser.role == 'MOD' && currentUser.id != user.id}" id="pauseAccBtn">! PAUSE ACCOUNT !</button>
-                </form>
-                <!-- <button th:if="${currentUser.role == 'ADMIN' && currentUser.id != user.id}" id="removeAccBtn" onclick="toggleRemoveAccMenu()">! REMOVE ACCOUNT !</button>
+                    This gets rid of the options to report etc ones own profile
+                <button th:if="${currentUser.role == 'ADMIN' && currentUser.id != user.id}"
+                        id="viewReportsBtn"
+                        onclick="viewReportsRedirect('${user.username}')">! Review Reports !</button>
                 -->
+
+                <button type="button" th:if="${currentUser.role == 'MOD' && currentUser.id != user.id}" id="pauseAccBtn" th:onclick="'confirmPauseAcc(' + ${user.id} + ')'" >! PAUSE ACCOUNT !</button>
 
                 <!-- This checks if the user signed in is an admin, and that they are not viewing their own profile.
                       It also calls our /delete user method, and passes the user.id into the url in order for the /delete
                       fuction to use the id to delete it. -->
+
+
+                <button type="button" id="removeAccBtn" th:if="${currentUser.role == 'ADMIN' && currentUser.id != user.id}" th:onclick="'confirmDeleteAcc(' + ${user.id} + ')'" >! REMOVE ACCOUNT ! </button>
+                <!--
                 <form th:if="${currentUser.role == 'ADMIN' && currentUser.id != user.id}" method="post" th:action="@{/delete/{id}(id=${user.id})}">
                     <button type="submit" id="removeAccBtn">! REMOVE ACCOUNT !</button>
                 </form>
-
-                <div id="reassuranceRemoveAccDiv">
-                    <h1>Are you sure?</h1>
-                    <h2>This action cannot be undone!</h2>
-                    <div id="reassuranceRemoveAccBtnDiv">
-                        <button id="cancelRemoveAccBtn" onclick="closeRemoveAccMenu()">Cancel</button>
-                        <button id="confirmRemoveAccBtn">Confirm</button>
-                    </div>
-                </div>
+                -->
             </div>
         </div>
         <div id="contentRight">
@@ -310,7 +308,7 @@
     <script>
         function toggleReportMenu(){
             let reportButton = document.getElementById("reportBtn");
-            let reportMenuDiv = document.getElementById("reportForm");
+            let reportMenuDiv = document.getElementById("reportFormDiv");
 
             if (reportMenuDiv.style.display === "none") {
                 reportMenuDiv.style.display = "flex";
@@ -366,6 +364,49 @@
             }
         }
 
+        function confirmPauseAcc(userId) {
+            console.log('confirmPauseAcc function called with userId:', userId);
+
+            if (confirm("Are you sure you want to pause this account?")) {
+                // If the user clicks OK, send a POST request to the changeAuthorization endpoint
+                fetch(`/changeAuthorization/${userId}`, { method: 'POST' })
+                    .then(response => {
+                        if (response.ok) {
+                            // If the request was successful, redirect to the home page
+                            window.location.href = "/home";
+                        } else {
+                            // Handle error cases if needed
+                            console.error('Error pausing account:', response.statusText);
+                        }
+                    })
+                    .catch(error => console.error('Error pausing account:', error));
+            }
+        }
+
+        function confirmDeleteAcc(userId) {
+            console.log('confirmDeleteAcc function called with userId:', userId);
+
+            if (confirm("Are you sure you want to delete this account?")) {
+                // If the user clicks OK, send a POST request to the changeAuthorization endpoint
+                fetch(`/delete/${userId}`, { method: 'POST' })
+                    .then(response => {
+                        if (response.ok) {
+                            // If the request was successful, redirect to the home page
+                            window.location.href = "/home";
+                        } else {
+                            // Handle error cases if needed
+                            console.error('Error deleting account:', response.statusText);
+                        }
+                    })
+                    .catch(error => console.error('Error pausing account:', error));
+            }
+        }
+
+        function viewReportsRedirect(username) {
+            console.log(`Redirecting to /dashboard/${username}/reports`);
+            window.location.href = `/dashboard/${username}/reports`;
+
+        }
     </script>
 
     <script src="script.js"></script>

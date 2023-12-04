@@ -50,7 +50,26 @@
     <!-- Content -->
     <div id="mainContent">
         <div id="contentHolder">
-
+            <Table id="usersTable">
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Username</th>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Reports</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user : ${userList}">
+                        <td><em><a th:text="'View User:' + ${user.getId()}" th:href="'/id=' + ${user.getUsername()}">View User: </a></em></td>
+                        <td th:text="${user.getUsername()}"></td>
+                        <td th:text="${user.getName()}"></td>
+                        <td th:text="${user.getRole()}"></td>
+                        <td><em><a th:href="'/dashboard/' + ${user.getUsername()} + '/reports'">View Reports</a></em></td>
+                    </tr>
+                </tbody>
+            </Table>
         </div>
     </div>
 </div>

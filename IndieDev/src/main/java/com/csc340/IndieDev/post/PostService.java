@@ -31,6 +31,10 @@ public class PostService {
         });
     }
 
+    public void deletePost(Long postId) {
+        repo.deleteById(postId);
+    }
+
     public void savePost(Post post) {
         repo.save(post);
     }

@@ -264,7 +264,7 @@ footer h2 {
     height: 30px;
     width: 70%;
 }
-#reportForm {
+#reportFormDiv {
     height: fit-content;
     padding: 10px;
     margin: 5px 0px;
@@ -274,9 +274,18 @@ footer h2 {
     flex-direction: column;
     align-items: center;
 }
+#reportForm {
+    width: 100%;
+    height: 100%;
+}
 #reportForm h1 {
     margin: 0px 0px 5px 0px;
     text-align: center;
+}
+#reportFormBtnDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .fieldIODiv {
     margin: 5px 0px;

@@ -6,6 +6,7 @@ import com.csc340.IndieDev.user.User;
 import com.csc340.IndieDev.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -102,4 +103,16 @@ public class PostController {
         return "redirect:/home";
     }
 
+    @GetMapping("/deletePost")
+    public String deletePost(@RequestParam Long postId) {
+        // Validate if the user has the authority to delete the post (MOD or ADMIN)
+        // Implement your authorization logic here...
+
+        // If authorized, delete the post
+        postService.deletePost(postId);
+
+        return "redirect:/home";
+    }
+
 }
+
