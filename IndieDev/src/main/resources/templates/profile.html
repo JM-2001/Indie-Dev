@@ -181,7 +181,7 @@
                         id="viewReportsBtn"
                         onclick="viewReportsRedirect('${user.username}')">! Review Reports !</button>
                 -->
-                
+
                 <button type="button" th:if="${currentUser.role == 'MOD' && currentUser.id != user.id}" id="pauseAccBtn" th:onclick="'confirmPauseAcc(' + ${user.id} + ')'" >! PAUSE ACCOUNT !</button>
 
                 <!-- This checks if the user signed in is an admin, and that they are not viewing their own profile.
@@ -407,11 +407,6 @@
             window.location.href = `/dashboard/${username}/reports`;
 
         }
-
-
-
-
-
     </script>
 
     <script src="script.js"></script>
