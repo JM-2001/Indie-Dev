@@ -31,4 +31,8 @@ public class PostService {
         });
     }
 
+    public void deletePost(Long postId) {
+        repo.deleteById(postId);
+    }
+
 }

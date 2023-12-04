@@ -4,17 +4,17 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>IndieDev | ReportSheet</title>
+    <title>IndieDev | Report Sheet</title>
     <link rel="stylesheet" href="/reportsheet.css" type="text/css" ></link>
     <script>
         function toggleDropdown() {
-            var dropdown = document.getElementById('profileDropdown');
+            let dropdown = document.getElementById('profileDropdown');
             dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
         }
 
         // Close the dropdown when clicking outside of it
         window.addEventListener('click', function(event) {
-            var dropdown = document.getElementById('profileDropdown');
+            let dropdown = document.getElementById('profileDropdown');
             if (!event.target.closest('.dropdown')) {
                 dropdown.style.display = 'none';
             }
@@ -32,45 +32,57 @@
                 <li><a href="/chats">Chats</a></li>
                 <li><a href="/notifications">Notifs</a></li>
                 <li class="dropdown" onclick="toggleDropdown()">
-                    <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+                    <img th:src="${currentUser.getProfile_picture()}" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
                     <div class="dropdown-content" id="profileDropdown">
                         <div id="profileInfo">
-                            <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
-                            <p>Hi,<br>peepeepoopoo</p>
+                            <img th:src="${currentUser.getProfile_picture()}" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+                            <p>Hi,<br th:text="${currentUser.getName()}"></p>
                         </div>
-                        <a href="/profile" class="current">Profile</a>
+                        <a href="/profile">Profile</a>
+                        <a href="/dashboard" class="current">Dashboard</a>
                         <a href="/logout">Logout</a>
                     </div>
                 </li>
             </ul>
         </nav>
     </header>
-    <div id="divSep">
-    </div>
-    <div class="divContainer">
-        <div class="leftSide">
-           <h1>
-               Reports Against User
-           </h1>
-            <ul>
-                <li>
-                    <p>
-                         <b>Made By:</b> username1212<br><br>
-                         <b>Reason:</b> inappropriate post <br><br>
-                    </p>
-                </li>
-                <li>
-                    <p>
-                        <b>Made By:</b> username1212<br><br>
-                        <b>Reason:</b> dumb post <br>
-                    </p>
-                </li>
-            </ul>
+    <!-- Content -->
+    <div id="mainContent">
+        <div id="contentHolderLeft">
+            <div id="profilePic">
+                <img th:src="${viewedUser.getProfile_picture()}" alt="Reported User Profile Pic">
+            </div>
+            <h1 th:text="${viewedUser.getName()}"></h1>
+            <h2 th:text="'Username: ' + ${viewedUser.getUsername()}"></h2>
+            <h2 th:text="'User ID: ' + ${viewedUser.getId()}"></h2>
         </div>
-        <div class="rightSide">
-            <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Hello" height = "430px" width="430px" class="images"/>
+        <div id="contentHolderRight">
+            <Table id="usersTable">
+                <thead>
+                <tr>
+                    <th>Report ID</th>
+                    <th>Reporter User ID (Username)</th>
+                    <th>Creation Date</th>
+                    <th>Classification (USER, POST, OR PROJECT)</th>
+                    <th>Reported User ID</th>
+                    <th>Reported Project ID</th>
+                    <th>Reported Post ID</th>
+                    <th>Report Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="report : ${reportList}">
+                    <td th:text="${report.getReportId()}"></td>
+                    <td th:text="${report.getReporterUserId()} + '(' + ${@userService.getUsernameById(report.getReporterUserId())} + ')'"></td>
+                    <td th:text="${report.getCreationDate()}"></td>
+                    <td th:text="${report.getReportClassification()}"></td>
+                    <td th:text="${report.getReportedUserId()}"></td>
+                    <td th:text="${report.getReportedProjectId()}"></td>
+                    <td th:text="${report.getReportedPostId()}"></td>
+                    <td th:text="${report.getReportDescription()}"></td>
+                </tr>
+                </tbody>
+            </Table>
         </div>
     </div>
 </div>
-</body>
-</html>

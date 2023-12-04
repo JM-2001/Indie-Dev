@@ -1,16 +1,12 @@
 /* Main CSS */
-body {
+body, html{
     font-size: 1em;
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
     letter-spacing: 0em;
     color: #FFFFFF;
     background-color: #262626;
+    height: 100%;
     margin: 0px;
-}
-.wrapper {
-    margin: 0px auto;
-    background-color: #262626;
-    border-radius: 30px;
 }
 /* Header and Nav */
 header {
@@ -132,168 +128,64 @@ footer h2 {
 .footerNav li a:hover, .footerNav a.current {
     color: #0084FF;
 }
-/* Actual Content */
-.divSep {
-    height: 20px;
-}
-.divContainer {
-    height: 500px;
-    font-size: 1.25em;
-    margin: 10px 20px 10px 20px;
-    background-color: #2B2B2B;
-    border-radius: 30px;
-}
-.leftSide {
-    width: 50%;
-    padding: 20px;
-    /*
-    margin-left: 10px;
-    margin-right: auto;
-    */
-    margin: 10px auto 10px 10px;
-    float: left;
-}
-.rightSide {
-    padding: 20px;
-    /*
-    margin-left: auto;
-    margin-right: 10px;
-    */
-    margin: 10px 10px 10px auto;
-    float: right;
-}
-.divContainer2 {
-    font-size: 1em;
-    margin: 10px 20px 10px 20px;
-}
-.leftSide2 {
-    width: 47%;
-    padding: 20px;
-    background-color: #2B2B2B;
-    border-radius: 30px;
-    margin: 10px auto 10px 0px;
-    float: left;
-    text-align: center;
-}
-.rightSide2 {
-    width: 47%;
-    padding: 20px;
-    background-color: #2B2B2B;
-    border-radius: 30px;
-    margin: 10px 0px 10px auto;
-    float: right;
-    text-align: center;
-}
-
-.pageButton {
-    width: 50%;
+/* Page Wrapper */
+.wrapper {
     height: auto;
-    text-align: center;
-    color: #000000;
-    font-size: 2em;
-    text-decoration: none;
-    display: inline-block;
-    padding: 25px;
+    min-height: 100%;
+    margin: 0px auto;
+    background-color: #262626;
+}
+/* Actual Content */
+#mainContent {
+    min-height: 600px;
+    width: 100%;
+    margin: 30px 0;
+    display: flex;
+    justify-content: space-around;
+}
+#contentHolderRight {
+    width: 75%;
+    min-height: 5%;
+}
+#usersTable {
+    width: -webkit-fill-available;
+    height: fit-content;
+    background: #E26A2C; /* 262626 */
     border-radius: 30px;
-    background-color: #1D71AF;
+    padding: 15px;
 }
-
-ul{
-    list-style-type: none;
+#usersTable thead tr{
+    background-color: #FF8243;
 }
-.behind-post{
-    padding: 16px;
-    margin: 0% 10%;
-
+#usersTable thead tr th {
+    padding: 10px;
 }
-.post {
-    background-color: #2E2E2E;
-    border: 1px solid #1D71AF;
-    border-radius: 5px;
-    padding: 16px;
-    margin: 5% 15%;
-    box-shadow: 0 2px 4px black;
+#usersTable tbody tr {
+    background-color: #FDA65D;
+    text-align: right;
 }
-
-.user-info img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 10px;
+#usersTable tbody tr td {
+    padding: 10px;
 }
-
-.username {
-    font-weight: bold;
-    margin: 1% 0%;
-    color: white
-}
-
-.username a {
-    color: #ffffff;
+#usersTable tbody tr td a {
     text-decoration: none;
+    color: #ffffff;
 }
-
-.post-content {
-    display: flex;
-    align-items: center;
-    margin: 1% 0% 3%;
-    color: white;
+#contentHolderLeft {
+    width: 20%;
+    min-height: 5%;
+    margin: 0px 0px;
 }
-
-.post-content p {
-    margin: 0;
-    color: black;
+#profilePic {
+    width: 275px;
+    height: 275px;
+    margin: 0px auto;
 }
-
-.post-image {
-    max-width: 100%;
-    height: 300px;
-    border-radius: 10px;
-    margin: 5% 5%;
-    border: 2px solid black;
-
+#profilePic img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
 }
-.post-image-item {
-    display: inline-block;
-
-
-}
-
-.post-actions {
-    display: flex;
-    justify-content: left;
-}
-
-button {
-    padding: 8px 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    border-color: black;
-    margin-right: 2%;
-}
-
-.like-button {
-    color: black;
-}
-
-.comment-button {
-    color: black;
-}
-
-.share-button {
-    color: black;
-}
-
-.create-post{
-    padding: 8px 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    border-color: black;
-    color: white;
-    justify-content: right;
-}
-.create-post-button{
-    color: black;
-    background-color: white;
-    justify-content: right;
+#contentHolderRight h1, h2 {
+    margin: 10px 0;
 }

@@ -119,7 +119,6 @@
                                     Upload Image
                                     <input type="file" accept=".png, .jpeg, .jpg, .webp" id="profileUploadPic" name="uploadedProfilePic" onchange="displayImage()">
                                 </label>
-
                             </fieldset>
                         </div>
 
@@ -154,21 +153,26 @@
                 </div>
                 <!-- only show if on another users page, current user is the signed in user, user is the viewed user -->
                 <button th:if="${currentUser.id != user.id}" id="reportBtn" onclick="toggleReportMenu()">Report</button>
-                <div th:if="${currentUser.id != user.id}" id="reportForm">
-                    <h1>Report</h1>
-                    <div class="fieldIODiv">
-                        <label for="reporterUserName">
-                            <strong>Your Username:</strong>
-                        </label>
-                        <input id="reporterUserName" name="reporterUserName" type="text">
-                    </div>
-                    <div class="fieldIODiv">
-                        <label for="reasoningInput">
-                            <strong>Reasoning:</strong>
-                        </label>
-                        <textarea id="reasoningInput" name="reasoningInput"></textarea>
-                    </div>
-                    <button id="submitReportBtn">Submit</button>
+                <div th:if="${currentUser.id != user.id}" id="reportFormDiv">
+                    <form id="reportForm" th:action="@{/submitReportProfile}" method="post">
+                        <h1>Report</h1>
+                        <div class="fieldIODiv">
+                            <label for="reporterUserName">
+                                <strong>Your Username:</strong>
+                            </label>
+                            <input id="reporterUserName" name="reporterUserName" type="text" th:value="${currentUser.getUsername()}" readonly>
+                            <input id="reportedUserName" name="reportedUserName" type="text" th:value="${user.getUsername()}" readonly hidden>
+                        </div>
+                        <div class="fieldIODiv">
+                            <label for="reasoningInput">
+                                <strong>Reasoning:</strong>
+                            </label>
+                            <textarea id="reasoningInput" name="reasoningInput"></textarea>
+                        </div>
+                        <div id="reportFormBtnDiv">
+                            <button id="submitReportBtn" type="submit">Submit</button>
+                        </div>
+                    </form>
                 </div>
                 <!-- Only display these if the currentuser role is above user, and the current user is viewing another profile
                     This gets rid of the options to report etc ones own profile -->
@@ -309,7 +313,7 @@
     <script>
         function toggleReportMenu(){
             let reportButton = document.getElementById("reportBtn");
-            let reportMenuDiv = document.getElementById("reportForm");
+            let reportMenuDiv = document.getElementById("reportFormDiv");
 
             if (reportMenuDiv.style.display === "none") {
                 reportMenuDiv.style.display = "flex";

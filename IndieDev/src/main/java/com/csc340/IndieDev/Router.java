@@ -56,7 +56,8 @@ public class Router {
     @GetMapping(value = {"/home"})
     public String home(Model model) {
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
-        model.addAttribute("currentUser", name);
+        User currentUser = service.getUserByUserName(name);
+        model.addAttribute("currentUser", currentUser);
 
         List<Post> posts = postService.getAllPosts();
 
@@ -93,12 +94,14 @@ public class Router {
     public String dashboard(Model model) {
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         User currentUser = service.getUserByUserName(name);
+        List<User> userList = service.getAllUsers();
 
         model.addAttribute("currentUser", currentUser);
-
+        model.addAttribute("userList", userList);
 
         return "dashboard";
     }
+
 
     @PostMapping("/delete/{id}")
     public String deleteUser(@PathVariable long id, Model model) {
@@ -156,11 +159,6 @@ public class Router {
     @GetMapping("/adminview-profile")
     public String adminProfile(){
         return "adminview-profile";
-    }
-
-    @GetMapping("/reportsheet")
-    public String reportSheet(){
-        return "reportsheet";
     }
 
     @GetMapping("/notifications")
