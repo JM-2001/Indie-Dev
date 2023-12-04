@@ -25,11 +25,21 @@ CREATE TABLE post (
 );
 
 CREATE TABLE comment (
+    comment_id INT AUTO_INCREMENT,
  	post_id INT REFERENCES post(post_id),
     user_id INT REFERENCES user(id),
     body VARCHAR(355) NOT NULL,
     created_at TIMESTAMP,
-    PRIMARY KEY (post_id, user_id)
+    PRIMARY KEY (comment_id)
+);
+
+CREATE TABLE message (
+    message_id INT AUTO_INCREMENT,
+ 	user_id_author INT REFERENCES user(id),
+    user_id_to INT REFERENCES user(id),
+    body VARCHAR(355) NOT NULL,
+    created_at TIMESTAMP,
+    PRIMARY KEY (message_id)
 );
 
 CREATE TABLE project (
@@ -43,12 +53,6 @@ CREATE TABLE project (
     visual VARCHAR(355),
     visual2 VARCHAR(355),
 	PRIMARY KEY (project_id, user_id)
-);   
-
-CREATE TABLE follows (
- 	user_id_followed INT REFERENCES user(id),
-    user_id_following INT REFERENCES user(id),
-    PRIMARY KEY (user_id_followed, user_id_following)
 );
 
 CREATE TABLE report (

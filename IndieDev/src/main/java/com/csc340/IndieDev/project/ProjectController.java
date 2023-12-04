@@ -129,7 +129,7 @@ public class ProjectController {
 
         //Save the project by calling project service
         projectService.saveProject(project);
-        return "redirect:/portfolio";
+        return "redirect:/portfolio/"+username;
     }
 
 }

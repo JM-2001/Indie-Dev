@@ -17,10 +17,10 @@ public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long postId;
+    public Long postId;
 
     @Column(name = "user_id")
-    private Long userId;
+    public Long userId;
 
 
     //Gained from form

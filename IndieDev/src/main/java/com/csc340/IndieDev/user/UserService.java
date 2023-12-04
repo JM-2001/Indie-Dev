@@ -6,6 +6,8 @@ import java.util.Optional;
 import com.csc340.IndieDev.project.Project;
 import com.csc340.IndieDev.project.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -126,5 +128,6 @@ public class UserService {
         Optional<User> userOptional = repo.findById(userId);
         return userOptional.map(User::getProfile_picture).orElse(null);
     }
+
 
 }
