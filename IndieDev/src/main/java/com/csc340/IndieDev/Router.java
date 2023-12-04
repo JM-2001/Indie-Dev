@@ -1,6 +1,10 @@
 package com.csc340.IndieDev;
 
 
+import com.csc340.IndieDev.comment.Comment;
+import com.csc340.IndieDev.comment.CommentService;
+import com.csc340.IndieDev.message.Message;
+import com.csc340.IndieDev.message.MessageService;
 import com.csc340.IndieDev.post.Post;
 import com.csc340.IndieDev.post.PostService;
 import com.csc340.IndieDev.project.Project;
@@ -31,6 +35,12 @@ public class Router {
     @Autowired
     private PostService postService;
 
+    @Autowired
+    private CommentService commentService;
+
+    @Autowired
+    private MessageService messageService;
+
     @GetMapping("")
     public String welcome(){
         return "welcome";
@@ -49,6 +59,11 @@ public class Router {
         model.addAttribute("currentUser", name);
 
         List<Post> posts = postService.getAllPosts();
+
+        for (Post post : posts) {
+            List<Comment> comments = commentService.getCommentByPost(post.getPostId());
+            model.addAttribute("comments_" + post.getPostId(), comments);
+        }
 
         model.addAttribute("posts", posts);
 
@@ -110,16 +125,19 @@ public class Router {
         return "redirect:/home";
     }
 
-    @GetMapping("/portfolio")
-    public String portfolio(Model model, Principal principal) {
+    @GetMapping("/portfolio/{id}")
+    public String portfolio(@PathVariable String id, Model model, Principal principal) {
 
         String username = principal.getName();
-        User user = service.getUserByUserName(username);
+        User currentUser = service.getUserByUserName(username);
 
-        // Assuming you have a method to get the user's projects in your UserService
-        List<Project> projects = service.getProjectsByUserId(user.getId());
+        User viewedUser = service.getUserByUserName(id);
 
-        model.addAttribute("user", user);
+
+        List<Project> projects = service.getProjectsByUserId(viewedUser.getId());
+
+        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("user", viewedUser);
         model.addAttribute("projects", projects);
 
         return "portfolio";
@@ -150,8 +168,32 @@ public class Router {
         return "notifications";
     }
 
-    @GetMapping("/chats")
-    public String chats(){
+    @GetMapping({"/chats", "/chats/{userId}"})
+    public String chats(@PathVariable(name = "userId", required = false) Long userId, Model model){
+        // Get current user
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
+        User currentUser = service.getUserByUserName(name);
+        model.addAttribute("currentUser", currentUser);
+
+        // Get list of msgs
+        List<Message> messages = messageService.getMessagesByUser(currentUser);
+        model.addAttribute("messages", messages);
+
+        //Get list of users
+        List<User> users = service.getAllUsers();
+        model.addAttribute("users", users);
+
+        if (userId != null) {
+            // If a user ID is provided, fetch messages for that user
+            User selectedUser = service.getUser(userId);
+            List<Message> messageHistory = messageService.getMessagesBetweenUsers(currentUser, selectedUser);
+            model.addAttribute("selectedUser", selectedUser);
+            model.addAttribute("messageHistory", messageHistory);
+            model.addAttribute("recipientId", selectedUser.getId());
+            System.out.println("Current User ID: " + currentUser.getId());
+            System.out.println("Selected User ID: " + selectedUser.getId());
+            System.out.println("Message History Size: " + messageHistory.size());
+        }
         return "chat";
     }
 
@@ -160,7 +202,7 @@ public class Router {
         User viewedUser = service.getUser(id);
         viewedUser.setRole("LOCKEDUSER");
         service.updateUser(viewedUser);
-        return "redirect:/home";  // Redirect to the user profile page or any other page
+        return "redirect:/home";
     }
 
     @GetMapping("/accountwarning")

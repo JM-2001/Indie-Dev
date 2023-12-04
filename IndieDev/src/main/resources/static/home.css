@@ -375,3 +375,10 @@ button {
     height: 40px;
     width: 100px;
 }
+
+.comment-input {
+    border-radius: 10px;
+    background-color:  #3b3b3b;
+    border: solid #1D71AF 2px;
+    color: #FFFFFF;
+}

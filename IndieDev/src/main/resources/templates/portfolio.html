@@ -86,8 +86,8 @@
                     </div>
                     <h3 class="status">Status: <p th:text="${project.status}"></p> </h3>
                     <div class="projectContentDiv">
-                        <img th:src="@{'images/' + ${project.visual}}" alt="Project Image" />
-                        <img th:src="@{'images/' + ${project.visual2}}" alt="Project Image" />
+                        <img th:src="@{'/images/' + ${project.visual}}" alt="Project Image" />
+                        <img th:src="@{'/images/' + ${project.visual2}}" alt="Project Image" />
                     </div>
                     <h2>Classification:</h2>
                     <p th:text="${project.classification}"></p>

@@ -80,7 +80,9 @@
                 </li>
             </ul>
             <div id="actionContainer">
-                <button id="seeProjectBtn">See My Projects</button>
+                <button id="seeProjectBtn">
+                    <a th:href="@{/portfolio/{id}(id=${user.username})}">See My Projects</a>
+                </button>
                 <button th:if="${currentUser.id == user.id}" id="editProfile" onclick="openForm()">Edit Profile</button>
                 <div id="editProfileDiv">
                     <form id="editProfileForm" action="/update" method="POST">
