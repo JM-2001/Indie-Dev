@@ -31,4 +31,8 @@ public class PostService {
         });
     }
 
+    public void savePost(Post post) {
+        repo.save(post);
+    }
+
 }
