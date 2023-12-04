@@ -382,3 +382,15 @@ button {
     border: solid #1D71AF 2px;
     color: #FFFFFF;
 }
+
+.createPostBtn{
+    text-decoration: none;
+    color: #ffffff;
+    height: 20%;
+    width: 20%;
+    border-radius: 50px;
+}
+.createPostBtn a {
+    text-decoration: none;
+    color: #ffffff;
+}
