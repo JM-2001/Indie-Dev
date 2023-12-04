@@ -1,0 +1,26 @@
+body {
+    font-size: 1em;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    letter-spacing: 0em;
+    color: #FFFFFF;
+    background-color: #262626;
+    margin: 0px;
+}
+.wrapper {
+    margin: 0px auto;
+    background-color: #262626;
+    border-radius: 30px;
+}
+/* Header and Nav */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 50px;
+    border-radius: 0px;
+    background-color: #2E2E2E;
+    padding: 15px 10px;
+
+    position: sticky;
+    top: 0;
+}

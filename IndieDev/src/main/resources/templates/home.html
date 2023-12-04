@@ -6,6 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>IndieDev | Home</title>
+	<div id="google_translate_element"></div>
 	<link rel="stylesheet" href="/home.css" type="text/css" ></link>
 	<script>
 		function toggleDropdown() {
@@ -80,6 +81,9 @@
 		</nav>
 	</header>
 	<div class="divContainer">
+		<button class="createPostBtn" type="button">
+			<a href="/createPost">Create</a>
+		</button>
 		<div th:each="post : ${posts}"  class="postDiv" >
 			<div class="postUserInfoDiv">
 				<div class="postsUserInfoDiv">

@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>IndieDev | Register</title>
+    <div id="google_translate_element"></div>
     <link rel="stylesheet" href="/login.css" type="text/css" >
     <link rel="stylesheet" href="/register.css" type="text/css" >
 </head>
@@ -133,5 +134,18 @@
             </div>
         </footer>
     </div>
+
+    <script src="script.js"></script>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {pageLanguage: 'en'},
+                'google_translate_element'
+            );
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
 </body>
 </html>

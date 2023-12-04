@@ -67,6 +67,7 @@ import java.util.Set;
                             //AUTHORITY, not ROLE
                             //MAPPINGS ALONG WITH THEIR RESPECTIVE AUTHORITY LEVELS
                             .requestMatchers("/","/*.css", "/register", "/images/**","/portfolio/**").permitAll()
+                            .requestMatchers("/home","/createProject", "/post/**", "/chat","/chats/**", "/send-message", "/profile","/id=*" , "/update","/createPosts").hasAnyAuthority("USER", "MOD", "ADMIN")
                             .requestMatchers("/home","/createProject", "/post/**", "/chat","/chats/**", "/send-message", "/profile","/id=*" , "/update").hasAnyAuthority("USER", "MOD", "ADMIN")
 
                             .requestMatchers("/","/*.css", "/register", "/images/**").permitAll()
