@@ -155,25 +155,7 @@ public class Router {
         return "portfolio";
     }
 
-    @GetMapping("/profile-example")
-    public String profileExample(){
-        return "profile-example";
-    }
 
-    @GetMapping("/modview-profile")
-    public String modviewProfile(){
-        return "modview-profile";
-    }
-
-    @GetMapping("/adminview-profile")
-    public String adminProfile(){
-        return "adminview-profile";
-    }
-
-    @GetMapping("/notifications")
-    public String notification(){
-        return "notifications";
-    }
 
     @GetMapping({"/chats", "/chats/{userId}"})
     public String chats(@PathVariable(name = "userId", required = false) Long userId, Model model){

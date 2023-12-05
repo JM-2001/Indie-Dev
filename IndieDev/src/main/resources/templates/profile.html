@@ -64,21 +64,7 @@
                 <li th:if="${user.profession == 'Creatist'}"id="roleDisplayCreatist">Creatist</li>
                 <li th:if="${user.profession == 'Writer'}"id="roleDisplayWriter">Writer</li>
             </ul>
-            <h3>Links:</h3>
-            <ul id="linkContainer">
-                <li>
-                    <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="github">
-                    <a href="#">Github: Example</a>
-                </li>
-                <li>
-                    <img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/circle-linkedin-512.png" alt="Linkedin">
-                    <a href="#">Linkedin: Example</a>
-                </li>
-                <li>
-                    <img src="https://static.vecteezy.com/system/resources/previews/018/930/718/original/discord-logo-discord-icon-transparent-free-png.png" alt="Discord">
-                    <a href="#">Discord: Example#0000</a>
-                </li>
-            </ul>
+
             <div id="actionContainer">
                 <button id="seeProjectBtn">
                     <a th:href="@{/portfolio/{id}(id=${user.username})}">See My Projects</a>
