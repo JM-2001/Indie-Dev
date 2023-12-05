@@ -29,7 +29,7 @@
         <nav>
             <ul class="navigation">
                 <li><a href="/home">Home</a></li>
-                <li><a href="/portfolio">Portfolio</a></li>
+                <li><a th:href="@{/portfolio/{id}(id=${currentUser.username})}">Portfolio</a></li>
                 <li><a href="/chats">Chats</a></li>
                 <li><a href="/notifications">Notifs</a></li>
                 <li class="dropdown" onclick="toggleDropdown()">
@@ -202,24 +202,24 @@
                 <h1>Posts</h1>
             </div>
             <!-- Posts Div -->
-            <div class="postDiv">
+            <div th:each="post : ${posts}" class="postDiv">
                 <div class="postUserInfoDiv">
                     <div class="postsUserInfoDiv">
-                        <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
-                        <a><strong>@Username</strong></a>
+                        <img th:src="${@userService.getProfilePictureUrl(post.userId)}" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+                        <a><strong th:text="${@userService.getUsernameById(post.userId)}"></strong></a>
                     </div>
                     <button>
                         <img src="/images/Edit_Icon.png" alt="edit Button"/>
                     </button>
                 </div>
                 <div class="postInfo">
-                    <p>Joe Mama can't code</p>
+                    <p th:text="${post.body}"></p>
                 </div>
                 <div class="postContentDiv">
-                    <img src="https://gamedevacademy.org/wp-content/uploads/2020/07/img_5f179b38687a8.png.webp" alt="Code segment">
+                    <img th:src="@{'images/' + ${post.visual}}" alt="Code segment">
                 </div>
                 <div class="postStatsDiv">
-                    <p>10 likes</p>
+                    <p th:text="${post.like_count} + ' '+ likes"></p>
                 </div>
                 <div class="postButtonDiv">
                     <button class="postLikeBtn">Like</button>
@@ -227,83 +227,6 @@
                     <button class="postReportBtn">Report</button>
                 </div>
             </div>
-            <div class="postDiv">
-                <div class="postUserInfoDiv">
-                    <div class="postsUserInfoDiv">
-                        <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
-                        <a><strong>@Username</strong></a>
-                    </div>
-                    <button>
-                        <img src="/images/Edit_Icon.png" alt="edit Button"/>
-                    </button>
-                </div>
-                <div class="postInfo">
-                    <p>Minecraft modding is great</p>
-                </div>
-                <div class="postContentDiv">
-                    <img src="https://www.alanzucconi.com/wp-content/uploads/2021/03/minecraft_01.png" alt="Code segment">
-                </div>
-                <div class="postStatsDiv">
-                    <p>20 likes</p>
-                </div>
-                <div class="postButtonDiv">
-                    <button class="postLikeBtn">Like</button>
-                    <button class="postCommentBtn">Comment</button>
-                    <button class="postReportBtn">Report</button>
-                </div>
-            </div>
-            <div class="postDiv">
-                <div class="postUserInfoDiv">
-                    <div class="postsUserInfoDiv">
-                        <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
-                        <a><strong>@Username</strong></a>
-                    </div>
-                    <button>
-                        <img src="/images/Edit_Icon.png" alt="edit Button"/>
-                    </button>
-                </div>
-                <div class="postInfo">
-                    <p>Minecraft modding is great</p>
-                </div>
-                <div class="postContentDiv">
-                    <img src="https://www.alanzucconi.com/wp-content/uploads/2021/03/minecraft_01.png" alt="Code segment">
-                </div>
-                <div class="postStatsDiv">
-                    <p>20 likes</p>
-                </div>
-                <div class="postButtonDiv">
-                    <button class="postLikeBtn">Like</button>
-                    <button class="postCommentBtn">Comment</button>
-                    <button class="postReportBtn">Report</button>
-                </div>
-            </div>
-            <div class="postDiv">
-                <div class="postUserInfoDiv">
-                    <div class="postsUserInfoDiv">
-                        <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
-                        <a><strong>@Username</strong></a>
-                    </div>
-                    <button>
-                        <img src="/images/Edit_Icon.png" alt="edit Button"/>
-                    </button>
-                </div>
-                <div class="postInfo">
-                    <p>Minecraft modding is great</p>
-                </div>
-                <div class="postContentDiv">
-                    <img src="https://www.alanzucconi.com/wp-content/uploads/2021/03/minecraft_01.png" alt="Code segment">
-                </div>
-                <div class="postStatsDiv">
-                    <p>20 likes</p>
-                </div>
-                <div class="postButtonDiv">
-                    <button class="postLikeBtn">Like</button>
-                    <button class="postCommentBtn">Comment</button>
-                    <button class="postReportBtn">Report</button>
-                </div>
-            </div>
-            <!-- End Posts Div -->
-        </div>
     </div>
     <script>
         function toggleReportMenu(){

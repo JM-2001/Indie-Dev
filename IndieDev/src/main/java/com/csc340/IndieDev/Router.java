@@ -84,6 +84,14 @@ public class Router {
         User currentUser = service.getUserByUserName(currentUsername);
         User viewedUser = service.getUserByUserName(id);
 
+        List<Post> posts = postService.getPostByUserId(viewedUser.getId());
+        for (Post post : posts) {
+            List<Comment> comments = commentService.getCommentByPost(post.getPostId());
+            model.addAttribute("comments_" + post.getPostId(), comments);
+        }
+
+        model.addAttribute("posts", posts);
+
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("user", viewedUser);
         //model.addAttribute("user", service.getUserByUserName(id));
