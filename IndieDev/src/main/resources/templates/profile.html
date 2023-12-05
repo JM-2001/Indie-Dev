@@ -31,7 +31,6 @@
                 <li><a href="/home">Home</a></li>
                 <li><a th:href="@{/portfolio/{id}(id=${currentUser.username})}">Portfolio</a></li>
                 <li><a href="/chats">Chats</a></li>
-                <li><a href="/notifications">Notifs</a></li>
                 <li class="dropdown" onclick="toggleDropdown()">
                     <img th:src="${currentUser.getProfile_picture()}" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
                     <div class="dropdown-content" id="profileDropdown">

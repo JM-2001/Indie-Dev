@@ -82,17 +82,15 @@ function pollForUpdates() {
                     <li><a href="/home">Home</a></li>
                     <li><a th:href="@{/portfolio/{id}(id=${currentUser.username})}">Portfolio</a></li>
                     <li><a class="current" href="/chats">Chats</a></li>
-                    <li><a href="/notifications">Notifs</a></li>
                     <li class="dropdown" onclick="toggleDropdown()">
-                        <img alt="Profile Pic" class="profileImg" height="50px" src="https://art.pixilart.com/783eb080961fcd6.png"
-                             width="50px"/>
+                        <img th:src="${currentUser.getProfile_picture()}" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
                         <div class="dropdown-content" id="profileDropdown">
                             <div id="profileInfo">
-                                <img alt="Profile Pic" class="profileImg" height="50px"
-                                     src="https://art.pixilart.com/783eb080961fcd6.png" width="50px"/>
-                                <p>Hi,<br>peepeepoopoo</p>
+                                <img th:src="${currentUser.getProfile_picture()}" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+                                <p>Hi,<br th:text="${currentUser.getName()}"></p>
                             </div>
-                            <a href="/profile">Profile</a>
+                            <a th:href="@{/id={id}(id=${currentUser.getUsername()})}" >Profile</a>
+                            <a href="/dashboard" th:if="${currentUser.getRole() == 'ADMIN' || currentUser.getRole() == 'MOD'}">Dashboard</a>
                             <a href="/logout">Logout</a>
                         </div>
                     </li>
