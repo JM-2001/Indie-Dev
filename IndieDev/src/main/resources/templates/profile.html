@@ -20,6 +20,38 @@
                 dropdown.style.display = 'none';
             }
         });
+
+        function toggleMoreDropdown(dropdownId) {
+            let dropdown = document.getElementById(dropdownId);
+            if (dropdown) {
+                dropdown.style.display = (dropdown.style.display === 'flex') ? 'none' : 'flex';
+            }
+        }
+
+        function toggleReportMenu(dropdownId) {
+            let dropdown = document.getElementById(dropdownId);
+            if (dropdown) {
+                dropdown.style.display = (dropdown.style.display === 'flex') ? 'none' : 'flex';
+            }
+        }
+
+        function toggleComments(commentDivId) {
+            let displayDiv = document.getElementById(commentDivId);
+            if (displayDiv) {
+                displayDiv.style.display = (displayDiv.style.display === 'block') ? 'none' : 'block';
+            }
+        }
+
+        function showDeleteConfirmation(postId) {
+            let confirmDelete = confirm("Are you sure you want to delete this post?");
+            if (confirmDelete) {
+                // If the user confirms, redirect to the deletePost endpoint
+                window.location.href = '/deletePost?postId=' + postId;
+            } else {
+                // If the user cancels, do nothing or provide feedback
+                console.log('Deletion canceled.');
+            }
+        }
     </script>
 </head>
 <body>
@@ -38,7 +70,7 @@
                             <img th:src="${currentUser.getProfile_picture()}" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
                             <p>Hi,<br th:text="${currentUser.getName()}"></p>
                         </div>
-                        <a href="/profile" class="current">Profile</a>
+                        <a th:href="@{/id={id}(id=${currentUser.getUsername()})}" class="current">Profile</a>
                         <a href="/dashboard" th:if="${currentUser.getRole() == 'ADMIN' || currentUser.getRole() == 'MOD'}">Dashboard</a>
                         <a href="/logout">Logout</a>
                     </div>
@@ -160,42 +192,57 @@
                         </div>
                     </form>
                 </div>
-                <!-- Only display these if the currentuser role is above user, and the current user is viewing another profile
-                    This gets rid of the options to report etc ones own profile
-                <button th:if="${currentUser.role == 'ADMIN' && currentUser.id != user.id}"
-                        id="viewReportsBtn"
-                        onclick="viewReportsRedirect('${user.username}')">! Review Reports !</button>
-                -->
 
                 <button type="button" th:if="${currentUser.role == 'MOD' && currentUser.id != user.id}" id="pauseAccBtn" th:onclick="'confirmPauseAcc(' + ${user.id} + ')'" >! PAUSE ACCOUNT !</button>
-
-                <!-- This checks if the user signed in is an admin, and that they are not viewing their own profile.
-                      It also calls our /delete user method, and passes the user.id into the url in order for the /delete
-                      fuction to use the id to delete it. -->
-
-
                 <button type="button" id="removeAccBtn" th:if="${currentUser.role == 'ADMIN' && currentUser.id != user.id}" th:onclick="'confirmDeleteAcc(' + ${user.id} + ')'" >! REMOVE ACCOUNT ! </button>
-                <!--
-                <form th:if="${currentUser.role == 'ADMIN' && currentUser.id != user.id}" method="post" th:action="@{/delete/{id}(id=${user.id})}">
-                    <button type="submit" id="removeAccBtn">! REMOVE ACCOUNT !</button>
-                </form>
-                -->
             </div>
         </div>
         <div id="contentRight">
             <div id="postsTitleDiv">
                 <h1>Posts</h1>
             </div>
+
             <!-- Posts Div -->
-            <div th:each="post : ${posts}" class="postDiv">
+            <div th:each="post : ${posts}" class="postDiv" th:if="${not post.lockedPost}">
                 <div class="postUserInfoDiv">
                     <div class="postsUserInfoDiv">
                         <img th:src="${@userService.getProfilePictureUrl(post.userId)}" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
                         <a><strong th:text="${@userService.getUsernameById(post.userId)}"></strong></a>
                     </div>
-                    <button>
-                        <img src="/images/Edit_Icon.png" alt="edit Button"/>
+                    <button type="button" class="moreDropdownBtn" th:onclick="'toggleMoreDropdown(\'moreDropdownDiv_' + ${post.postId} + '\')'">
+                        <img src="/images/more_icon.png" alt="more Button"/>
                     </button>
+                    <div class="moreDropdownDiv" th:id="'moreDropdownDiv_' + ${post.postId}" style="display: none;">
+                        <a href="#" th:if="${currentUser.id == post.userId}">Edit</a>
+                        <button th:if="${currentUser.id != post.userId}" th:onclick="'toggleReportMenu(\'reportFormDiv_' + ${post.postId} + '\')'" type="button">Report</button>
+                        <div th:if="${currentUser.id != post.userId}" class="reportFormDiv2" th:id="'reportFormDiv2_' + ${post.postId}">
+                            <form id="reportForm2" th:action="@{/submitReportPost}" method="post">
+                                <h1>Report</h1>
+                                <div class="fieldIODiv">
+                                    <label for="reporterUserName">
+                                        <strong>Your Username:</strong>
+                                    </label>
+                                    <input id="reporterUserName2" name="reporterUserName" type="text" th:value="${currentUser.getUsername()}" readonly>
+                                    <input id="reportedUserId" name="reportedUserId" type="text" th:value="${post.getUserId()}" readonly hidden>
+                                    <input id="reportedPostId" name="reportedPostId" type="text" th:value="${post.getPostId()}" readonly hidden>
+                                </div>
+                                <div class="fieldIODiv">
+                                    <label for="reasoningInput">
+                                        <strong>Reasoning:</strong>
+                                    </label>
+                                    <textarea id="reasoningInput2" name="reasoningInput"></textarea>
+                                </div>
+                                <div id="reportFormBtnDiv2">
+                                    <button id="submitReportBtn2" type="submit">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                        <button type="button" th:if="${currentUser.getRole() == 'MOD' || currentUser.getId() == post.userId || currentUser.getRole() == 'ADMIN'}"
+                                th:onclick="'showDeleteConfirmation(\'' + ${post.postId} + '\')'">Delete</button>
+                        <form th:if="${currentUser.getRole() == 'MOD'}" th:action="@{/lockPost/{postId}(postId=${post.getPostId()})}" method="post">
+                            <button type="submit">Lock Post</button>
+                        </form>
+                    </div>
                 </div>
                 <div class="postInfo">
                     <p th:text="${post.body}"></p>
@@ -204,14 +251,44 @@
                     <img th:src="@{'images/' + ${post.visual}}" alt="Code segment">
                 </div>
                 <div class="postStatsDiv">
+                    <!-- like count -->
                     <p th:text="${post.like_count} + ' '+ likes"></p>
+                    <p>Comments</p>
+                    <!-- Comments -->
+                    <div class="postsCommentDiv" th:id="'postsCommentDiv_' + ${post.postId}">
+                        <div class="postedCommentDiv" th:each="comment : ${__${'comments_' + post.postId}__}">
+                            <div class="postedCommentLeftDiv">
+                                <img th:src="@{${@userService.getProfilePictureUrl(comment.userId)}}" alt="Profile Pic"/>
+                            </div>
+                            <div class="postedCommentRightDiv">
+                                <strong><em><p th:text="${@userService.getUsernameById(comment.userId)}"></p></em></strong>
+                                <p th:text="${comment.body}"></p>
+                            </div>
+                        </div>
+                        <div class="postingCommentDiv">
+                            <div class="postingCommentLeftDiv">
+                                <img th:src="${currentUser.getProfile_picture()}" alt="Profile Pic"/>
+                            </div>
+                            <div class="postingCommentRightDiv">
+                                <form th:action="@{'/post/' + ${post.postId} + '/comment'}" method="post">
+                                    <input type="hidden" name="postId" th:value="${post.postId}" />
+                                    <textarea name="body" class="postingCommentInput" placeholder="Add a comment"></textarea>
+                                    <button type="submit" class="postingCommentInputBtn">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="postButtonDiv">
-                    <button class="postLikeBtn">Like</button>
-                    <button class="postCommentBtn">Comment</button>
-                    <button class="postReportBtn">Report</button>
+                    <!-- post actions -->
+                    <form th:action="@{/like}" method="post">
+                        <input type="hidden" name="postId" th:value="${post.postId}" />
+                        <button type="submit" class="postLikeBtn">Like</button>
+                    </form>
+                    <button class="postCommentBtn" th:onclick="'toggleComments(\'postsCommentDiv_' + ${post.postId} + '\')'" type="button">Comments</button>
                 </div>
             </div>
+            <!-- Post End Div -->
     </div>
     <script>
         function toggleReportMenu(){
@@ -327,26 +404,22 @@
         }
     </script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-
-</div>
-</div>
-
-<footer>
-    <h2>Site Map</h2>
-    <div id="siteMapLeft">
-        <ul class="footerNav">
-            <li><a href="/home">Home</a></li>
-            <li><a href="/chats">Chats</a></li>
-            <li><a href="/profile">Profile</a></li>
-        </ul>
     </div>
-    <div id="siteMapRight">
-        <ul class="footerNav">
-            <li><a href="/termsOfService">Terms Of Service</a></li>
-        </ul>
-    </div>
-</footer>
-
+    <footer>
+        <h2>Site Map</h2>
+        <div id="siteMapLeft">
+            <ul class="footerNav">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/chats">Chats</a></li>
+                <li><a th:href="@{/id={id}(id=${currentUser.getUsername()})}" class="current">Profile</a></li>
+            </ul>
+        </div>
+        <div id="siteMapRight">
+            <ul class="footerNav">
+                <li><a href="/termsOfService">Terms Of Service</a></li>
+            </ul>
+        </div>
+    </footer>
+</div>
 </body>
 </html>

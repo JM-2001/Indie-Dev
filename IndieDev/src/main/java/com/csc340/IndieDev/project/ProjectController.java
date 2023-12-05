@@ -3,7 +3,9 @@ package com.csc340.IndieDev.project;
 import com.csc340.IndieDev.user.User;
 import com.csc340.IndieDev.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,7 +30,12 @@ public class ProjectController {
 
 
     @GetMapping("/createProject")
-    public String createProject(){
+    public String createProject(Model model){
+        String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+        User currentUser = userService.getUserByUserName(currentUsername);
+
+        model.addAttribute("currentUser", currentUser);
+
         return "createProject";
     }
 

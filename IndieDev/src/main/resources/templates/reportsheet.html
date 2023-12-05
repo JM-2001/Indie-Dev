@@ -38,8 +38,8 @@
                             <img th:src="${currentUser.getProfile_picture()}" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
                             <p>Hi,<br th:text="${currentUser.getName()}"></p>
                         </div>
-                        <a href="/profile">Profile</a>
-                        <a href="/dashboard" class="current">Dashboard</a>
+                        <a th:href="@{/id={id}(id=${currentUser.getUsername()})}">Profile</a>
+                        <a href="/dashboard" th:if="${currentUser.getRole() == 'ADMIN' || currentUser.getRole() == 'MOD'}" class="current">Dashboard</a>
                         <a href="/logout">Logout</a>
                     </div>
                 </li>
@@ -92,19 +92,17 @@
                 <tr>
                     <th>Post ID</th>
                     <th>Post Body</th>
-                    <th>Post Image</th>
+                    <th>Post Locked?</th>
                     <th>Post Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="post : ${postsList}" th:if="${post.lockedPost}">
+                <tr th:each="post : ${postsList}">
                     <td th:text="${post.getPostId()}"></td>
                     <td th:text="${post.getBody()}"></td>
+                    <td th:text="${post.isLockedPost()}"></td>
                     <td>
-                        <img th:src="${post.getVisual()}">
-                    </td>
-                    <td>
-                        <form method="post" th:action="@{/unlockPost/{postId}(postId=${post.getPostId()})}">
+                        <form th:if="${currentUser.getRole() == 'ADMIN'}" method="post" th:action="@{/unlockPost/{postId}(postId=${post.getPostId()})}">
                             <button type="submit">Unlock</button>
                         </form>
                     </td>
@@ -113,6 +111,22 @@
             </Table>
         </div>
     </div>
+
+    <footer>
+        <h2>Site Map</h2>
+        <div id="siteMapLeft">
+            <ul class="footerNav">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/chats">Chats</a></li>
+                <li><a th:href="@{/id={id}(id=${currentUser.getUsername()})}" >Profile</a></li>
+            </ul>
+        </div>
+        <div id="siteMapRight">
+            <ul class="footerNav">
+                <li><a href="/termsOfService">Terms Of Service</a></li>
+            </ul>
+        </div>
+    </footer>
 </div>
 
 <script src="script.js"></script>
@@ -125,22 +139,5 @@
     }
 </script>
 <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-<footer>
-    <h2>Site Map</h2>
-    <div id="siteMapLeft">
-        <ul class="footerNav">
-            <li><a href="/home">Home</a></li>
-            <li><a href="/chats">Chats</a></li>
-            <li><a href="/profile">Profile</a></li>
-        </ul>
-    </div>
-    <div id="siteMapRight">
-        <ul class="footerNav">
-            <li><a href="/termsOfService">Terms Of Service</a></li>
-        </ul>
-    </div>
-</footer>
-
 </body>
 </html>

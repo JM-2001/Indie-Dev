@@ -20,6 +20,7 @@ header {
 
     position: sticky;
     top: 0;
+    z-index: 3;
 }
 .images {
     border-radius: 30px;
@@ -241,6 +242,10 @@ footer h2 {
     color: #ffffff;
     height: 30px;
     width: 70%;
+}
+#seeProjectBtn a {
+    text-decoration: none;
+    color: #FFFFFF;
 }
 #viewReportsBtn {
     margin: 5px 0px;
@@ -507,17 +512,19 @@ footer h2 {
     margin: 0;
     float: left;
 }
+/* Post CSS */
 .postDiv {
     height: fit-content;
-    width: 99%;
+    width: -webkit-fill-available;
     margin: 20px auto;
     border: #3b3b3b solid 2.5px;
     border-radius: 30px;
+    padding: 15px;
 }
 .postUserInfoDiv {
+    position: relative;
     display: flex;
     justify-content: space-between;
-    padding: 15px 15px 0px 15px;
 }
 .postsUserInfoDiv {
     float: left;
@@ -543,11 +550,15 @@ footer h2 {
 }
 .postInfo, .postStatsDiv {
     margin: 0px;
-    padding: 0px 15px;
+    padding: 15px 0px;
 }
-.postInfo p, .postStatsDiv p {
+.postInfo p {
     margin: 0px;
     font-size: 1.25em;
+}
+.postStatsDiv p {
+    font-size: 1.25em;
+    margin: 10px 0px;
 }
 .postContentDiv {
     height: max-content;
@@ -564,12 +575,11 @@ footer h2 {
     width: 50%;
 }
 .postButtonDiv {
-    padding: 15px;
-    width: 40%;
+    width: 225px;
     display: flex;
     justify-content: space-between;
 }
-.postLikeBtn, .postCommentBtn, .postReportBtn {
+.postLikeBtn, .postCommentBtn, .postReportBtn, .postingCommentInputBtn{
     text-align: center;
     border-radius: 10px;
     border: solid #1D71AF 2px;
@@ -580,8 +590,174 @@ footer h2 {
     height: 40px;
     width: 100px;
 }
-
-button a {
-    text-decoration: none;
+.postLikeBtn:hover, .postCommentBtn:hover, .postReportBtn:hover, .postingCommentInputBtn:hover{
+    border: solid #0097ff 2px;
+    outline: none;
+    background-color: #3b3b3b;
+}
+.postsCommentDiv {
+    width: -webkit-fill-available;
+    height: fit-content;
+    margin: 10px 0px;
+    border: #3b3b3b solid 2.5px;
+    border-radius: 30px;
+    padding: 10px;
+}
+.postedCommentDiv {
+    width: -webkit-fill-available;
+    height: fit-content;
+    display: flex;
+}
+.postedCommentLeftDiv, .postingCommentLeftDiv {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+.postedCommentLeftDiv img, .postingCommentLeftDiv img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+.postedCommentRightDiv, .postingCommentRightDiv {
+    width: -webkit-fill-available;
+}
+.postedCommentRightDiv p {
+    margin: 0 0 10px 0;
+}
+.postingCommentDiv {
+    width: -webkit-fill-available;
+    height: fit-content;
+    margin: 10px 0px 0px 0px;
+    padding: 10px;
+    border: #3b3b3b solid 2.5px;
+    border-radius: 30px;
+    display: flex;
+}
+.postingCommentInput {
+    border-radius: 10px;
+    background-color: #3b3b3b;
+    border: solid #1D71AF 2px;
     color: #FFFFFF;
+    outline: none;
+    display: block;
+    resize: vertical;
+    width: -webkit-fill-available;
+    padding: 10px;
+    margin: 0px 0px 10px 0px;
+    min-height: 50px;
+}
+.postingCommentInput:hover, .postingCommentInput:focus {
+    border: solid #0097ff 2px;
+    outline: none;
+    background-color: #3b3b3b;
+}
+.moreDropdownDiv {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    background-color: #292929;
+    border-radius: 15px;
+    min-width: 150px;
+    right: -15px;
+    top: 70px;
+    z-index: 1;
+    font-size: inherit;
+}
+.moreDropdownDiv a {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: inherit;
+}
+.moreDropdownDiv a:hover, .moreDropdownDiv button:hover{
+    background-color: #313131;
+    border-radius: 15px;
+}
+.moreDropdownDiv button {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    font-size: inherit;
+    width: -webkit-fill-available;
+}
+/* Report Form CSS */
+.reportFormDiv2 {
+    height: fit-content;
+    padding: 10px;
+    margin: 5px 0px;
+    background-color: #3b3b3b;
+    border-radius: 30px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+#reportForm2 {
+    width: 100%;
+    height: 100%;
+}
+#reportForm2 h1 {
+    margin: 0px 0px 5px 0px;
+    text-align: center;
+}
+#reportForm2BtnDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.fieldIODiv {
+    margin: 5px 0px;
+    width: -webkit-fill-available;
+}
+.fieldIODiv label {
+    font-size: 1.05em;
+}
+#reporterUserName2 {
+    margin-top: 5px;
+    background-color: transparent;
+    border: solid #575757 5px;
+    border-radius: 20px;
+    width: -webkit-fill-available;
+    height: 30px;
+    padding: 0px 10px 0px 10px;
+    font-size: 1.05em;
+    color: #FFFFFF;
+}
+#reasoningInput2 {
+    margin-top: 5px;
+    background-color: transparent;
+    border: solid #575757 5px;
+    border-radius: 20px;
+    width: -webkit-fill-available;
+    min-height: 70px;
+    height: auto;
+    padding: 5px 10px;
+    font-size: 1.05em;
+    color: #FFFFFF;
+    resize: vertical;
+}
+#reporterUserName2:hover, #reporterUserName2:focus, #reasoningInput2:hover, #reasoningInput2:focus {
+    outline: none;
+    border: solid #6e6e6e 5px;
+}
+#submitReportBtn2 {
+    margin: 5px 0px;
+    padding: 0px;
+    outline: none;
+    border-radius: 30px;
+    border: none;
+    background-color: #ff391f;
+    color: #ffffff;
+    height: 30px;
+    width: 70%;
+}
+#submitReportBtn2:hover {
+    background-color: #f35858;
 }
