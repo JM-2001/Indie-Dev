@@ -269,6 +269,7 @@ footer h2 {
     width: -webkit-fill-available;
     padding: 10px;
     margin: 0px 0px 10px 0px;
+    min-height: 50px;
 }
 .postingCommentInput:hover, .postingCommentInput:focus {
     border: solid #0097ff 2px;

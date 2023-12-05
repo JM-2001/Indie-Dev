@@ -38,8 +38,8 @@
                             <img th:src="${currentUser.getProfile_picture()}" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
                             <p>Hi,<br th:text="${currentUser.getName()}"></p>
                         </div>
-                        <a th:href="@{/id={id}(id=${currentUser.getUsername()})}" >Profile</a>
-                        <a href="/dashboard" class="current">Dashboard</a>
+                        <a th:href="@{/id={id}(id=${currentUser.getUsername()})}">Profile</a>
+                        <a href="/dashboard" th:if="${currentUser.getRole() == 'ADMIN' || currentUser.getRole() == 'MOD'}" class="current">Dashboard</a>
                         <a href="/logout">Logout</a>
                     </div>
                 </li>
@@ -77,9 +77,8 @@
         <div id="siteMapLeft">
             <ul class="footerNav">
                 <li><a href="/home">Home</a></li>
-                <li><a href="#">Posts</a></li>
-                <li><a href="#">Chats</a></li>
-                <li><a href="#">Profile</a></li>
+                <li><a href="/chats">Chats</a></li>
+                <li><a th:href="@{/id={id}(id=${currentUser.getUsername()})}" >Profile</a></li>
             </ul>
         </div>
         <div id="siteMapRight">
@@ -89,3 +88,5 @@
         </div>
     </footer>
 </div>
+</body>
+</html>

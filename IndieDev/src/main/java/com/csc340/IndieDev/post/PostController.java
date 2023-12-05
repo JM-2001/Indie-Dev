@@ -5,7 +5,9 @@ import com.csc340.IndieDev.project.Project;
 import com.csc340.IndieDev.user.User;
 import com.csc340.IndieDev.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,7 +38,11 @@ public class PostController {
 
 
     @GetMapping("/createPost")
-    public String createProject(){
+    public String createProject(Model model){
+        String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+        User currentUser = userService.getUserByUserName(currentUsername);
+
+        model.addAttribute("currentUser", currentUser);
         return "createPost";
     }
 
@@ -47,7 +53,6 @@ public class PostController {
         String username = principal.getName();
         User user = userService.getUserByUserName(username);
 
-        //Setting the user_id in the project table from the signed in user
         post.setUserId(user.getId());
 
         //First image

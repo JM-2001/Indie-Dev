@@ -34,12 +34,6 @@
                     <label for="name"><strong>Name:</strong></label>
                     <input type="text" id="name" name="name" th:field="*{name}" required>
                 </div>
-                <!--
-                <div class="divPart">
-                    <label for="email"><strong>Email:</strong></label>
-                    <input type="text" id="email" name="email">
-                </div>
-                -->
                 <div class="divPart">
                     <label for="passWord"><strong>Password:</strong></label>
                     <input type="password" id="passWord" name="password" th:field="*{password}" required>
@@ -62,22 +56,22 @@
                     <label><strong>Select your role:</strong></label>
                     <fieldset id="roleSection">
                         <label for="roleGameDev">
-                            <input type="checkbox" id="roleGameDev" name="roleGameDev" value="Developer" th:field="*{profession}">Developer
+                            <input type="radio" id="roleGameDev" name="roleSection" value="Developer" th:field="*{profession}">Developer
                         </label>
                         <label for="roleGameDesign">
-                            <input type="checkbox" id="roleGameDesign" name="roleGameDesign" value="Designer">Designer
+                            <input type="radio" id="roleGameDesign" name="roleSection" value="Designer" th:field="*{profession}">Designer
                         </label>
                         <label for="roleArtist">
-                            <input type="checkbox" id="roleArtist" name="roleArtist" value="Artist">Artist
+                            <input type="radio" id="roleArtist" name="roleSection" value="Artist" th:field="*{profession}">Artist
                         </label>
                         <label for="roleMusician">
-                            <input type="checkbox" id="roleMusician" name="roleMusician" value="Musician">Musician
+                            <input type="radio" id="roleMusician" name="roleSection" value="Musician" th:field="*{profession}">Musician
                         </label>
                         <label for="roleCreatist">
-                            <input type="checkbox" id="roleCreatist" name="roleCreatist" value="Creatist">Creatist
+                            <input type="radio" id="roleCreatist" name="roleSection" value="Creatist" th:field="*{profession}">Creatist
                         </label>
                         <label for="roleWriter">
-                            <input type="checkbox" id="roleWriter" name="roleWriter" value="Writer">Writer
+                            <input type="radio" id="roleWriter" name="roleSection" value="Writer" th:field="*{profession}">Writer
                         </label>
                     </fieldset>
                 </div>

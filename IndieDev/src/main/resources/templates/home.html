@@ -167,16 +167,16 @@
 				<button class="postCommentBtn" th:onclick="'toggleComments(\'postsCommentDiv_' + ${post.postId} + '\')'" type="button">Comments</button>
 			</div>
 		</div>
+		<!-- Post End Div -->
 	</div>
 	<!-- Footer -->
 	<footer>
 		<h2>Site Map</h2>
 		<div id="siteMapLeft">
 			<ul class="footerNav">
-				<li><a href="/home">Home</a></li>
-				<li><a href="#">Posts</a></li>
-				<li><a href="#">Chats</a></li>
-				<li><a href="#">Profile</a></li>
+				<li><a href="/home" class="current">Home</a></li>
+				<li><a href="/chats">Chats</a></li>
+				<li><a th:href="@{/id={id}(id=${currentUser.getUsername()})}" >Profile</a></li>
 			</ul>
 		</div>
 		<div id="siteMapRight">
