@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2023 at 09:27 PM
+-- Generation Time: Dec 06, 2023 at 12:23 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -98,9 +98,10 @@ CREATE TABLE `post` (
 --
 
 INSERT INTO `post` (`post_id`, `user_id`, `visual`, `body`, `like_count`, `created_at`, `locked_post`) VALUES
-(2, 16, 'robot-507811_12801.jpg', 'This is my sick ai image bros', 110, '2023-12-01 15:05:54.000000', b'1'),
+(2, 16, 'robot-507811_12801.jpg', 'This is my sick ai image bros', 110, '2023-12-01 15:05:54.000000', b'0'),
 (3, 2, 'robot-507811_12801.jpg', 'This is my sick ai image bros', 106, '2023-12-01 15:05:54.000000', b'0'),
-(4, 4, 'robot-507811_12801.jpg', 'This is my sick ai image bros', 105, '2023-12-01 15:05:54.000000', b'0');
+(6, 18, '432testing18.jpg', 'SHREK', 0, NULL, b'1'),
+(7, 16, 'testPic16.png', 'I like coding in C++ & C.', 0, NULL, b'1');
 
 -- --------------------------------------------------------
 
@@ -145,7 +146,8 @@ INSERT INTO `report` (`report_id`, `creation_date`, `report_classification`, `re
 (1, '2023-12-03 20:52:23.000000', 'USER', 'poopooo', NULL, NULL, 16, 2),
 (2, '2023-12-04 00:09:16.000000', 'USER', 'not kewl', NULL, NULL, 3, 2),
 (3, '2023-12-04 00:34:38.000000', 'POST', 'BAD CONTENT', 1, NULL, 2, 17),
-(4, '2023-12-04 00:35:05.000000', 'POST', 'BADCONTENT4321', 2, NULL, 16, 17);
+(4, '2023-12-04 00:35:05.000000', 'POST', 'BADCONTENT4321', 2, NULL, 16, 17),
+(5, '2023-12-05 17:53:43.000000', 'POST', 'Post is too reliable. It hurts!', 7, NULL, 16, 20);
 
 -- --------------------------------------------------------
 
@@ -198,10 +200,11 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `name`, `username`, `password`, `role`, `profession`, `language`, `profile_picture`) VALUES
 (2, 'JOEMAMA-MOD1', 'testmod', 'test', 'MOD', 'Artist', 'English', '/images/2_profilepic.png'),
-(3, 'Yomommasadmin', 'testadmin', 'test', 'ADMIN', 'Musician', 'English', '/images/profile1.jpg'),
-(4, 'Yomommaslocked', 'testlocked', 'test', 'USER', 'Musician', 'English', '/images/profile2.jpg'),
+(3, 'Yomommasadmin', 'testadmin', 'test', 'ADMIN', 'Musician', 'English', '/images/pp4.jpg'),
 (5, 'Yomomma', 'testuser', 'test', 'LOCKEDUSER', 'Developer', 'English', '/images/profile1.jpg'),
-(16, 'poopoo', 'poopy1', 'test', 'USER', 'Developer', 'English', '/images/16_profilepic.png');
+(16, 'John Doe', 'JohnDoe', 'test', 'USER', 'Developer', 'English', '/images/16_profilepic.png'),
+(18, 'Ethan Allen', 'pisspants', 'test', 'USER', 'Developer', 'English', '/images/pp5.jpg'),
+(20, 'Alex Joe', 'AlexJo', 'testing', 'USER', 'Designer', 'English', '/images/pp2.png');
 
 --
 -- Indexes for dumped tables
@@ -276,7 +279,7 @@ ALTER TABLE `message`
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `post_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `post_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `project`
@@ -288,7 +291,7 @@ ALTER TABLE `project`
 -- AUTO_INCREMENT for table `report`
 --
 ALTER TABLE `report`
-  MODIFY `report_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `report_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tos`
@@ -300,7 +303,7 @@ ALTER TABLE `tos`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Constraints for dumped tables
