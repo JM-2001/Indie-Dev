@@ -29,7 +29,7 @@
         <nav>
             <ul class="navigation">
                 <li><a href="/home">Home</a></li>
-                <li><a href="/portfolio">Portfolio</a></li>
+                <li><a th:href="@{/portfolio/{id}(id=${currentUser.username})}">Portfolio</a></li>
                 <li><a href="/chats">Chats</a></li>
                 <li class="dropdown" onclick="toggleDropdown()">
                     <img th:src="${currentUser.getProfile_picture()}" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
@@ -38,7 +38,7 @@
                             <img th:src="${currentUser.getProfile_picture()}" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
                             <p>Hi,<br th:text="${currentUser.getName()}"></p>
                         </div>
-                        <a href="/profile" class="current">Profile</a>
+                        <a th:href="@{/id={id}(id=${currentUser.getUsername()})}" >Profile</a>
                         <a href="/dashboard" th:if="${currentUser.getRole() == 'ADMIN' || currentUser.getRole() == 'MOD'}">Dashboard</a>
                         <a href="/logout">Logout</a>
                     </div>
@@ -55,21 +55,6 @@
         </div>
     </div>
 
-    <footer>
-        <h2>Site Map</h2>
-        <div id="siteMapLeft">
-            <ul class="footerNav">
-                <li><a href="/home">Home</a></li>
-                <li><a href="/chats">Chats</a></li>
-                <li><a href="/profile">Profile</a></li>
-            </ul>
-        </div>
-        <div id="siteMapRight">
-            <ul class="footerNav">
-                <li><a href="/termsOfService">Terms Of Service</a></li>
-            </ul>
-        </div>
-    </footer>
 
     <script src="script.js"></script>
     <script type="text/javascript">
@@ -84,3 +69,5 @@
 
 
 </div>
+</body>
+</html>

@@ -143,7 +143,7 @@ function pollForUpdates() {
                 <ul class="footerNav">
                     <li><a href="/home">Home</a></li>
                     <li><a href="/chats">Chats</a></li>
-                    <li><a href="/profile">Profile</a></li>
+                    <li><a th:href="@{/id={id}(id=${currentUser.getUsername()})}" >Profile</a></li>
                 </ul>
             </div>
             <div id="siteMapRight">

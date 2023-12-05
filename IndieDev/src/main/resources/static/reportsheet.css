@@ -187,6 +187,7 @@ footer h2 {
     width: 100%;
     border-radius: 50%;
 }
+
 #contentHolderRight h1, h2 {
     margin: 10px 0;
 }
@@ -212,7 +213,19 @@ footer h2 {
 #postsTable tbody tr td {
     padding: 10px;
 }
-#postsTable tbody tr td a {
-    text-decoration: none;
+#postsTable tbody tr td form button, #contentHolderLeft form button {
+    text-align: center;
+    border-radius: 10px;
+    border: solid #1D71AF 2px;
+    outline: none;
+    cursor: pointer;
+    background-color: #3b3b3b;
     color: #ffffff;
+    height: 40px;
+    width: 100px;
+}
+#postsTable tbody tr td form button:hover, #contentHolderLeft form button:hover {
+    border: solid #0097ff 2px;
+    outline: none;
+    background-color: #3b3b3b;
 }

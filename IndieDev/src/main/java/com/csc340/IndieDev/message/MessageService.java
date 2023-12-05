@@ -34,7 +34,7 @@ public class MessageService {
 
     public List<Message> getMessagesByUser(User user) {
         messageRepository.findByAuthorId(user.getId());
-        return Collections.emptyList(); // Replace with actual implementation
+        return Collections.emptyList();
     }
 
     public List<Message> getAllMessages() {
