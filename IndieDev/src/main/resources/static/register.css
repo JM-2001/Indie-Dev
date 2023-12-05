@@ -1,0 +1,253 @@
+/* Main CSS */
+body, html{
+    font-size: 1em;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    letter-spacing: 0em;
+    color: #FFFFFF;
+    background-color: #262626;
+    height: 100%;
+    margin: 0px;
+}
+/* Header and Nav */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 50px;
+    border-radius: 0px;
+    background-color: #2E2E2E;
+    padding: 15px 10px;
+
+    position: sticky;
+    top: 0;
+}
+.images {
+    border-radius: 30px;
+}
+.navigation {
+    list-style: none;
+}
+.navigation li {
+    display: inline-block;
+    margin: 0px 5px;
+}
+.navigation li a {
+    color: #ffffff;
+    padding: 20px 30px;
+    text-transform: capitalize;
+    text-decoration: none;
+    text-align: center;
+}
+.navigation li a:hover, nav li a.current {
+    color: #0084FF;
+}
+#specialButton {
+    border-radius: 30px;
+    background-color: #1D71AF;
+}
+#specialButton:hover {
+    color: #000000;
+}
+.profileImg {
+    border-radius: 30px;
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+    top: 20px;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #2E2E2E;
+
+    min-width: 200px;
+    right: -15px;
+    top: 65px;
+}
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+#profileInfo {
+    height: 60px;
+    display: flex;
+    padding: 5px;
+    border-bottom: #3b3b3b solid 3px;
+}
+#profileInfo .profileImg{
+    margin: auto;
+    float: left;
+}
+#profileInfo p {
+    margin: auto;
+    float: right;
+}
+
+/* Footer */
+footer {
+    padding-top: 10px;
+    margin-top: 10px;
+    height: 200px;
+    background-color: #2E2E2E;
+}
+footer h2 {
+    margin: 0px 0px 0px 10px;
+}
+#siteMapLeft {
+    width: 10%;
+    margin-left: 10px;
+    margin-right: auto;
+    float: left;
+}
+#siteMapRight {
+    margin-left: auto;
+    margin-right: 10px;
+    float: left;
+}
+.footerNav {
+    list-style: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0px;
+}
+.footerNav li {
+    font-size: 1em;
+    padding: 10px 0px;
+}
+.footerNav li a {
+    color: #ffffff;
+    text-decoration: none;
+}
+.footerNav li a:hover, .footerNav a.current {
+    color: #0084FF;
+}
+/* Page Wrapper */
+.wrapper {
+    height: auto;
+    min-height: 100%;
+    margin: 0px auto;
+    background: rgb(46,46,46);
+    background: linear-gradient(150deg, rgba(46,46,46,1) 0%, rgba(19,162,219,1) 50%, rgba(135,58,31,1) 100%);
+}
+/* Actual Content */
+.headingStyle {
+    text-align: center;
+    margin: 0;
+}
+.divPart {
+    margin: 15px 0px;
+}
+.divPart label {
+    font-size: 1.05em;
+}
+.divPart a {
+    text-decoration: none;
+    color: #ffffff;
+}
+/* Register Div */
+.divContainerReg {
+    height: max-content;
+    width: 50%;
+    font-size: 1.25em;
+    margin: 5% auto;
+    background-color: #2B2B2B;
+    border-radius: 30px;
+    padding: 20px;
+}
+#email, #name, #confirmPassword{
+    margin-top: 10px;
+    background-color: transparent;
+    border: solid #575757 5px;
+    border-radius: 20px;
+    width: -webkit-fill-available;
+    height: 50px;
+    padding: 0px 10px 0px 10px;
+    font-size: 1.05em;
+    color: #FFFFFF;
+}
+#email:focus, #email:hover, #name:focus, #name:hover, #confirmPassword:focus, #confirmPassword:hover{
+    outline: none;
+    border: solid #808080 5px;
+    color: #FFFFFF;
+}
+#registerButton {
+    border: none;
+    outline: none;
+    background-color: #0084FF;
+    border-radius: 20px;
+    width: 100%;
+    height: 80px;
+    margin-top: 30px;
+    padding: 0px 10px 0px 10px;
+    font-size: 1.25em;
+    color: #FFFFFF;
+    display: block;
+}
+#registerButton:hover {
+    background-color: #1D71AF;
+}
+#roleSection {
+    border: none;
+    outline: none;
+    padding: 10px 10px 5px 10px;
+    margin: 0;
+}
+#profilePicOptions {
+    width: -webkit-fill-available;
+    height: max-content;
+    margin: 5px 0px;
+    background-color: transparent;
+    border: solid #575757 5px;
+    border-radius: 20px;
+    padding: 10px;
+    color: #FFFFFF;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+#profilePicOptions label {
+    width: 18%;
+    height: 18%;
+    display: inline-block;
+    margin: 5px;
+    cursor: pointer;
+}
+#profilePicOptions label img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+#profilePicOptions label input[type="radio"] {
+    display: none;
+}
+#profilePicOptions label input[type="radio"]:checked + img  {
+    border: 5px solid #007BFF;
+}
+#profileLang {
+    display: block;
+    width: -webkit-fill-available;
+    height: 50px;
+    margin-top: 10px;
+    padding: 0px 10px;
+    color: #ffffff;
+    font-size: 1.05em;
+    background-color: transparent;
+    border-radius: 10px;
+    border: solid #575757 5px;
+    outline: none;
+}
+#profileLang option {
+    background-color: #575757;
+    outline: none;
+    appearance: none;
+    padding: 10px;
+}
+

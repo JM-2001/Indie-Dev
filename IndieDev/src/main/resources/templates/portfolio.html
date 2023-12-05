@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>IndieDev | Portfolio</title>
+    <div id="google_translate_element"></div>
+    <link rel="stylesheet" href="/portfolio.css" type="text/css" ></link>
+    <script>
+            function toggleDropdown() {
+                var dropdown = document.getElementById('profileDropdown');
+                dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+            }
+
+            // Close the dropdown when clicking outside of it
+            window.addEventListener('click', function(event) {
+                var dropdown = document.getElementById('profileDropdown');
+                if (!event.target.closest('.dropdown')) {
+                    dropdown.style.display = 'none';
+                }
+            });
+    </script>
+</head>
+<body>
+<div class="wrapper">
+    <header>
+        <img th:src="@{/images/Logo.png}" alt="IndieDev Logo" height="50px" width="50px" class="images"/>
+        <nav>
+            <ul class="navigation">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/portfolio" class="current">Portfolio</a></li>
+                <li><a href="/chats">Chats</a></li>
+                <li><a href="/notifications">Notifs</a></li>
+                <li class="dropdown" onclick="toggleDropdown()">
+                    <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+                    <div class="dropdown-content" id="profileDropdown">
+                        <div id="profileInfo">
+                            <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+                            <p>Hi,<br>peepeepoopoo</p>
+                        </div>
+                        <a href="/profile">Profile</a>
+                        <a href="/logout">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Content -->
+    <div id="mainContent">
+        <div id="contentLeft">
+            <div id="profilePic">
+                <img th:src="${user.profile_picture}" alt="Profile Pic" class="profileImg"/>
+            </div>
+            <h1 th:text="${user.name}"></h1>
+            <h2 th:text=" '@' +${user.username}"></h2>
+            <h3>Links:</h3>
+            <ul>
+                <li>
+                    <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="github">
+                    <a href="#">Github: Example</a>
+                </li>
+                <li>
+                    <img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/circle-linkedin-512.png" alt="Linkedin">
+                    <a href="#">Linkedin: Example</a>
+                </li>
+                <li>
+                    <img src="https://static.vecteezy.com/system/resources/previews/018/930/718/original/discord-logo-discord-icon-transparent-free-png.png" alt="Discord">
+                    <a href="#">Discord: Example#0000</a>
+                </li>
+            </ul>
+        </div>
+        <div id="contentRight">
+            <div id="portfolioTitleDiv">
+                <h1>Projects</h1>
+                <a href="/createProject">Create</a>
+            </div>
+            <!-- Project Div -->
+            <div id="userProjects">
+                <!-- Display each project for that user -->
+                <div th:each="project : ${projects}" class="projectDiv">
+                    <div class="projectTitle">
+                        <h1 th:text="${project.name}"></h1>
+                        <button>
+                            <img src="https://cdn.icon-icons.com/icons2/2483/PNG/512/edit_circle_icon_149940.png" alt="edit Button"/>
+                        </button>
+                    </div>
+                    <h3 class="status">Status: <p th:text="${project.status}"></p> </h3>
+                    <div class="projectContentDiv">
+                        <img th:src="@{'/images/' + ${project.visual}}" alt="Project Image" />
+                        <img th:src="@{'/images/' + ${project.visual2}}" alt="Project Image" />
+                    </div>
+                    <h2>Classification:</h2>
+                    <p th:text="${project.classification}"></p>
+                    <h2>Description:</h2>
+                    <p th:text="${project.body}"></p>
+                    <h3 class="status">Time Spent: <p th:text="${project.timespent}"></p> </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <h2>Site Map</h2>
+        <div id="siteMapLeft">
+            <ul class="footerNav">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/portfolio">Portfolio</a></li>
+                <li><a href="/chats">Chats</a></li>
+                <li><a href="/profile">Profile</a></li>
+            </ul>
+        </div>
+        <div id="siteMapRight">
+            <ul class="footerNav">
+                <li><a href="#">About Us</a></li>
+            </ul>
+        </div>
+    </footer>
+</div>
+
+<script src="script.js"></script>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+            {pageLanguage: 'en'},
+            'google_translate_element'
+        );
+    }
+</script>
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+</body>
+</html>

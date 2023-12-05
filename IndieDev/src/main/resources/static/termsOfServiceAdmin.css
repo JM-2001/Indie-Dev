@@ -1,0 +1,218 @@
+/* Main CSS */
+body, html{
+    font-size: 1em;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    letter-spacing: 0em;
+    color: #FFFFFF;
+    background-color: #262626;
+    height: 100%;
+    margin: 0px;
+}
+/* Header and Nav */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 50px;
+    border-radius: 0px;
+    background-color: #2E2E2E;
+    padding: 15px 10px;
+
+    position: sticky;
+    top: 0;
+}
+.images {
+    border-radius: 30px;
+}
+.navigation {
+    list-style: none;
+}
+.navigation li {
+    display: inline-block;
+    margin: 0px 5px;
+}
+.navigation li a {
+    color: #ffffff;
+    padding: 20px 30px;
+    text-transform: capitalize;
+    text-decoration: none;
+    text-align: center;
+}
+.navigation li a:hover, nav li a.current {
+    color: #0084FF;
+}
+#specialButton {
+    border-radius: 30px;
+    background-color: #1D71AF;
+}
+#specialButton:hover {
+    color: #000000;
+}
+.profileImg {
+    border-radius: 30px;
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+    top: 20px;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #2E2E2E;
+
+    min-width: 200px;
+    right: -15px;
+    top: 65px;
+}
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+#profileInfo {
+    height: 60px;
+    display: flex;
+    padding: 5px;
+    border-bottom: #3b3b3b solid 3px;
+}
+#profileInfo .profileImg{
+    margin: auto;
+    float: left;
+}
+#profileInfo p {
+    margin: auto;
+    float: right;
+}
+
+/* Footer */
+footer {
+    padding-top: 10px;
+    margin-top: 10px;
+    height: 200px;
+    background-color: #2E2E2E;
+}
+footer h2 {
+    margin: 0px 0px 0px 10px;
+}
+#siteMapLeft {
+    width: 10%;
+    margin-left: 10px;
+    margin-right: auto;
+    float: left;
+}
+#siteMapRight {
+    margin-left: auto;
+    margin-right: 10px;
+    float: left;
+}
+.footerNav {
+    list-style: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0px;
+}
+.footerNav li {
+    font-size: 1em;
+    padding: 10px 0px;
+}
+.footerNav li a {
+    color: #ffffff;
+    text-decoration: none;
+}
+.footerNav li a:hover, .footerNav a.current {
+    color: #0084FF;
+}
+/* Page Wrapper */
+.wrapper {
+    height: auto;
+    min-height: 100%;
+    margin: 0px auto;
+    background-color: #262626;
+}
+/* Actual Content */
+#mainContent {
+    min-height: max-content;
+    width: 95%;
+    margin: 30px auto;
+    border: #3b3b3b solid 3px;
+    border-radius: 30px;
+    padding: 30px;
+}
+#mainContent h1 {
+    margin: 0px;
+}
+#mainContent p {
+    padding-top: 10px;
+    border-top: #3b3b3b solid 3px;
+}
+#mainContent form {
+    padding-top: 10px;
+    border-top: #3b3b3b solid 3px;
+}
+#mainContent form textarea {
+    border-radius: 10px;
+    border: solid #1D71AF 2px;
+    background-color: transparent;
+    color: #FFFFFF;
+    outline: none;
+    display: block;
+    resize: vertical;
+    width: -webkit-fill-available;
+    padding: 10px;
+    margin: 0px 0px 10px 0px;
+    min-height: 50px;
+    font-size: 1.05em;
+}
+#mainContent form textarea:hover, #mainContent form textarea:focus {
+    border: solid #0097ff 2px;
+    outline: none;
+}
+
+#tosBtnsDiv {
+    padding: 10px 0px;
+    display: flex;
+}
+#tosBtnsDiv a, #tosBtnsDiv button {
+    padding: 0px;
+    margin: 0px 20px 0px 0px;
+    outline: none;
+    border-radius: 30px;
+    border: none;
+    background-color: #1D71AF;
+    color: #ffffff;
+    height: 50px;
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+#tosBtnsDiv a:hover, #tosBtnsDiv button:hover {
+    background-color: #0084FF;
+}
+#labelDiv {
+    margin: 5px 0px;
+    font-size: 1.05em;
+    display: flex;
+    flex-direction: row;
+}
+#labelDiv input {
+    background-color: transparent;
+    border: solid #1D71AF 2px;
+    border-radius: 20px;
+    width: -webkit-fill-available;
+    height: 30px;
+    padding: 0px 10px 0px 10px;
+    font-size: 1.05em;
+    color: #FFFFFF;
+}
+#labelDiv input:focus, #labelDiv input:hover {
+    outline: none;
+    border: solid #0097ff 2px;
+}

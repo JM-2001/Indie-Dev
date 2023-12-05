@@ -231,7 +231,7 @@ footer h2 {
     width: 100%;
     height: fit-content;
 }
-#seeProjectBtn, #sendFriendBtn, #editProfile {
+#seeProjectBtn {
     margin: 5px 0px;
     padding: 0px;
     outline: none;
@@ -242,18 +242,18 @@ footer h2 {
     height: 30px;
     width: 70%;
 }
-#viewReportsBtn {
+#sendFriendBtn {
     margin: 5px 0px;
     padding: 0px;
     outline: none;
     border-radius: 30px;
     border: none;
-    background-color: #af811d;
+    background-color: #1D71AF;
     color: #ffffff;
     height: 30px;
     width: 70%;
 }
-#reportBtn, #submitReportBtn, #pauseAccBtn, #removeAccBtn, #cancelEditProfileBtm{
+#reportBtn {
     margin: 5px 0px;
     padding: 0px;
     outline: none;
@@ -264,28 +264,19 @@ footer h2 {
     height: 30px;
     width: 70%;
 }
-#reportFormDiv {
+#reportForm {
     height: fit-content;
     padding: 10px;
-    margin: 5px 0px;
+    margin: 5px 0px 0px 0px;
     background-color: #3b3b3b;
     border-radius: 30px;
     display: none;
     flex-direction: column;
     align-items: center;
 }
-#reportForm {
-    width: 100%;
-    height: 100%;
-}
 #reportForm h1 {
     margin: 0px 0px 5px 0px;
     text-align: center;
-}
-#reportFormBtnDiv {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 .fieldIODiv {
     margin: 5px 0px;
@@ -318,181 +309,44 @@ footer h2 {
     color: #FFFFFF;
     resize: vertical;
 }
+#submitReportBtn {
+    margin: 5px 0px;
+    padding: 0px;
+    outline: none;
+    border-radius: 30px;
+    border: none;
+    background-color: #ff391f;
+    color: #ffffff;
+    height: 30px;
+    width: 70%;
+}
+#pauseAccBtn {
+    margin: 5px 0px;
+    padding: 0px;
+    outline: none;
+    border-radius: 30px;
+    border: none;
+    background-color: #ff391f;
+    color: #ffffff;
+    height: 30px;
+    width: 70%;
+}
 #reporterUserName:hover, #reporterUserName:focus, #reasoningInput:hover, #reasoningInput:focus {
     outline: none;
     border: solid #6e6e6e 5px;
 }
-#seeProjectBtn:hover, #sendFriendBtn:hover, #cancelRemoveAccBtn:hover, #editProfile:hover, #submitEditProfileBtn:hover{
+#seeProjectBtn:hover, #sendFriendBtn:hover{
     background-color: #0084FF;
 }
-#viewReportsBtn:hover {
-    background-color: #f3b058;
-}
-#reportBtn:hover, #submitReportBtn:hover, #pauseAccBtn:hover, #removeAccBtn:hover, #confirmRemoveAccBtn:hover, #cancelEditProfileBtm:hover{
+#reportBtn:hover, #submitReportBtn:hover, #pauseAccBtn:hover  {
     background-color: #f35858;
 }
-
-#editProfileDiv {
-    height: fit-content;
-    padding: 10px;
-    margin: 5px 0px;
-    background-color: #3b3b3b;
-    border-radius: 30px;
-    display: none;
-    flex-direction: column;
-    align-items: center;
-}
-#editProfileForm {
-    width: 100%;
-    height: 100%;
-}
-#editProfileForm h1 {
-    margin: 0px 0px 10px 0px;
-    text-align: center;
-}
-#profilePicOptions {
-    width: -webkit-fill-available;
-    height: max-content;
-    margin: 5px 0px;
-    background-color: transparent;
-    border: solid #575757 5px;
-    border-radius: 20px;
-    padding: 10px;
-    color: #FFFFFF;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-}
-#profilePicOptions label {
-    width: 20%;
-    height: 20%;
-    display: inline-block;
-    margin: 5px;
-    cursor: pointer;
-}
-#profilePicOptions label img {
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-}
-#profilePicOptions label input[type="radio"] {
-    display: none;
-}
-#profilePicOptions label input[type="radio"]:checked + img  {
-    border: 5px solid #007BFF;
-}
-#profileUploadPicLabel {
-    background-color: #4CAF50;
-    color: #fff;
-    padding: 10px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    display: inline-block;
-}
-#profileUploadPic {
-    position: absolute;
-    left: 0;
-    top: 0;
-    opacity: 0;
-    cursor: pointer;
-}
-
-.fieldEditProfileDiv {
-    margin: 5px 0px;
-    width: -webkit-fill-available;
-}
-.fieldEditProfileDiv label {
-    font-size: 1.05em;
-}
-.fieldEditProfileDiv label input {
-    margin-top: 5px;
-    background-color: transparent;
-    border: solid #575757 5px;
-    border-radius: 20px;
-    width: -webkit-fill-available;
-    height: 30px;
-    padding: 0px 10px 0px 10px;
-    font-size: 1.05em;
-    color: #FFFFFF;
-}
-.fieldEditProfileDiv label input:hover, .fieldEditProfileDiv label input:focus {
-    outline: none;
-    border: solid #6e6e6e 5px;
-}
-#cancelEditProfileBtn {
-    margin: 5px 0px;
-    padding: 0px;
-    outline: none;
-    border-radius: 30px;
-    border: none;
-    background-color: #ff391f;
-    color: #ffffff;
-    height: 30px;
-    width: 100%;
-}
-#submitEditProfileBtn {
-    margin: 5px 0px;
-    padding: 0px;
-    outline: none;
-    border-radius: 30px;
-    border: none;
-    background-color: #1D71AF;
-    color: #ffffff;
-    height: 30px;
-    width: 100%;
-}
-
-
-
-#reassuranceRemoveAccDiv {
-    height: fit-content;
-    padding: 10px;
-    margin: 5px 0px;
-    background-color: #3b3b3b;
-    border-radius: 30px;
-    width: 400px;
-    position: relative;
-    z-index: 1;
-    display: none;
-}
-#reassuranceRemoveAccDiv h1, #reassuranceRemoveAccDiv h2 {
-    margin: 0px 0px 5px 0px;
-    text-align: center;
-}
-#reassuranceRemoveAccBtnDiv {
-    display: flex;
-    justify-content: space-around;
-}
-#cancelRemoveAccBtn {
-    margin: 5px 0px;
-    padding: 0px;
-    outline: none;
-    border-radius: 30px;
-    border: none;
-    background-color: #1D71AF;
-    color: #ffffff;
-    height: 30px;
-    width: 150px;
-}
-#confirmRemoveAccBtn {
-    margin: 5px 0px;
-    padding: 0px;
-    outline: none;
-    border-radius: 30px;
-    border: none;
-    background-color: #ff391f;
-    color: #ffffff;
-    height: 30px;
-    width: 150px;
-}
-
 #contentRight {
-    float: right;
-    min-height: 570px;
-    width: 50%;
-    padding: 15px;
-}
+     float: right;
+     min-height: 570px;
+     width: 50%;
+     padding: 15px;
+ }
 #postsTitleDiv {
     display: flex;
     justify-content: space-between;
@@ -579,9 +433,4 @@ footer h2 {
     color: #ffffff;
     height: 40px;
     width: 100px;
-}
-
-button a {
-    text-decoration: none;
-    color: #FFFFFF;
 }

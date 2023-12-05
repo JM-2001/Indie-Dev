@@ -1,0 +1,410 @@
+/* Main CSS */
+body, html{
+    font-size: 1em;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    letter-spacing: 0em;
+    color: #FFFFFF;
+    background-color: #262626;
+    height: 100%;
+    margin: 0px;
+}
+.wrapper {
+    margin: 0px auto;
+    background-color: #262626;
+    border-radius: 30px;
+}
+/* Header and Nav */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 50px;
+    border-radius: 0px;
+    background-color: #2E2E2E;
+    padding: 15px 10px;
+    position: sticky;
+    top: 0;
+    z-index: 3;
+}
+.images {
+    border-radius: 30px;
+}
+.navigation {
+    list-style: none;
+}
+.navigation li {
+    display: inline-block;
+    margin: 0px 5px;
+}
+.navigation li a {
+    color: #ffffff;
+    padding: 20px 30px;
+    text-transform: capitalize;
+    text-decoration: none;
+    text-align: center;
+}
+.navigation li a:hover, nav li a.current {
+    color: #0084FF;
+}
+#specialButton {
+    border-radius: 30px;
+    background-color: #1D71AF;
+}
+#specialButton:hover {
+    color: #000000;
+}
+.profileImg {
+    border-radius: 30px;
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+    top: 20px;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #2E2E2E;
+
+    min-width: 200px;
+    right: -15px;
+    top: 65px;
+}
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+#profileInfo {
+    height: 60px;
+    display: flex;
+    padding: 5px;
+    border-bottom: #3b3b3b solid 3px;
+}
+#profileInfo .profileImg{
+    margin: auto;
+    float: left;
+}
+#profileInfo p {
+    margin: auto;
+    float: right;
+}
+
+/* Footer */
+footer {
+    padding-top: 10px;
+    margin-top: 10px;
+    height: 200px;
+    background-color: #2E2E2E;
+}
+footer h2 {
+    margin: 0px 0px 0px 10px;
+}
+#siteMapLeft {
+    width: 10%;
+    margin-left: 10px;
+    margin-right: auto;
+    float: left;
+}
+#siteMapRight {
+    margin-left: auto;
+    margin-right: 10px;
+    float: left;
+}
+.footerNav {
+    list-style: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0px;
+}
+.footerNav li {
+    font-size: 1em;
+    padding: 10px 0px;
+}
+.footerNav li a {
+    color: #ffffff;
+    text-decoration: none;
+}
+.footerNav li a:hover, .footerNav a.current {
+    color: #0084FF;
+}
+/* Actual Content */
+.divContainer{
+    margin: 3% 10%;
+}
+/* Post CSS */
+.postDiv {
+    height: fit-content;
+    width: 99%;
+    margin: 20px auto;
+    border: #3b3b3b solid 2.5px;
+    border-radius: 30px;
+    padding: 15px;
+}
+.postUserInfoDiv {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+.postsUserInfoDiv {
+    float: left;
+    display: flex;
+    flex-direction: column;
+}
+.postsUserInfoDiv a {
+    text-decoration: none;
+    color: #ffffff;
+    margin: 10px 0px;
+}
+.postUserInfoDiv button {
+    float: right;
+    background-color: inherit;
+    border: none;
+    margin: 0;
+}
+.postUserInfoDiv button img {
+    height: 50px;
+    width: 50px;
+    margin: 0;
+    padding: 0;
+}
+.postInfo, .postStatsDiv {
+    margin: 0px;
+    padding: 15px 0px;
+}
+.postInfo p {
+    margin: 0px;
+    font-size: 1.25em;
+}
+.postStatsDiv p {
+    font-size: 1.25em;
+    margin: 10px 0px;
+}
+.postContentDiv {
+    height: max-content;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0px;
+}
+.postContentDiv img{
+    border-radius: 10px;
+    border: solid black 2px;
+    height: 100%;
+    width: 50%;
+}
+.postButtonDiv {
+    width: 16%;
+    display: flex;
+    justify-content: space-between;
+}
+.postLikeBtn, .postCommentBtn, .postReportBtn, .postingCommentInputBtn{
+    text-align: center;
+    border-radius: 10px;
+    border: solid #1D71AF 2px;
+    outline: none;
+    cursor: pointer;
+    background-color: #3b3b3b;
+    color: #ffffff;
+    height: 40px;
+    width: 100px;
+}
+.postLikeBtn:hover, .postCommentBtn:hover, .postReportBtn:hover, .postingCommentInputBtn:hover{
+    border: solid #0097ff 2px;
+    outline: none;
+    background-color: #3b3b3b;
+}
+.postsCommentDiv {
+    width: -webkit-fill-available;
+    height: fit-content;
+    margin: 10px 0px;
+    border: #3b3b3b solid 2.5px;
+    border-radius: 30px;
+    padding: 10px;
+}
+.postedCommentDiv {
+    width: -webkit-fill-available;
+    height: fit-content;
+    display: flex;
+}
+.postedCommentLeftDiv, .postingCommentLeftDiv {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+.postedCommentLeftDiv img, .postingCommentLeftDiv img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+.postedCommentRightDiv, .postingCommentRightDiv {
+    width: -webkit-fill-available;
+}
+.postedCommentRightDiv p {
+    margin: 0 0 10px 0;
+}
+.postingCommentDiv {
+    width: -webkit-fill-available;
+    height: fit-content;
+    margin: 10px 0px 0px 0px;
+    padding: 10px;
+    border: #3b3b3b solid 2.5px;
+    border-radius: 30px;
+    display: flex;
+}
+.postingCommentInput {
+    border-radius: 10px;
+    background-color: #3b3b3b;
+    border: solid #1D71AF 2px;
+    color: #FFFFFF;
+    outline: none;
+    display: block;
+    resize: vertical;
+    width: -webkit-fill-available;
+    padding: 10px;
+    margin: 0px 0px 10px 0px;
+}
+.postingCommentInput:hover, .postingCommentInput:focus {
+    border: solid #0097ff 2px;
+    outline: none;
+    background-color: #3b3b3b;
+}
+
+.moreDropdownDiv {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    background-color: #292929;
+    border-radius: 15px;
+    min-width: 150px;
+    right: -15px;
+    top: 70px;
+    z-index: 1;
+    font-size: inherit;
+}
+.moreDropdownDiv a {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: inherit;
+}
+.moreDropdownDiv a:hover, .moreDropdownDiv button:hover{
+    background-color: #313131;
+    border-radius: 15px;
+}
+.moreDropdownDiv button {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    font-size: inherit;
+}
+/* Report Form CSS */
+.reportFormDiv {
+    height: fit-content;
+    padding: 10px;
+    margin: 5px 0px;
+    background-color: #3b3b3b;
+    border-radius: 30px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+#reportForm {
+    width: 100%;
+    height: 100%;
+}
+#reportForm h1 {
+    margin: 0px 0px 5px 0px;
+    text-align: center;
+}
+#reportFormBtnDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.fieldIODiv {
+    margin: 5px 0px;
+    width: -webkit-fill-available;
+}
+.fieldIODiv label {
+    font-size: 1.05em;
+}
+#reporterUserName {
+    margin-top: 5px;
+    background-color: transparent;
+    border: solid #575757 5px;
+    border-radius: 20px;
+    width: -webkit-fill-available;
+    height: 30px;
+    padding: 0px 10px 0px 10px;
+    font-size: 1.05em;
+    color: #FFFFFF;
+}
+#reasoningInput {
+    margin-top: 5px;
+    background-color: transparent;
+    border: solid #575757 5px;
+    border-radius: 20px;
+    width: -webkit-fill-available;
+    min-height: 70px;
+    height: auto;
+    padding: 5px 10px;
+    font-size: 1.05em;
+    color: #FFFFFF;
+    resize: vertical;
+}
+#reporterUserName:hover, #reporterUserName:focus, #reasoningInput:hover, #reasoningInput:focus {
+    outline: none;
+    border: solid #6e6e6e 5px;
+}
+#submitReportBtn {
+    margin: 5px 0px;
+    padding: 0px;
+    outline: none;
+    border-radius: 30px;
+    border: none;
+    background-color: #ff391f;
+    color: #ffffff;
+    height: 30px;
+    width: 70%;
+}
+#submitReportBtn:hover {
+    background-color: #f35858;
+}
+.createPostBtn{
+    text-decoration: none;
+    border-radius: 10px;
+    border: solid #1D71AF 2px;
+    outline: none;
+    cursor: pointer;
+    background-color: #3b3b3b;
+    color: #ffffff;
+    height: 40px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.createPostBtn a {
+    text-decoration: none;
+    color: #ffffff;
+}
+.createPostBtn:hover, .createPostBtn a:hover{
+    border: solid #0097ff 2px;
+    outline: none;
+    background-color: #3b3b3b;
+}
