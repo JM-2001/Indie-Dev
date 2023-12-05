@@ -13,6 +13,7 @@ import com.csc340.IndieDev.user.User;
 import com.csc340.IndieDev.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -236,4 +237,15 @@ public class Router {
         service.saveUser(user);
         return "redirect:/login"; // Redirect to the login page after successful registration
     }
+
+    @PostMapping("/unlockAccount/{username}")
+    public String unlockAccount(@PathVariable long username) {
+        User viewedUser = service.getUser(username);
+        viewedUser.setRole("USER");
+        service.updateUser(viewedUser);
+
+        return "redirect:/dashboard";
+    }
+
+
 }

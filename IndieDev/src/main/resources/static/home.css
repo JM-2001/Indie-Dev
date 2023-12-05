@@ -311,6 +311,7 @@ footer h2 {
     outline: none;
     border: none;
     font-size: inherit;
+    width: -webkit-fill-available;
 }
 /* Report Form CSS */
 .reportFormDiv {

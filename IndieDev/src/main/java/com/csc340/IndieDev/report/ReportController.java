@@ -1,5 +1,7 @@
 package com.csc340.IndieDev.report;
 
+import com.csc340.IndieDev.post.Post;
+import com.csc340.IndieDev.post.PostService;
 import com.csc340.IndieDev.user.User;
 import com.csc340.IndieDev.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,17 +23,23 @@ public class ReportController {
     @Autowired
     public UserService userService;
 
+    @Autowired
+    public PostService postService;
+
     @GetMapping("/dashboard/{username}/reports")
     public String viewUserReports(@PathVariable String username, Model model) {
         String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
         User currentUser = userService.getUserByUserName(currentUsername);
         User viewedUser = userService.getUserByUserName(username);
 
+
         List<Report> reportList = service.getReportsByUserId(viewedUser.getId());
+        List<Post> postsList = postService.getPostByUserId(viewedUser.getId());
 
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("viewedUser", viewedUser);
         model.addAttribute("reportList", reportList);
+        model.addAttribute("postsList", postsList);
 
         return "reportsheet";
     }

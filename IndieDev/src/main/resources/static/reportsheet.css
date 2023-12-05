@@ -153,6 +153,7 @@ footer h2 {
     background: #E26A2C; /* 262626 */
     border-radius: 30px;
     padding: 15px;
+    margin-bottom: 30px;
 }
 #usersTable thead tr{
     background-color: #FF8243;
@@ -188,4 +189,30 @@ footer h2 {
 }
 #contentHolderRight h1, h2 {
     margin: 10px 0;
+}
+
+#postsTable {
+    width: -webkit-fill-available;
+    height: fit-content;
+    background: #375A7F; /* 262626 */
+    border-radius: 30px;
+    padding: 15px;
+    margin-top: 30px;
+}
+#postsTable thead tr{
+    background-color: #4D7CAE;
+}
+#postsTable thead tr th {
+    padding: 10px;
+}
+#postsTable tbody tr {
+    background-color: #6A99CB;
+    text-align: right;
+}
+#postsTable tbody tr td {
+    padding: 10px;
+}
+#postsTable tbody tr td a {
+    text-decoration: none;
+    color: #ffffff;
 }

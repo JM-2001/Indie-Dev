@@ -6,12 +6,9 @@ import com.csc340.IndieDev.user.User;
 import com.csc340.IndieDev.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -20,6 +17,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.Principal;
+import java.util.Optional;
 
 @Controller
 public class PostController {
@@ -114,5 +112,18 @@ public class PostController {
         return "redirect:/home";
     }
 
+    @PostMapping("/lockPost/{postId}")
+    public String lockPost(@PathVariable Long postId) {
+        postService.lockPost(postId);
+
+        return "redirect:/home";
+    }
+
+    @PostMapping("/unlockPost/{postId}")
+    public String unlockPost(@PathVariable Long postId) {
+        postService.unlockPost(postId);
+
+        return "redirect:/home";
+    }
 }
 
