@@ -3,53 +3,78 @@ package com.csc340.IndieDev.termsOfService;
 import com.csc340.IndieDev.termsOfService.TermsOfService;
 import com.csc340.IndieDev.termsOfService.TermsOfServiceRepository;
 import com.csc340.IndieDev.termsOfService.TermsOfServiceService;
+
+import com.csc340.IndieDev.report.Report;
+import com.csc340.IndieDev.user.User;
+import com.csc340.IndieDev.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.desktop.SystemEventListener;
-import java.security.Principal;
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class TermsOfServiceController {
 
     @Autowired
-    TermsOfServiceService tosService;
-    @Autowired
-    TermsOfServiceRepository tosRepo;
+    public TermsOfServiceService tosService;
 
-    @GetMapping("/tos")
-    @ResponseBody
-    public List<TermsOfService> getTos(@PathVariable String body) {
-        return tosRepo.findByBody(body);
+    @Autowired
+    public UserService userService;
+
+    @GetMapping("/termsOfService")
+    public String viewTermsOfService(Model model) {
+        String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+        User currentUser = userService.getUserByUserName(currentUsername);
+
+        model.addAttribute("currentUser", currentUser);
+
+        // Add current public TOS to the model
+        Optional<TermsOfService> currentPublicTOS = tosService.getCurrentPublicTermsOfService();
+        model.addAttribute("currentPublicTOS", currentPublicTOS.orElse(null));
+
+        return "termsOfService";
     }
 
-    @PostMapping("/tos/q")
-    public String addComment(
-            @RequestParam String body,
-            Model model
-    ) {
-        try {
+    @GetMapping("/termsOfServiceAdmin")
+    public String viewTermsOfServiceAdmin(Model model) {
+        String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+        User currentUser = userService.getUserByUserName(currentUsername);
 
-            TermsOfService tos = tosRepo.findById(body).orElse(null);
-            model.addAttribute("body", body);
+        model.addAttribute("currentUser", currentUser);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            // Handle the error appropriately, for example, redirect to an error page
-            return "redirect:/error";
+        // Add the latest private or public TOS to the model
+        Optional<TermsOfService> latestPrivateOrPublicTOS = tosService.getLatestPrivateOrPublicTerms();
+        model.addAttribute("latestPrivateOrPublicTOS", latestPrivateOrPublicTOS.orElse(null));
+
+        return "termsOfServiceAdmin";
+    }
+
+
+    @PostMapping("/saveTerms")
+    public String saveTerms(@RequestParam String action,
+                            @RequestParam String body,
+                            @RequestParam String lastEditedBy,
+                            @RequestParam Long userId,
+                            Model model) {
+
+        String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+        User currentUser = userService.getUserByUserName(currentUsername);
+        model.addAttribute("currentUser", currentUser);
+
+        if ("save".equals(action)) {
+            tosService.savePrivateTerms(body, currentUser);
+        } else if ("publish".equals(action)) {
+            tosService.publishPrivateTerms(body);
         }
-        return body;
+
+        Optional<TermsOfService> latestPrivateOrPublicTOS = tosService.getLatestPrivateOrPublicTerms();
+        model.addAttribute("latestPrivateOrPublicTOS", latestPrivateOrPublicTOS.orElse(null));
+
+        return "termsOfServiceAdmin";
     }
 
 }

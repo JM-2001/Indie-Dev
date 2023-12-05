@@ -67,14 +67,14 @@ import java.util.Set;
                             //AUTHORITY, not ROLE
                             //MAPPINGS ALONG WITH THEIR RESPECTIVE AUTHORITY LEVELS
                             .requestMatchers("/","/*.css", "/register", "/images/**","/portfolio/**").permitAll()
-                            .requestMatchers("/home","/createProject", "/post/**", "/chat","/chats/**", "/send-message", "/profile","/id=*" , "/update","/createPosts").hasAnyAuthority("USER", "MOD", "ADMIN")
+                            .requestMatchers("/home","/createProject", "/post/**", "/chat","/chats/**", "/send-message", "/profile","/id=*" , "/update","/createPosts", "/termsOfService").hasAnyAuthority("USER", "MOD", "ADMIN")
                             .requestMatchers("/home","/createProject", "/post/**", "/chat","/chats/**", "/send-message", "/profile","/id=*" , "/update").hasAnyAuthority("USER", "MOD", "ADMIN")
 
                             .requestMatchers("/","/*.css", "/register", "/images/**").permitAll()
                             .requestMatchers("/home","/createProject", "/chat", "/profile","/id=**" , "/update").hasAnyAuthority("USER", "MOD", "ADMIN")
                             .requestMatchers("/dashboard", "/reportsheet", "/dashboard/**", "/reportsheet**").hasAnyAuthority("MOD", "ADMIN")
                             .requestMatchers("/changeAuthorization/**").hasAuthority("MOD")
-                            .requestMatchers("/delete/**").hasAuthority("ADMIN")
+                            .requestMatchers("/delete/**", "/termsOfServiceAdmin", "/saveTerms").hasAuthority("ADMIN")
                             .requestMatchers("/accountwarning").hasAnyAuthority("LOCKEDUSER")
                             .anyRequest().authenticated()
                     )
