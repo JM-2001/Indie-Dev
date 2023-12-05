@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>IndieDev | Create Post</title>
+    <link rel="stylesheet" href="/createPost.css" type="text/css" ></link>
+    <script>
+        function toggleDropdown() {
+            var dropdown = document.getElementById('profileDropdown');
+            dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+        }
+
+        // Close the dropdown when clicking outside of it
+        window.addEventListener('click', function(event) {
+            var dropdown = document.getElementById('profileDropdown');
+            if (!event.target.closest('.dropdown')) {
+                dropdown.style.display = 'none';
+            }
+        });
+    </script>
+</head>
+<body>
+<div class="wrapper">
+    <header>
+        <img th:src="@{/images/Logo.png}" alt="IndieDev Logo" height="50px" width="50px" class="images"/>
+        <nav>
+            <ul class="navigation">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/portfolio">Portfolio</a></li>
+                <li><a href="/chats">Chats</a></li>
+                <li><a href="/notifications">Notifs</a></li>
+                <li class="dropdown" onclick="toggleDropdown()">
+                    <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+                    <div class="dropdown-content" id="profileDropdown">
+                        <div id="profileInfo">
+                            <img src="https://art.pixilart.com/783eb080961fcd6.png" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+                            <p>Hi,<br>peepeepoopoo</p>
+                        </div>
+                        <a href="#">Profile</a>
+                        <a href="/logout">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Content -->
+    <div id="postMainContent">
+        <h1>Create a new post</h1>
+        <form id="createPostForm" name="createPostForm" action="/savePost" method="POST" enctype="multipart/form-data">
+            <div class="divPart">
+                <label for="postDesc"><strong>Caption:</strong></label>
+                <textarea id="postDesc" name="body" placeholder="yo check this post"></textarea>
+            </div>
+            <div class="divPart">
+                <label for="postImg"><strong>Image:</strong></label>
+                <input type="file" accept=".png, .jpeg, .jpg, .webp" id="postImg" name="file1">
+            </div>
+            <div id="divPartButtons">
+                <button type="button" id="buttonExit" name="buttonExit">Cancel</button>
+                <button type="submit" id="buttonCreate" name="buttonCreate">Create</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <h2>Site Map</h2>
+        <div id="siteMapLeft">
+            <ul class="footerNav">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/chats">Chats</a></li>
+                <li><a href="/profile">Profile</a></li>
+            </ul>
+        </div>
+        <div id="siteMapRight">
+            <ul class="footerNav">
+                <li><a href="/termsOfService">Terms Of Service</a></li>
+            </ul>
+        </div>
+    </footer>
+</div>
+
+</body>
+</html>

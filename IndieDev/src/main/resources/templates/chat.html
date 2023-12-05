@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>IndieDev | Chat</title>
+    <link href="/chat.css" rel="stylesheet" type="text/css"></link>
+    <script>
+        function toggleDropdown() {
+            var dropdown = document.getElementById('profileDropdown');
+            dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+        }
+
+        // Close the dropdown when clicking outside of it
+        window.addEventListener('click', function (event) {
+            var dropdown = document.getElementById('profileDropdown');
+            if (!event.target.closest('.dropdown')) {
+                dropdown.style.display = 'none';
+            }
+        });
+function pollForUpdates() {
+        // Make an AJAX request to get the latest data
+        $.ajax({
+            url: '/get-updates',
+            method: 'GET',
+            success: function (data) {
+                // Check if there is a change in data
+                if (isDataChanged(data)) {
+                    // Reload the page only if there are changes
+                    window.location.reload();
+                } else {
+                    // Update the chat history or perform any other necessary actions
+                    console.log('Received updates:', data);
+
+                    $('#chatHistory').html(data);
+                }
+            },
+        error: function (error) {
+            console.error('Error fetching updates:', error);
+        }
+    });
+}
+        function isDataChanged(newData) {
+    // Get the array of current messages on the page
+    var currentMessages = $('#chatHistory').find('.message'); // Update this selector based on your HTML structure
+
+    // Check if there are new messages by comparing content
+    for (var i = 0; i < newData.length; i++) {
+        var isNewMessage = true;
+
+        // Compare each new message with existing messages
+        for (var j = 0; j < currentMessages.length; j++) {
+            if (currentMessages.eq(j).text() === newData[i].body) {
+                isNewMessage = false;
+                break;
+            }
+        }
+
+        // If a new message is found, consider the data changed
+        if (isNewMessage) {
+            return true;
+        }
+    }
+
+    // If no new messages are found, consider the data unchanged
+    return false;
+}
+        // Poll for updates every 20
+        setInterval(pollForUpdates, 20000 );
+
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Header -->
+        <header>
+            <img th:src="@{/images/Logo.png}" alt="IndieDev Logo" height="50px" width="50px" class="images"/>
+            <nav>
+                <ul class="navigation">
+                    <li><a href="/home">Home</a></li>
+                    <li><a th:href="@{/portfolio/{id}(id=${currentUser.username})}">Portfolio</a></li>
+                    <li><a class="current" href="/chats">Chats</a></li>
+                    <li><a href="/notifications">Notifs</a></li>
+                    <li class="dropdown" onclick="toggleDropdown()">
+                        <img alt="Profile Pic" class="profileImg" height="50px" src="https://art.pixilart.com/783eb080961fcd6.png"
+                             width="50px"/>
+                        <div class="dropdown-content" id="profileDropdown">
+                            <div id="profileInfo">
+                                <img alt="Profile Pic" class="profileImg" height="50px"
+                                     src="https://art.pixilart.com/783eb080961fcd6.png" width="50px"/>
+                                <p>Hi,<br>peepeepoopoo</p>
+                            </div>
+                            <a href="/profile">Profile</a>
+                            <a href="/logout">Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <!-- Content -->
+        <div class="divContainer">
+            <div class="leftSide">
+                <h1>Inbox</h1>
+                <ul class="inbox">
+                    <li th:each="user : ${users}">
+                        <a th:href="@{/chats/{userId}(userId=${user.id})}">
+                            <img th:src="@{${@userService.getProfilePictureUrl(user.id)}}" alt="Profile Pic" height="30px" width="30px" class="profileImg"/>
+                            <span th:text="${user.username}"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class=rightSide>
+                <h1>Current Chat</h1>
+                <ul class="chatBox" th:if="${selectedUser != null and messageHistory != null}">
+                    <li th:each="message : ${messageHistory}">
+                        <!-- Display messages for the selected history -->
+                        <div th:if="${message.authorId == currentUser.id}" class="chatContainerRight">
+                            <img th:src="@{${@userService.getProfilePictureUrl(currentUser.id)}}" alt="Profile Pic" class="msgProfilePic"/>
+                            <span th:text="${currentUser.username}"></span>: <span th:text="${message.body}"></span>
+                        </div>
+                        <!-- Display messages for the current user -->
+                        <div th:if="${message.authorId == selectedUser.id}" class="chatContainerLeft">
+                            <img th:src="@{${@userService.getProfilePictureUrl(selectedUser.id)}}" alt="Profile Pic" class="msgProfilePicR"/>
+                            <span th:text="${selectedUser.username}"></span>: <span th:text="${message.body}"></span>
+                        </div>
+                    </li>
+                </ul>
+                <form th:if="${selectedUser != null}" th:action="@{/send-message}" method="post" id="messaging">
+                    <label for="sendMsg">
+                        <input id="sendMsg" name="messageBody" placeholder="Type your message..." type="text" required>
+                    </label>
+                    <button id="sendButton" type="submit">Send</button>
+                    <input type="hidden" name="recipientId" th:value="${selectedUser.id}" />
+                </form>
+            </div>
+        </div>
+        <!-- Footer -->
+        <footer>
+            <h2>Site Map</h2>
+            <div id="siteMapLeft">
+                <ul class="footerNav">
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/chats">Chats</a></li>
+                    <li><a href="/profile">Profile</a></li>
+                </ul>
+            </div>
+            <div id="siteMapRight">
+                <ul class="footerNav">
+                    <li><a href="/termsOfService">Terms Of Service</a></li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>IndieDev | Login</title>
+    <div id="google_translate_element"></div>
+    <link rel="stylesheet" href="/login.css" type="text/css" >
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <img th:src="@{/images/Logo.png}" alt="IndieDev Logo" height="50px" width="50px" class="images"/>
+            <nav>
+                <ul class="navigation">
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/portfolio">Portfolio</a></li>
+                    <li><a href="/chats">Chats</a></li>
+                    <li><a href="/notifications">Notifs</a></li>
+                    <li><a href="/register" id="specialButton">Register</a></li>
+                </ul>
+            </nav>
+        </header>
+        <!-- Content -->
+        <div class="divContainer">
+            <h1 class="headingStyle">Login</h1>
+            <!-- changed the action to login for the form, along with the method being changed to post -->
+            <form id="loginForm" name="loginForm" action="/login" method="post">
+                <!--input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/-->
+                <div class="divPart">
+                    <label for="userName"><strong>Username:</strong></label><input type="text" id="userName" name="username">
+                </div>
+                <div class="divPart">
+                    <label for="passWord"><strong>Password:</strong></label><input type="password" id="passWord" name="password">
+                </div>
+                <div class="divPart">
+                    <button type="submit" id="loginButton" name="login">Login</button>
+                    <a href="#" class="redirectButton">Forgot your password?</a>
+                    <a href="/register" class="redirectButton">Don't have an account? Open one today!</a>
+                </div>
+            </form>
+            <!-- use this to check if username / pass is invalid
+            <div th:if="${param.error}">
+                Invalid username and password.
+            </div>
+            -->
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <h2>Site Map</h2>
+            <div id="siteMapLeft">
+                <ul class="footerNav">
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/chats">Chats</a></li>
+                    <li><a href="/profile">Profile</a></li>
+                </ul>
+            </div>
+            <div id="siteMapRight">
+                <ul class="footerNav">
+                    <li><a href="/termsOfService">Terms Of Service</a></li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {pageLanguage: 'en'},
+                'google_translate_element'
+            );
+
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

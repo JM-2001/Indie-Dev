@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>IndieDev | Terms Of Service Admin</title>
+  <div id="google_translate_element"></div>
+  <link rel="stylesheet" href="/termsOfServiceAdmin.css" type="text/css" ></link>
+  <script>
+    function toggleDropdown() {
+      let dropdown = document.getElementById('profileDropdown');
+      dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+    }
+
+    // Close the dropdown when clicking outside of it
+    window.addEventListener('click', function(event) {
+      let dropdown = document.getElementById('profileDropdown');
+      if (!event.target.closest('.dropdown')) {
+        dropdown.style.display = 'none';
+      }
+    });
+  </script>
+</head>
+<body>
+<div class="wrapper">
+  <header>
+    <img th:src="@{/images/Logo.png}" alt="IndieDev Logo" height="50px" width="50px" class="images"/>
+    <nav>
+      <ul class="navigation">
+        <li><a href="/home">Home</a></li>
+        <li><a href="/portfolio">Portfolio</a></li>
+        <li><a href="/chats">Chats</a></li>
+        <li><a href="/notifications">Notifs</a></li>
+        <li class="dropdown" onclick="toggleDropdown()">
+          <img th:src="${currentUser.getProfile_picture()}" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+          <div class="dropdown-content" id="profileDropdown">
+            <div id="profileInfo">
+              <img th:src="${currentUser.getProfile_picture()}" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+              <p>Hi,<br th:text="${currentUser.getName()}"></p>
+            </div>
+            <a href="/profile" class="current">Profile</a>
+            <a href="/dashboard" th:if="${currentUser.getRole() == 'ADMIN' || currentUser.getRole() == 'MOD'}">Dashboard</a>
+            <a href="/logout">Logout</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <!-- Content -->
+  <div id="mainContent">
+    <h1>Terms Of Service</h1>
+    <form id="TOSEditForm" action="/saveTerms" method="post">
+      <label>
+        <textarea th:text="${latestPrivateOrPublicTOS?.getBody()}" name="body"></textarea>
+      </label>
+      <label id="labelDiv">
+        Last Edited By:
+        <input th:value="${latestPrivateOrPublicTOS?.getLastEditedBy()?.getUsername()}" name="lastEditedBy" readonly>
+      </label>
+      <label>
+        <input th:value="${currentUser.getId()}" name="userId" hidden readonly>
+      </label>
+      <div id="tosBtnsDiv">
+        <button type="submit" name="action" value="publish">Publish</button>
+        <button type="submit" name="action" value="save">Save</button>
+        <a href="/termsOfService">Cancel</a>
+      </div>
+    </form>
+  </div>
+  <script src="script.js"></script>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement(
+              {pageLanguage: 'en'},
+              'google_translate_element'
+      );
+    }
+  </script>
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</div>
+
+<footer>
+  <h2>Site Map</h2>
+  <div id="siteMapLeft">
+    <ul class="footerNav">
+      <li><a href="/home">Home</a></li>
+      <li><a href="/chats">Chats</a></li>
+      <li><a href="/profile">Profile</a></li>
+    </ul>
+  </div>
+  <div id="siteMapRight">
+    <ul class="footerNav">
+      <li><a href="/termsOfService">Terms Of Service</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>

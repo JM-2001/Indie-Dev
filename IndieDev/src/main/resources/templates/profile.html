@@ -6,6 +6,349 @@
     <link rel="stylesheet" href="../static/profile.css"></link>
 </head>
 <body>
+<<<<<<< Updated upstream
 
+=======
+<div class="wrapper">
+    <header>
+        <img th:src="@{/images/Logo.png}" alt="IndieDev Logo" height="50px" width="50px" class="images"/>
+        <nav>
+            <ul class="navigation">
+                <li><a href="/home">Home</a></li>
+                <li><a th:href="@{/portfolio/{id}(id=${currentUser.username})}">Portfolio</a></li>
+                <li><a href="/chats">Chats</a></li>
+                <li><a href="/notifications">Notifs</a></li>
+                <li class="dropdown" onclick="toggleDropdown()">
+                    <img th:src="${currentUser.getProfile_picture()}" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+                    <div class="dropdown-content" id="profileDropdown">
+                        <div id="profileInfo">
+                            <img th:src="${currentUser.getProfile_picture()}" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+                            <p>Hi,<br th:text="${currentUser.getName()}"></p>
+                        </div>
+                        <a th:href="@{/id={id}(id=${currentUser.getUsername()})}" class="current" >Profile</a>
+                        <a href="/dashboard" th:if="${currentUser.getRole() == 'ADMIN' || currentUser.getRole() == 'MOD'}">Dashboard</a>
+                        <a href="/logout">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Content -->
+    <div id="mainContent">
+        <div id="contentLeft">
+            <div id="profilePic">
+                <img th:src="${user.profile_picture}" alt="Profile Pic" class="profileImg"/>
+            </div>
+            <h1 th:text="${user.name}"></h1>
+            <h2 th:text="'@' + ${user.username}"></h2>
+            <h3>Roles:</h3>
+            <ul id="roleContainer">
+                <!-- These will only display if profession of the user is equal to the string -->
+                <li th:if="${user.profession == 'Developer'}" id="roleDisplayDeveloper">Developer</li>
+                <li th:if="${user.profession == 'Designer'}" id="roleDisplayDesigner">Designer</li>
+                <li th:if="${user.profession == 'Artist'}"id="roleDisplayArtist">Artist</li>
+                <li th:if="${user.profession == 'Musician'}"id="roleDisplayMusician">Musician</li>
+                <li th:if="${user.profession == 'Creatist'}"id="roleDisplayCreatist">Creatist</li>
+                <li th:if="${user.profession == 'Writer'}"id="roleDisplayWriter">Writer</li>
+            </ul>
+            <h3>Links:</h3>
+            <ul id="linkContainer">
+                <li>
+                    <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="github">
+                    <a href="#">Github: Example</a>
+                </li>
+                <li>
+                    <img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/circle-linkedin-512.png" alt="Linkedin">
+                    <a href="#">Linkedin: Example</a>
+                </li>
+                <li>
+                    <img src="https://static.vecteezy.com/system/resources/previews/018/930/718/original/discord-logo-discord-icon-transparent-free-png.png" alt="Discord">
+                    <a href="#">Discord: Example#0000</a>
+                </li>
+            </ul>
+            <div id="actionContainer">
+                <button id="seeProjectBtn">
+                    <a th:href="@{/portfolio/{id}(id=${user.username})}">See My Projects</a>
+                </button>
+                <button th:if="${currentUser.id == user.id}" id="editProfile" onclick="openForm()">Edit Profile</button>
+                <div id="editProfileDiv">
+                    <form id="editProfileForm" action="/update" method="POST">
+                        <h1>Edit Profile</h1>
+                        <div class="fieldEditProfileDiv">
+                            <label><strong>Pick a Profile Picture:</strong></label>
+                            <fieldset id="profilePicOptions">
+                                <label for="presetProfileImg1">
+                                    <input type="radio" id="presetProfileImg1" name="profile_picture" value="/images/pp1.jpg">
+                                    <img src="/images/pp1.jpg" class="presetProfileImg" alt="Preset Profile Pic 1"></img>
+                                </label>
+                                <label for="presetProfileImg2">
+                                    <input type="radio" id="presetProfileImg2" name="profile_picture" value="/images/pp2.png">
+                                    <img src="/images/pp2.png" class="presetProfileImg"  alt="Preset Profile Pic 2"></img>
+                                </label>
+                                <label for="presetProfileImg3">
+                                    <input type="radio" id="presetProfileImg3" name="profile_picture" value="/images/pp3.jpg">
+                                    <img src="/images/pp3.jpg" class="presetProfileImg"  alt="Preset Profile Pic 3"></img>
+                                </label>
+                                <label for="presetProfileImg4">
+                                    <input type="radio" id="presetProfileImg4" name="profile_picture" value="/images/pp4.jpg">
+                                    <img src="/images/pp4.jpg" class="presetProfileImg"  alt="Preset Profile Pic 4"></img>
+                                </label>
+                                <label for="presetProfileImg5">
+                                    <input type="radio" id="presetProfileImg5" name="profile_picture" value="/images/pp5.jpg">
+                                    <img src="/images/pp5.jpg" class="presetProfileImg"  alt="Preset Profile Pic 5"></img>
+                                </label>
+                                <label for="uploadedProfilePic">
+                                    <input type="radio" id="uploadedProfilePic" name="profile_picture" value="pp6">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/16/16410.png" class="presetProfileImg" id="uploadedProfilePicImg" alt="Preset Profile Pic 5"></img>
+                                </label>
+
+                                <label id="profileUploadPicLabel" for="profileUploadPic">
+                                    Upload Image
+                                    <input type="file" accept=".png, .jpeg, .jpg, .webp" id="profileUploadPic" name="uploadedProfilePic" onchange="displayImage()">
+                                </label>
+                            </fieldset>
+                        </div>
+
+                        <input type="text" th:value="${currentUser.getId()}" name="id" required hidden id="userId">
+                        <div class="fieldEditProfileDiv">
+                            <label>
+                                <strong>Your Name:</strong>
+                                <input type="text" th:value="${currentUser.getName()}" name="name" required>
+                            </label>
+                        </div>
+                        <div class="fieldEditProfileDiv">
+                            <label>
+                                <strong>Your Username:</strong>
+                                <input type="text" th:value="${currentUser.getUsername()}" name="username" required>
+                            </label>
+                        </div>
+                        <div class="fieldEditProfileDiv">
+                            <label>
+                                <strong>Your Password:</strong>
+                                <input type="password" th:value="${currentUser.getPassword()}" name="password" required>
+                            </label>
+                        </div>
+                        <div class="fieldEditProfileDiv">
+                            <label>
+                                <strong>Your Profession:</strong>
+                                <input type="text" th:value="${currentUser.getProfession()} " name="profession" required>
+                            </label>
+                        </div>
+                        <input type="submit" id="submitEditProfileBtn">
+                        <button type="button" id="cancelEditProfileBtn" onclick="closeForm()">Cancel</button>
+                    </form>
+                </div>
+                <!-- only show if on another users page, current user is the signed in user, user is the viewed user -->
+                <button th:if="${currentUser.id != user.id}" id="reportBtn" onclick="toggleReportMenu()">Report</button>
+                <div th:if="${currentUser.id != user.id}" id="reportFormDiv">
+                    <form id="reportForm" th:action="@{/submitReportProfile}" method="post">
+                        <h1>Report</h1>
+                        <div class="fieldIODiv">
+                            <label for="reporterUserName">
+                                <strong>Your Username:</strong>
+                            </label>
+                            <input id="reporterUserName" name="reporterUserName" type="text" th:value="${currentUser.getUsername()}" readonly>
+                            <input id="reportedUserName" name="reportedUserName" type="text" th:value="${user.getUsername()}" readonly hidden>
+                        </div>
+                        <div class="fieldIODiv">
+                            <label for="reasoningInput">
+                                <strong>Reasoning:</strong>
+                            </label>
+                            <textarea id="reasoningInput" name="reasoningInput"></textarea>
+                        </div>
+                        <div id="reportFormBtnDiv">
+                            <button id="submitReportBtn" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- Only display these if the currentuser role is above user, and the current user is viewing another profile
+                    This gets rid of the options to report etc ones own profile
+                <button th:if="${currentUser.role == 'ADMIN' && currentUser.id != user.id}"
+                        id="viewReportsBtn"
+                        onclick="viewReportsRedirect('${user.username}')">! Review Reports !</button>
+                -->
+
+                <button type="button" th:if="${currentUser.role == 'MOD' && currentUser.id != user.id}" id="pauseAccBtn" th:onclick="'confirmPauseAcc(' + ${user.id} + ')'" >! PAUSE ACCOUNT !</button>
+
+                <!-- This checks if the user signed in is an admin, and that they are not viewing their own profile.
+                      It also calls our /delete user method, and passes the user.id into the url in order for the /delete
+                      fuction to use the id to delete it. -->
+
+
+                <button type="button" id="removeAccBtn" th:if="${currentUser.role == 'ADMIN' && currentUser.id != user.id}" th:onclick="'confirmDeleteAcc(' + ${user.id} + ')'" >! REMOVE ACCOUNT ! </button>
+                <!--
+                <form th:if="${currentUser.role == 'ADMIN' && currentUser.id != user.id}" method="post" th:action="@{/delete/{id}(id=${user.id})}">
+                    <button type="submit" id="removeAccBtn">! REMOVE ACCOUNT !</button>
+                </form>
+                -->
+            </div>
+        </div>
+        <div id="contentRight">
+            <div id="postsTitleDiv">
+                <h1>Posts</h1>
+            </div>
+            <!-- Posts Div -->
+            <div th:each="post : ${posts}" class="postDiv">
+                <div class="postUserInfoDiv">
+                    <div class="postsUserInfoDiv">
+                        <img th:src="${@userService.getProfilePictureUrl(post.userId)}" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+                        <a><strong th:text="${@userService.getUsernameById(post.userId)}"></strong></a>
+                    </div>
+                    <button>
+                        <img src="/images/Edit_Icon.png" alt="edit Button"/>
+                    </button>
+                </div>
+                <div class="postInfo">
+                    <p th:text="${post.body}"></p>
+                </div>
+                <div class="postContentDiv">
+                    <img th:src="@{'images/' + ${post.visual}}" alt="Code segment">
+                </div>
+                <div class="postStatsDiv">
+                    <p th:text="${post.like_count} + ' '+ likes"></p>
+                </div>
+                <div class="postButtonDiv">
+                    <button class="postLikeBtn">Like</button>
+                    <button class="postCommentBtn">Comment</button>
+                    <button class="postReportBtn">Report</button>
+                </div>
+            </div>
+    </div>
+    <script>
+        function toggleReportMenu(){
+            let reportButton = document.getElementById("reportBtn");
+            let reportMenuDiv = document.getElementById("reportFormDiv");
+
+            if (reportMenuDiv.style.display === "none") {
+                reportMenuDiv.style.display = "flex";
+                reportButton.innerHTML = "Close Report"
+                console.log("Open")
+            } else {
+                reportMenuDiv.style.display = "none";
+                reportButton.innerHTML = "Report";
+                console.log("Closed")
+            }
+        }
+        function openForm() {
+            document.getElementById("editProfileDiv").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("editProfileDiv").style.display = "none";
+        }
+
+        function displayImage() {
+            // Get the input element
+            let input = document.getElementById('profileUploadPic');
+
+            // Get the image element
+            let image = document.getElementById('uploadedProfilePicImg');
+
+            // Get the radio button for uploaded profile pic
+            let uploadedProfilePicRadio = document.getElementById('uploadedProfilePic');
+
+            // Get the hidden input for user ID
+            let userIdInput = document.getElementById('userId');
+
+            // Check if a file is selected
+            if (input.files && input.files[0]) {
+                // Create a FormData object to send the file to the server
+                let formData = new FormData();
+                formData.append('file', input.files[0]);
+                formData.append('userId', userIdInput.value);
+
+                // Use Fetch API to send the file to the server
+                fetch('/uploadProfilePic', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Update the value of the radio button with the new profile picture name
+                        let uploadedFileName = data.fileName;
+                        uploadedProfilePicRadio.value = "/images/" + uploadedFileName;  // Update the value
+                        image.src = "/images/" + uploadedFileName; // Use relative path
+                    })
+                    .catch(error => console.error('Error uploading profile picture:', error));
+            }
+        }
+
+        function confirmPauseAcc(userId) {
+            console.log('confirmPauseAcc function called with userId:', userId);
+
+            if (confirm("Are you sure you want to pause this account?")) {
+                // If the user clicks OK, send a POST request to the changeAuthorization endpoint
+                fetch(`/changeAuthorization/${userId}`, { method: 'POST' })
+                    .then(response => {
+                        if (response.ok) {
+                            // If the request was successful, redirect to the home page
+                            window.location.href = "/home";
+                        } else {
+                            // Handle error cases if needed
+                            console.error('Error pausing account:', response.statusText);
+                        }
+                    })
+                    .catch(error => console.error('Error pausing account:', error));
+            }
+        }
+
+        function confirmDeleteAcc(userId) {
+            console.log('confirmDeleteAcc function called with userId:', userId);
+
+            if (confirm("Are you sure you want to delete this account?")) {
+                // If the user clicks OK, send a POST request to the changeAuthorization endpoint
+                fetch(`/delete/${userId}`, { method: 'POST' })
+                    .then(response => {
+                        if (response.ok) {
+                            // If the request was successful, redirect to the home page
+                            window.location.href = "/home";
+                        } else {
+                            // Handle error cases if needed
+                            console.error('Error deleting account:', response.statusText);
+                        }
+                    })
+                    .catch(error => console.error('Error pausing account:', error));
+            }
+        }
+
+        function viewReportsRedirect(username) {
+            console.log(`Redirecting to /dashboard/${username}/reports`);
+            window.location.href = `/dashboard/${username}/reports`;
+
+        }
+    </script>
+
+    <script src="script.js"></script>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {pageLanguage: 'en'},
+                'google_translate_element'
+            );
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+</div>
+</div>
+
+<footer>
+    <h2>Site Map</h2>
+    <div id="siteMapLeft">
+        <ul class="footerNav">
+            <li><a href="/home">Home</a></li>
+            <li><a href="/chats">Chats</a></li>
+            <li><a href="/profile">Profile</a></li>
+        </ul>
+    </div>
+    <div id="siteMapRight">
+        <ul class="footerNav">
+            <li><a href="/termsOfService">Terms Of Service</a></li>
+        </ul>
+    </div>
+</footer>
+
+>>>>>>> Stashed changes
 </body>
 </html>

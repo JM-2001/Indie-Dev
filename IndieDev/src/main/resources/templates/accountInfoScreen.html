@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>IndieDev | Profile</title>
+    <div id="google_translate_element"></div>
+    <link rel="stylesheet" href="/accountInfoScreen.css" type="text/css" ></link>
+</head>
+<body>
+<div class="wrapper">
+    <header>
+        <img th:src="@{/images/Logo.png}" alt="IndieDev Logo" height="50px" width="50px" class="images"/>
+        <nav>
+            <ul class="navigation">
+                <li><a href="/logout" id="specialButton">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Content -->
+    <div id="mainContent">
+        <p>Hello <strong th:text="${accountName}"></strong>
+            <strong>(</strong>
+            <strong th:text="${accountUsername}"></strong>
+            <strong>)</strong>, your account has been locked or deleted. Please, contact
+            IndieDev Support for further information. <em>Thanks!</em>
+        </p>
+    </div>
+</div>
+
+<script src="script.js"></script>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+            {pageLanguage: 'en'},
+            'google_translate_element'
+        );
+    }
+</script>
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<footer>
+    <h2>Site Map</h2>
+    <div id="siteMapLeft">
+        <ul class="footerNav">
+            <li><a href="/home">Home</a></li>
+            <li><a href="/chats">Chats</a></li>
+            <li><a href="/profile">Profile</a></li>
+        </ul>
+    </div>
+    <div id="siteMapRight">
+        <ul class="footerNav">
+            <li><a href="/termsOfService">Terms Of Service</a></li>
+        </ul>
+    </div>
+</footer>
+
+</body>

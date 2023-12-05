@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../static/welcome.css" type="text/css" ></link>
 </head>
 <body>
+<<<<<<< Updated upstream
     <div class="wrapper">
         <header>
             <img src="https://seeklogo.com/images/W/web-icon-logo-A6B586D114-seeklogo.com.png" alt="IndieDev Logo" height="150" width="150" class="images"/>
@@ -22,5 +23,134 @@
 			
         </header>
     </div>
+=======
+<div class="wrapper">
+	<header>
+		<img th:src="@{/images/Logo.png}" alt="IndieDev Logo" height="50px" width="50px" class="images"/>
+		<nav>
+			<ul class="navigation">
+				<li><a href="/home" class="current">Home</a></li>
+				<li><a th:href="@{/portfolio/{id}(id=${currentUser.username})}">Portfolio</a></li>
+				<li><a href="/chats">Chats</a></li>
+				<li><a href="/notifications">Notifs</a></li>
+				<li class="dropdown" onclick="toggleDropdown()">
+					<img th:src="${currentUser.getProfile_picture()}" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+					<div class="dropdown-content" id="profileDropdown">
+						<div id="profileInfo">
+							<img th:src="${currentUser.getProfile_picture()}" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+							<p>Hi,<br th:text="${currentUser.getName()}"></p>
+						</div>
+						<a th:href="@{/id={id}(id=${currentUser.getUsername()})}" >Profile</a>
+						<a href="/dashboard" th:if="${currentUser.getRole() == 'ADMIN' || currentUser.getRole() == 'MOD'}">Dashboard</a>
+						<a href="/logout">Logout</a>
+					</div>
+				</li>
+			</ul>
+		</nav>
+	</header>
+	<div class="divContainer">
+		<a href="/createPost" class="createPostBtn">Create</a>
+		<div th:each="post : ${posts}"  class="postDiv" >
+			<div class="postUserInfoDiv">
+				<div class="postsUserInfoDiv">
+					<!-- replace this with user profile image  and username instead of id-->
+					<img th:src="${@userService.getProfilePictureUrl(post.userId)}" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
+					<a><strong th:text="${@userService.getUsernameById(post.userId)}"></strong></a>
+				</div>
+				<button type="button" class="moreDropdownBtn" th:onclick="'toggleMoreDropdown(\'moreDropdownDiv_' + ${post.postId} + '\')'">
+					<img src="/images/more_icon.png" alt="more Button"/>
+				</button>
+				<div class="moreDropdownDiv" th:id="'moreDropdownDiv_' + ${post.postId}" style="display: none;">
+					<a href="#" th:if="${currentUser.id == post.userId}">Edit</a>
+					<a href="#">Share</a>
+					<button th:if="${currentUser.id != post.userId}" th:onclick="'toggleReportMenu(\'reportFormDiv_' + ${post.postId} + '\')'" type="button">Report</button>
+					<div th:if="${currentUser.id != post.userId}" class="reportFormDiv" th:id="'reportFormDiv_' + ${post.postId}">
+						<form id="reportForm" th:action="@{/submitReportPost}" method="post">
+							<h1>Report</h1>
+							<div class="fieldIODiv">
+								<label for="reporterUserName">
+									<strong>Your Username:</strong>
+								</label>
+								<input id="reporterUserName" name="reporterUserName" type="text" th:value="${currentUser.getUsername()}" readonly>
+								<input id="reportedUserId" name="reportedUserId" type="text" th:value="${post.getUserId()}" readonly hidden>
+								<input id="reportedPostId" name="reportedPostId" type="text" th:value="${post.getPostId()}" readonly hidden>
+							</div>
+							<div class="fieldIODiv">
+								<label for="reasoningInput">
+									<strong>Reasoning:</strong>
+								</label>
+								<textarea id="reasoningInput" name="reasoningInput"></textarea>
+							</div>
+							<div id="reportFormBtnDiv">
+								<button id="submitReportBtn" type="submit">Submit</button>
+							</div>
+						</form>
+					</div>
+					<button type="button" th:if="${currentUser.getRole() == 'MOD' || currentUser.getId() == post.userId || currentUser.getRole() == 'ADMIN'}"
+							th:onclick="'showDeleteConfirmation(\'' + ${post.postId} + '\')'">Delete</button>
+				</div>
+			</div>
+			<div class="postInfo">
+				<p th:text="${post.body}"></p>
+			</div>
+			<div class="postContentDiv">
+				<img th:src="@{'images/' + ${post.visual}}" alt="Code segment">
+			</div>
+			<div class="postStatsDiv">
+				<!-- like count -->
+				<p th:text="${post.like_count} + ' '+ likes"></p>
+				<p>Comments</p>
+				<!-- Comments -->
+				<div class="postsCommentDiv" th:id="'postsCommentDiv_' + ${post.postId}">
+					<div class="postedCommentDiv" th:each="comment : ${__${'comments_' + post.postId}__}">
+						<div class="postedCommentLeftDiv">
+							<img th:src="@{${@userService.getProfilePictureUrl(comment.userId)}}" alt="Profile Pic"/>
+						</div>
+						<div class="postedCommentRightDiv">
+							<strong><em><p th:text="${@userService.getUsernameById(comment.userId)}"></p></em></strong>
+							<p th:text="${comment.body}"></p>
+						</div>
+					</div>
+					<div class="postingCommentDiv">
+						<div class="postingCommentLeftDiv">
+							<img th:src="${currentUser.getProfile_picture()}" alt="Profile Pic"/>
+						</div>
+						<div class="postingCommentRightDiv">
+							<form th:action="@{'/post/' + ${post.postId} + '/comment'}" method="post">
+								<input type="hidden" name="postId" th:value="${post.postId}" />
+								<textarea name="body" class="postingCommentInput" placeholder="Add a comment"></textarea>
+								<button type="submit" class="postingCommentInputBtn">Submit</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="postButtonDiv">
+				<!-- post actions -->
+				<form th:action="@{/like}" method="post">
+					<input type="hidden" name="postId" th:value="${post.postId}" />
+					<button type="submit" class="postLikeBtn">Like</button>
+				</form>
+				<button class="postCommentBtn" th:onclick="'toggleComments(\'postsCommentDiv_' + ${post.postId} + '\')'" type="button">Comments</button>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<h2>Site Map</h2>
+		<div id="siteMapLeft">
+			<ul class="footerNav">
+				<li><a href="/home">Home</a></li>
+				<li><a href="/chats">Chats</a></li>
+				<li><a href="/profile">Profile</a></li>
+			</ul>
+		</div>
+		<div id="siteMapRight">
+			<ul class="footerNav">
+				<li><a href="/termsOfService">Terms Of Service</a></li>
+			</ul>
+		</div>
+	</footer>
+</div>
+>>>>>>> Stashed changes
 </body>
 </html>

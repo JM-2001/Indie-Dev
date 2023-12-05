@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>IndieDev | Register</title>
+    <div id="google_translate_element"></div>
+    <link rel="stylesheet" href="/login.css" type="text/css" >
+    <link rel="stylesheet" href="/register.css" type="text/css" >
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <img th:src="@{/images/Logo.png}" alt="IndieDev Logo" height="50px" width="50px" class="images"/>
+            <nav>
+                <ul class="navigation">
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/portfolio">Portfolio</a></li>
+                    <li><a href="/chats">Chats</a></li>
+                    <li><a href="/notifications">Notifs</a></li>
+                    <li><a href="/login" id="specialButton">Login</a></li>
+                </ul>
+            </nav>
+        </header>
+        <!-- Content -->
+        <div class="divContainerReg">
+            <h1 class="headingStyle">Register</h1>
+            <form th:action="@{/register}" th:object="${user}" method="post" id="registerForm" name="registerForm">
+                <div class="divPart">
+                    <label for="userName"><strong>Username:</strong></label>
+                    <input type="text" id="userName" name="username" th:field="*{username}" required>
+                </div>
+                <div class="divPart">
+                    <label for="name"><strong>Name:</strong></label>
+                    <input type="text" id="name" name="name" th:field="*{name}" required>
+                </div>
+                <!--
+                <div class="divPart">
+                    <label for="email"><strong>Email:</strong></label>
+                    <input type="text" id="email" name="email">
+                </div>
+                -->
+                <div class="divPart">
+                    <label for="passWord"><strong>Password:</strong></label>
+                    <input type="password" id="passWord" name="password" th:field="*{password}" required>
+                </div>
+                <div class="divPart">
+                    <label for="confirmPassword"><strong>Confirm Password:</strong></label>
+                    <input type="password" id="confirmPassword" name="confirmPassword">
+                </div>
+
+                <div class="divPart">
+                    <label for="profileLang"><strong>Select your profile language:</strong></label>
+                    <select id="profileLang" name="language" th:field="*{language}">
+                        <option value="English" selected>English</option>
+                        <option value="Spanish">Spanish</option>
+                        <option value="French">French</option>
+                    </select>
+                </div>
+
+                <div class="divPart">
+                    <label><strong>Select your role:</strong></label>
+                    <fieldset id="roleSection">
+                        <label for="roleGameDev">
+                            <input type="checkbox" id="roleGameDev" name="roleGameDev" value="Developer" th:field="*{profession}">Developer
+                        </label>
+                        <label for="roleGameDesign">
+                            <input type="checkbox" id="roleGameDesign" name="roleGameDesign" value="Designer">Designer
+                        </label>
+                        <label for="roleArtist">
+                            <input type="checkbox" id="roleArtist" name="roleArtist" value="Artist">Artist
+                        </label>
+                        <label for="roleMusician">
+                            <input type="checkbox" id="roleMusician" name="roleMusician" value="Musician">Musician
+                        </label>
+                        <label for="roleCreatist">
+                            <input type="checkbox" id="roleCreatist" name="roleCreatist" value="Creatist">Creatist
+                        </label>
+                        <label for="roleWriter">
+                            <input type="checkbox" id="roleWriter" name="roleWriter" value="Writer">Writer
+                        </label>
+                    </fieldset>
+                </div>
+                <div class="divPart">
+                    <label><strong>Pick a Profile Picture:</strong></label>
+                    <fieldset id="profilePicOptions">
+                        <label for="presetProfileImg1">
+                            <input type="radio" id="presetProfileImg1" name="profile_picture" value="/images/pp1.jpg" th:field="*{profile_picture}">
+                            <img src="/images/pp1.jpg" class="presetProfileImg" alt="Preset Profile Pic 1"></img>
+                        </label>
+                        <label for="presetProfileImg2">
+                            <input type="radio" id="presetProfileImg2" name="profile_picture" value="/images/pp2.png" th:field="*{profile_picture}">
+                            <img src="/images/pp2.png" class="presetProfileImg"  alt="Preset Profile Pic 2"></img>
+                        </label>
+                        <label for="presetProfileImg3">
+                            <input type="radio" id="presetProfileImg3" name="profile_picture" value="/images/pp3.jpg" th:field="*{profile_picture}">
+                            <img src="/images/pp3.jpg" class="presetProfileImg"  alt="Preset Profile Pic 3"></img>
+                        </label>
+                        <label for="presetProfileImg4">
+                            <input type="radio" id="presetProfileImg4" name="profile_picture" value="/images/pp4.jpg" th:field="*{profile_picture}">
+                            <img src="/images/pp4.jpg" class="presetProfileImg"  alt="Preset Profile Pic 4"></img>
+                        </label>
+                        <label for="presetProfileImg5">
+                            <input type="radio" id="presetProfileImg5" name="profile_picture" value="/images/pp5.jpg" th:field="*{profile_picture}">
+                            <img src="/images/pp5.jpg" class="presetProfileImg"  alt="Preset Profile Pic 5"></img>
+                        </label>
+                    </fieldset>
+                </div>
+                <div class="divPart">
+                    <p>By creating an account on IndieDev, you are automatically agreeing to the <a href="#"><em><strong>terms of service</strong></em></a>.</p>
+                </div>
+                <div class="divPart">
+                    <button type="submit" id="registerButton" name="registerButton">Register</button>
+                    <a href="/login" class="redirectButton">Already have an account? Login!</a>
+                </div>
+            </form>
+        </div>
+        <!-- Footer -->
+        <footer>
+            <h2>Site Map</h2>
+            <div id="siteMapLeft">
+                <ul class="footerNav">
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/chats">Chats</a></li>
+                    <li><a href="/profile">Profile</a></li>
+                </ul>
+            </div>
+            <div id="siteMapRight">
+                <ul class="footerNav">
+                    <li><a href="/termsOfService">Terms Of Service</a></li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {pageLanguage: 'en'},
+                'google_translate_element'
+            );
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+</body>
+</html>
