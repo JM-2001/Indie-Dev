@@ -6,7 +6,6 @@
 <head>
     <meta charset="UTF-8">
     <title>IndieDev | Chat</title>
-    <div id="google_translate_element"></div>
     <link href="/chat.css" rel="stylesheet" type="text/css"></link>
     <script>
         function toggleDropdown() {
@@ -81,7 +80,7 @@ function pollForUpdates() {
             <nav>
                 <ul class="navigation">
                     <li><a href="/home">Home</a></li>
-                    <li><a href="/portfolio">Portfolio</a></li>
+                    <li><a th:href="@{/portfolio/{id}(id=${currentUser.username})}">Portfolio</a></li>
                     <li><a class="current" href="/chats">Chats</a></li>
                     <li><a href="/notifications">Notifs</a></li>
                     <li class="dropdown" onclick="toggleDropdown()">
@@ -155,18 +154,5 @@ function pollForUpdates() {
             </div>
         </footer>
     </div>
-
-    <script src="script.js"></script>
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement(
-                {pageLanguage: 'en'},
-                'google_translate_element'
-            );
-        }
-    </script>
-    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-
 </body>
 </html>

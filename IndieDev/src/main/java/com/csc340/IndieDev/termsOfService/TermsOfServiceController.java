@@ -28,13 +28,13 @@ public class TermsOfServiceController {
     @Autowired
     TermsOfServiceRepository tosRepo;
 
-    @GetMapping("/post/{postId}/comments")
+    @GetMapping("/tos")
     @ResponseBody
     public List<TermsOfService> getTos(@PathVariable String body) {
         return tosRepo.findByBody(body);
     }
 
-    @PostMapping("/post/{postId}/comment")
+    @PostMapping("/tos/q")
     public String addComment(
             @RequestParam String body,
             Model model

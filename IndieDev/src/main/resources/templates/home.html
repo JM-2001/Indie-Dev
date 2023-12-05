@@ -62,7 +62,7 @@
 		<nav>
 			<ul class="navigation">
 				<li><a href="/home" class="current">Home</a></li>
-				<li><a th:href="@{/portfolio/{id}(id=${currentUser})}">Portfolio</a></li>
+				<li><a th:href="@{/portfolio/{id}(id=${currentUser.username})}">Portfolio</a></li>
 				<li><a href="/chats">Chats</a></li>
 				<li><a href="/notifications">Notifs</a></li>
 				<li class="dropdown" onclick="toggleDropdown()">
