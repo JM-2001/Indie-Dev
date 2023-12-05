@@ -1,14 +1,8 @@
 package com.csc340.IndieDev.termsOfService;
 
-import com.csc340.IndieDev.comment.Comment;
-import com.csc340.IndieDev.comment.CommentRepository;
-import com.csc340.IndieDev.comment.CommentService;
-import com.csc340.IndieDev.post.Post;
-import com.csc340.IndieDev.post.PostRepository;
-import com.csc340.IndieDev.post.PostService;
-import com.csc340.IndieDev.user.User;
-import com.csc340.IndieDev.user.UserRepository;
-import com.csc340.IndieDev.user.UserService;
+import com.csc340.IndieDev.termsOfService.TermsOfService;
+import com.csc340.IndieDev.termsOfService.TermsOfServiceRepository;
+import com.csc340.IndieDev.termsOfService.TermsOfServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,8 +44,13 @@ public class TermsOfServiceController {
             TermsOfService tos = tosRepo.findById(body).orElse(null);
             model.addAttribute("body", body);
 
-            if (body == null) {
-                return "redirect:/home";
-            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Handle the error appropriately, for example, redirect to an error page
+            return "redirect:/error";
+        }
+        return body;
+    }
 
 }
+

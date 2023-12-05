@@ -1,9 +1,7 @@
 package com.csc340.IndieDev.termsOfService;
 
-import com.csc340.IndieDev.comment.Comment;
-import com.csc340.IndieDev.comment.CommentRepository;
-import com.csc340.IndieDev.post.PostRepository;
-import com.csc340.IndieDev.user.User;
+import com.csc340.IndieDev.termsOfService.TermsOfService;
+import com.csc340.IndieDev.termsOfService.TermsOfServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,7 +17,7 @@ public class TermsOfServiceService {
         return tosRepo.findByBody(body);
     }
     public void updateTos(TermsOfService tos) {
-        TermsOfService existing = tosRepo.findByBody(tos.getBody()).orElse(null);
+        TermsOfService existing = (TermsOfService) tosRepo.findByBody(tos.getBody());
 
         if (existing != null) {
             if (tos.getBody() != null) {
