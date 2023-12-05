@@ -1,7 +1,5 @@
 package com.csc340.IndieDev.post;
 
-import com.csc340.IndieDev.project.Project;
-import com.csc340.IndieDev.project.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -41,6 +39,28 @@ public class PostService {
 
     public List<Post> getPostByUserId(long userId){
         return repo.findByUserId(userId);
+    }
+
+    public Optional<Post> getPostById(long postId) {
+        return repo.findPostByPostId(postId);
+
+    }
+
+    public void lockPost(long postId) {
+        Optional<Post> postOptional = repo.findById(postId);
+        postOptional.ifPresent(post -> {
+            post.setLockedPost(true);
+            repo.save(post);
+        });
+    }
+
+    public void unlockPost(long postId) {
+        Optional<Post> postOptional = repo.findById(postId);
+        postOptional.ifPresent(post -> {
+            post.setLockedPost(false);
+            repo.save(post);
+        });
+
     }
 
 }

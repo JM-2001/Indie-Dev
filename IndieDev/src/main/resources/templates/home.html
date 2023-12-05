@@ -64,7 +64,6 @@
 				<li><a href="/home" class="current">Home</a></li>
 				<li><a th:href="@{/portfolio/{id}(id=${currentUser.username})}">Portfolio</a></li>
 				<li><a href="/chats">Chats</a></li>
-				<li><a href="/notifications">Notifs</a></li>
 				<li class="dropdown" onclick="toggleDropdown()">
 					<img th:src="${currentUser.getProfile_picture()}" alt="Profile Pic" height="50px" width="50px" class="profileImg"/>
 					<div class="dropdown-content" id="profileDropdown">
@@ -82,7 +81,7 @@
 	</header>
 	<div class="divContainer">
 		<a href="/createPost" class="createPostBtn">Create</a>
-		<div th:each="post : ${posts}"  class="postDiv" >
+		<div th:each="post : ${posts}" class="postDiv" th:if="${not post.lockedPost}">
 			<div class="postUserInfoDiv">
 				<div class="postsUserInfoDiv">
 					<!-- replace this with user profile image  and username instead of id-->
@@ -94,7 +93,6 @@
 				</button>
 				<div class="moreDropdownDiv" th:id="'moreDropdownDiv_' + ${post.postId}" style="display: none;">
 					<a href="#" th:if="${currentUser.id == post.userId}">Edit</a>
-					<a href="#">Share</a>
 					<button th:if="${currentUser.id != post.userId}" th:onclick="'toggleReportMenu(\'reportFormDiv_' + ${post.postId} + '\')'" type="button">Report</button>
 					<div th:if="${currentUser.id != post.userId}" class="reportFormDiv" th:id="'reportFormDiv_' + ${post.postId}">
 						<form id="reportForm" th:action="@{/submitReportPost}" method="post">
@@ -120,6 +118,9 @@
 					</div>
 					<button type="button" th:if="${currentUser.getRole() == 'MOD' || currentUser.getId() == post.userId || currentUser.getRole() == 'ADMIN'}"
 							th:onclick="'showDeleteConfirmation(\'' + ${post.postId} + '\')'">Delete</button>
+					<form th:if="${currentUser.getRole() == 'MOD'}" th:action="@{/lockPost/{postId}(postId=${post.getPostId()})}" method="post">
+						<button type="submit">Lock Post</button>
+					</form>
 				</div>
 			</div>
 			<div class="postInfo">

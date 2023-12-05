@@ -56,6 +56,10 @@
             <h1 th:text="${viewedUser.getName()}"></h1>
             <h2 th:text="'Username: ' + ${viewedUser.getUsername()}"></h2>
             <h2 th:text="'User ID: ' + ${viewedUser.getId()}"></h2>
+            <h2 th:text="'User Status: ' + ${viewedUser.getRole()}"></h2>
+            <form th:if="${viewedUser.getRole() == 'LOCKEDUSER' && currentUser.getRole() == 'ADMIN'}" method="post" th:action="@{/unlockAccount/{username}(username=${viewedUser.getId()})}">
+                <button type="submit">Unlock Account</button>
+            </form>
         </div>
         <div id="contentHolderRight">
             <Table id="usersTable">
@@ -81,6 +85,30 @@
                     <td th:text="${report.getReportedProjectId()}"></td>
                     <td th:text="${report.getReportedPostId()}"></td>
                     <td th:text="${report.getReportDescription()}"></td>
+                </tr>
+                </tbody>
+            </Table>
+            <Table id="postsTable">
+                <thead>
+                <tr>
+                    <th>Post ID</th>
+                    <th>Post Body</th>
+                    <th>Post Image</th>
+                    <th>Post Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="post : ${postsList}" th:if="${post.lockedPost}">
+                    <td th:text="${post.getPostId()}"></td>
+                    <td th:text="${post.getBody()}"></td>
+                    <td>
+                        <img th:src="${post.getVisual()}">
+                    </td>
+                    <td>
+                        <form method="post" th:action="@{/unlockPost/{postId}(postId=${post.getPostId()})}">
+                            <button type="submit">Unlock</button>
+                        </form>
+                    </td>
                 </tr>
                 </tbody>
             </Table>

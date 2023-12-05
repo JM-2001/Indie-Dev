@@ -29,11 +29,15 @@ public class Post {
     private int like_count;
     private Timestamp created_at;
 
-    public Post(Long postId, Long userId, String visual, String body, int like_count, Timestamp created_at){
-        this.body = body;
+    private boolean lockedPost;
+
+    public Post(Long postId, Long userId, String visual, String body, int like_count, Timestamp created_at, boolean lockedPost) {
         this.postId = postId;
-        this.created_at = created_at;
         this.userId = userId;
         this.visual = visual;
+        this.body = body;
+        this.like_count = like_count;
+        this.created_at = created_at;
+        this.lockedPost = lockedPost;
     }
 }
