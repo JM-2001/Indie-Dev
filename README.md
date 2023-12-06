@@ -15,3 +15,6 @@
 
 ## Status
 > Complete!
+
+## SRS Document
+> https://github.com/JM-2001/Indie-Dev/blob/main/IndieDev%20-%20Software%20Requirements%20Document.pdf
