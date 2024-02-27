@@ -37,11 +37,6 @@ public class MessageService {
         return Collections.emptyList();
     }
 
-    public List<Message> getAllMessages() {
-        // Implement logic to retrieve all messages
-        return messageRepository.findAll();
-    }
-
     public List<Message> getMessagesBetweenUsers(User user1, User user2) {
         return messageRepository.findByAuthorIdAndRecipientIdOrAuthorIdAndRecipientId(
                 user1.getId(), user2.getId(), user2.getId(), user1.getId());
