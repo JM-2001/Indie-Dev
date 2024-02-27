@@ -130,7 +130,7 @@ public class ProjectController {
 
                 project.setVisual2(updatedName2);
             } catch (IOException e) {
-                e.printStackTrace(); // Handle the exception according to your needs
+                e.printStackTrace();
             }
         }
 
