@@ -108,10 +108,6 @@ public class PostController {
 
     @GetMapping("/deletePost")
     public String deletePost(@RequestParam Long postId) {
-        // Validate if the user has the authority to delete the post (MOD or ADMIN)
-        // Implement your authorization logic here...
-
-        // If authorized, delete the post
         postService.deletePost(postId);
 
         return "redirect:/home";
