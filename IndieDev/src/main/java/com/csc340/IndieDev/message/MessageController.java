@@ -48,10 +48,10 @@ public class MessageController {
         String senderName = SecurityContextHolder.getContext().getAuthentication().getName();
         User sender = userService.getUserByUserName(senderName);
 
-        // Create and send the message
+        //Create and send message
         sendMessage(sender.getId(), recipientId, messageBody);
 
-        // Create a redirect attribute for the url
+        //Create a redirect attribute for url
         redirectAttributes.addAttribute("userId", recipientId);
 
         // Redirect to the chat or inbox page
@@ -70,7 +70,7 @@ public class MessageController {
         Long currentUserId = getCurrentUserId();
         List<Message> latestMessages = messageService.getLatestMessages(currentUserId);
 
-        // Return the data in the response
+        //Return the data in response
         return new ResponseEntity<>(latestMessages, HttpStatus.OK);
     }
 
